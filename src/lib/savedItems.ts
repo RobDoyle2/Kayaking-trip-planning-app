@@ -3,6 +3,7 @@ import { readSaved, removeSaved, writeSaved, type KeyValueStore, type Saved } fr
 import { isRiskAssessment } from '../content/leadership/risk';
 import { isReview } from '../content/leadership/review';
 import { isTripStore, mergeTripStores } from '../content/trip/trip';
+import { isDevelopmentPlan } from '../content/training/plan';
 
 /**
  * Everything the app can save on the user's device, in one list. The My plans page, the export file and the import
@@ -24,6 +25,10 @@ export const savedItemDefs: SavedItemDef[] = [
   { id: 'sheets-briefing', label: 'SHEETS briefing', href: '/leadership/sheets', version: 1, isValid: isStringOrBooleanRecord },
   { id: 'risk-assessment', label: 'Risk assessment', href: '/leadership/risk', version: 1, isValid: isRiskAssessment },
   { id: 'post-trip-review', label: 'Post-trip review', href: '/leadership/review', version: 1, isValid: isReview },
+  { id: 'development-plan', label: 'Skills development plan', href: '/training/plan', version: 1, isValid: isDevelopmentPlan },
+  { id: 'dev-fsrt', label: 'Checklist: safety and rescue skills (FSRT)', href: '/training/checklists/fsrt', version: 1, isValid: isBooleanRecord },
+  { id: 'dev-leader-rescue', label: 'Checklist: Sea Kayak Leader rescue skills', href: '/training/checklists/leader-rescue', version: 1, isValid: isBooleanRecord },
+  { id: 'dev-leader-background', label: 'Checklist: Sea Kayak Leader paddling and background', href: '/training/checklists/leader-background', version: 1, isValid: isBooleanRecord },
   { id: 'trips', label: 'Trip plans', href: '/trip-planning/day', version: 1, isValid: isTripStore, merge: mergeTripStores },
 ];
 

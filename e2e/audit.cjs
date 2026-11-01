@@ -18,7 +18,7 @@ function rec(area, name, ok, detail = '') {
   console.log(`${ok ? 'PASS' : 'FAIL'}  [${area}] ${name}${detail ? '  -> ' + detail : ''}`);
 }
 
-const routes = ['/', '/leadership', '/trip-planning', '/training', '/navigation', '/vhf', '/knowledge', '/emergency', '/sources', '/my-plans', '/leadership/preparing', '/leadership/responsibilities', '/leadership/checklist', '/leadership/sheets', '/leadership/group', '/leadership/risk', '/leadership/equipment', '/leadership/review', '/trip-planning/day', '/trip-planning/multi-day', '/trip-planning/camping'];
+const routes = ['/', '/leadership', '/trip-planning', '/training', '/navigation', '/vhf', '/knowledge', '/emergency', '/sources', '/my-plans', '/leadership/preparing', '/leadership/responsibilities', '/leadership/checklist', '/leadership/sheets', '/leadership/group', '/leadership/risk', '/leadership/equipment', '/leadership/review', '/trip-planning/day', '/trip-planning/multi-day', '/trip-planning/camping', '/training/guidance', '/training/plan', '/training/checklists', '/training/checklists/fsrt', '/training/checklists/leader-rescue', '/training/checklists/leader-background', '/training/qualifications'];
 
 async function h1(page) {
   return (await page.locator('main h1').first().innerText().catch(() => '(none)')).trim();
@@ -398,6 +398,13 @@ async function h1(page) {
       await grab('trip-editor');
       await page.goto(BASE + '/trip-planning/multi-day', { waitUntil: 'networkidle' });
       await grab('trip-list-with-plan');
+      // A development plan with ratings, a note and actions, so the summary and action list colours are measured too.
+      await page.goto(BASE + '/training/plan', { waitUntil: 'networkidle' });
+      await page.locator('select[id^="plan-"]').nth(1).selectOption('Develop');
+      await page.locator('select[id^="plan-"]').nth(0).selectOption('Strong');
+      await page.getByRole('button', { name: 'Add an action' }).click();
+      await page.locator('input[id^="act-"][id$="-text"]').fill('Book a rescue session');
+      await grab('plan-filled');
       // The floating button, alone, at the top of a page.
       await page.goto(BASE + '/', { waitUntil: 'networkidle' });
       await page.evaluate(() => window.scrollTo(0, 0));

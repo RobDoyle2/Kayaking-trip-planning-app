@@ -2,6 +2,7 @@ import { SourceList } from '../../components/forms/SourceList';
 import { Notice, PageHeader } from '../../components/ui';
 import { sourceShort } from '../../content/leadership/sources';
 import type { Guide } from '../../content/leadership/guides';
+import type { IconName } from '../../content/sections';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import { Link } from '../../router/Router';
 
@@ -10,11 +11,18 @@ function slug(text: string): string {
 }
 
 /** A written guide: sections of text and lists, each saying where it comes from. */
-export function GuidePage({ guide }: { guide: Guide }) {
+interface GuideProps {
+  guide: Guide;
+  /** Where the breadcrumb leads. Defaults to the Leadership section. */
+  crumb?: { label: string; to: string };
+  icon?: IconName;
+}
+
+export function GuidePage({ guide, crumb = { label: 'Leadership', to: '/leadership' }, icon = 'leadership' }: GuideProps) {
   useDocumentTitle(guide.title);
   return (
     <div className="container page prose">
-      <PageHeader title={guide.title} intro={guide.intro} icon="leadership" crumb={{ label: 'Leadership', to: '/leadership' }} />
+      <PageHeader title={guide.title} intro={guide.intro} icon={icon} crumb={crumb} />
       {guide.caution && (
         <Notice tone="warning" title="Not yet approved by the club">
           {guide.caution}

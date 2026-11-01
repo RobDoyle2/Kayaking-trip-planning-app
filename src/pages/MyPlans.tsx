@@ -56,9 +56,9 @@ export function MyPlans() {
       />
 
       <Notice title="Saved on this device only">
-        Your checklists, briefing, risk assessment, review and trip plans are kept in this browser, on this device. They are not sent to a server, so they will not
+        Your checklists, briefing, risk assessment, review, trip plans and skills development plan are kept in this browser, on this device. They are not sent to a server, so they will not
         appear on another phone, computer or browser, and clearing your browser’s data erases them. To keep a copy or move to another device, download a
-        file below and import it there. Skills plans arrive in Stage 4.
+        file below and import it there.
       </Notice>
 
       {store === null && (

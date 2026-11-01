@@ -11,7 +11,7 @@ import type { SectionId } from '../clubs/types';
 export type Status = 'ready' | 'preview' | 'planned' | 'blocked';
 
 /** The last build stage that has been completed. Raise this only when a stage's work is built and tested. */
-export const BUILD_STAGE = 3;
+export const BUILD_STAGE = 4;
 
 export type IconName =
   | 'leadership'
@@ -219,30 +219,34 @@ export const sections: Section[] = [
       {
         id: 'guidance',
         title: 'Training guidance',
-        summary: 'How the leader checklist categories and award levels fit together.',
-        status: 'planned',
-        stage: 4,
+        summary: 'How the leader checklist categories, the safety and rescue course and the Canoeing Ireland award levels fit together.',
+        status: 'preview',
+        href: '/training/guidance',
+        note: 'Built from the supplied documents; the content has not yet been approved by the ECSKC committee.',
       },
       {
         id: 'plan',
         title: 'Skills development plan',
-        summary: 'Rate each category Strong, Competent or Develop, pick areas to improve and list actions.',
-        status: 'planned',
-        stage: 4,
+        summary: 'Rate each line of the leader checklist Strong, Competent or Develop, note what to work on and list the actions.',
+        status: 'preview',
+        href: '/training/plan',
+        note: 'Your own self-assessment, kept on this device. Nobody assesses it. Built from the supplied documents; the content has not yet been approved by the ECSKC committee.',
       },
       {
         id: 'checklists',
         title: 'Personal development checklists',
-        summary: 'Checklists you tick off and keep on your device.',
-        status: 'planned',
-        stage: 4,
+        summary: 'Three checklists you tick off over time and keep on your device: safety and rescue skills, leader rescue skills, and leader paddling and background.',
+        status: 'preview',
+        href: '/training/checklists',
+        note: 'A tick is a private record, not an assessment. Built from the supplied documents; the content has not yet been approved by the ECSKC committee.',
       },
       {
         id: 'qualifications',
         title: 'Canoeing Ireland qualifications',
-        summary: 'The Sea Kayak Skills Award pathway with links to canoe.ie.',
-        status: 'planned',
-        stage: 4,
+        summary: 'The Sea Kayak Skills Award levels, with a link to each page on canoe.ie.',
+        status: 'preview',
+        href: '/training/qualifications',
+        note: 'Links and short notes only; award text is not copied. The pages were read on 1 November 2026, so check them.',
       },
     ],
   },

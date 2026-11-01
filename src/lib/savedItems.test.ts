@@ -19,7 +19,7 @@ function fakeStore(): KeyValueStore & { data: Record<string, string> } {
 
 test('every saved item has a unique id and a page to open', () => {
   assert.equal(new Set(savedItemDefs.map((d) => d.id)).size, savedItemDefs.length);
-  for (const d of savedItemDefs) assert.match(d.href, /^\/(leadership|trip-planning)\//);
+  for (const d of savedItemDefs) assert.match(d.href, /^\/(leadership|trip-planning|training)\//);
 });
 
 test('keys are namespaced by club so clubs never overwrite each other', () => {

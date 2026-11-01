@@ -66,3 +66,17 @@ test('findSection looks a section up by path', () => {
   assert.equal(findSection('/vhf')?.id, 'vhf');
   assert.equal(findSection('/missing'), undefined);
 });
+
+test('every built item in the registry has its address in the list of tool pages', async () => {
+  const { toolPaths, fixedPaths } = await import('../routePaths');
+  const known = new Set([...Object.keys(toolPaths), ...fixedPaths]);
+  for (const section of sections) {
+    for (const item of section.items) {
+      if (item.href) assert.ok(known.has(item.href), `${section.id}/${item.id} points to ${item.href}, which has no page`);
+    }
+  }
+  for (const [path, sectionId] of Object.entries(toolPaths)) {
+    const section = sections.find((s) => s.id === sectionId);
+    assert.ok(section && path.startsWith(`${section.path}/`), `${path} is not under its section ${sectionId}`);
+  }
+});

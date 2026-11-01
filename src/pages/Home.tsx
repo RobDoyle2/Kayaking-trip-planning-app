@@ -101,8 +101,8 @@ export function Home() {
       </section>
 
       <section className="container block">
-        <Notice title="Build status: Stage 3 of 6">
-          The framework, the Leadership tools and Trip Planning are built. The other sections list what is planned and what is waiting on a
+        <Notice title="Build status: Stage 4 of 6">
+          The framework, the Leadership tools, Trip Planning and the Training tools are built. The other sections list what is planned and what is waiting on a
           document, and every item carries a status label so unfinished features do not look finished. See{' '}
           <Link to="/sources">Sources and limits</Link> for what the app can and cannot do.
         </Notice>

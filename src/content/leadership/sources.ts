@@ -65,6 +65,14 @@ export const leadershipSources: Record<string, SourceRef> = {
     title: 'English Outdoor Council, High Quality Outdoor Learning, 2015',
     howRead: 'Supplied; read through the project notes, not the original file.',
   },
+  'ci-awards': {
+    id: 'ci-awards',
+    short: 'Canoeing Ireland award pages',
+    title: 'Canoeing Ireland, Sea Kayak Skills Awards (scheme page, level pages and the Sea Kayak Awards Overview)',
+    url: 'https://www.canoe.ie/paddle-skills-awards/',
+    howRead:
+      'The scheme page, the Level 2 and Level 5 pages and the overview PDF were read on 1 November 2026; the Level 1, 3 and 4 pages were seen as search excerpts only. Requirements change, so check each page.',
+  },
   oileain: {
     id: 'oileain',
     short: 'Oileáin (supplied PDF)',

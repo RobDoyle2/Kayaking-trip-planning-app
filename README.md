@@ -6,10 +6,10 @@ colours and content, so other clubs can use the same code later.
 
 ## Where the project is
 
-**Stages 1 to 3 of 6 are built:** the framework (home screen, ECSKC branding, menu, six section pages,
+**Stages 1 to 4 of 6 are built:** the framework (home screen, ECSKC branding, menu, six section pages,
 assistant entry point, Emergency card, Sources and limits), the **Leadership tools** (guides, checklists,
-SHEETS briefing form, risk assessment, equipment check, post-trip review, and My plans for saving them) and
-**Trip Planning** (day trips, multi-day trips and camping trips: create, edit, save, reopen, print, PDF).
+SHEETS briefing form, risk assessment, equipment check, post-trip review, and My plans for saving them) **Trip Planning** (day trips, multi-day trips and camping trips: create, edit, save, reopen, print, PDF) and
+**Training and Skills** (training guidance, skills development plan, three personal checklists, Canoeing Ireland awards pathway).
 
 | Area | State |
 |---|---|
@@ -20,7 +20,8 @@ SHEETS briefing form, risk assessment, equipment check, post-trip review, and My
 | Leadership tools | **Preview.** Built from the supplied documents; not approved by the ECSKC committee. The SHEETS headings come from saturnbull.co.uk/sheets, paraphrased; permission to reuse them is unconfirmed. The risk assessment is a generic layout, not the club's template, and has no scoring |
 | My plans | Working. Lists what is saved in this browser; download, import (whole file or nothing) and delete |
 | Trip Planning | **Preview.** Manual planning only. Fields follow the approved specification; the app fills nothing in, fetches no weather and calculates no tides. Optional award-limit check (information only, off by default). Download as PDF (made in the browser), print, text or a trip file. Not yet approved by the ECSKC committee. Camping gear, food and water are free text because no ECSKC camping list was supplied |
-| Training, Navigation and Tides, VHF tools | Not built. Each section page lists the planned items, each with a status label |
+| Training and Skills | **Preview.** Guidance, a development plan (Strong / Competent / Develop self-ratings, notes, action list), three personal checklists and an award pathway with links to canoe.ie. All private to the device and none of it assesses anyone. **The skills library is still blocked**: the supplied sources hold checklists only, so no skill descriptions have been written |
+| Navigation and Tides, VHF tools | Not built. Each section page lists the planned items, each with a status label |
 | Live tide and weather data | Not built. Nothing is fetched today (Stage 5) |
 | Offline use (service worker) | Not built (Stage 5) |
 | Photography | None. The hero uses an original drawn coastal scene until the club supplies photos it may use |
@@ -86,7 +87,7 @@ one web address.
    ```bash
    git init
    git add .
-   git commit -m "Sea Kayaking Hub, Stage 3"
+   git commit -m "Sea Kayaking Hub, Stage 4"
    git branch -M main
    git remote add origin https://github.com/<you>/sea-kayaking-hub.git
    git push -u origin main
@@ -129,7 +130,7 @@ and is deliberately left for a later phase. The app will not call anything "save
 ## Testing
 
 ```bash
-npm test                         # 84 unit tests: section rules, club config, question checks, addresses, saving, SHEETS, checklists, trip plans, PDF writer
+npm test                         # 95 unit tests: section rules, club config, question checks, addresses, saving, SHEETS, checklists, trip plans, PDF writer, training plan and checklists
 ```
 
 Browser tests (they drive a real Chromium; install once with `npm install --no-save playwright` then
@@ -138,11 +139,12 @@ Browser tests (they drive a real Chromium; install once with `npm install --no-s
 ```bash
 npm run build
 node scripts/serve.mjs dist 4173 &     # serve the built site with the host's security headers
-node e2e/smoke.cjs                     # 357 checks: every page, menu, assistant window, tap targets, console errors
+node e2e/smoke.cjs                     # 441 checks: every page, menu, assistant window, tap targets, console errors
 node e2e/stage2.cjs                    # Leadership: saving, reload, SHEETS, print, export/import, 320px, blocked storage
 node e2e/stage3.cjs                    # Trip Planning: create, edit, reopen, delete, PDF (checked with qpdf and pdftotext), import merge, limits, 320px, blocked storage
 #   (the Stage 3 test also needs qpdf and pdftotext from poppler-utils, to check the downloaded PDF)
-node e2e/audit.cjs                     # 208 checks: odd addresses, Back button, injection, CSP, 320px and 200% text,
+node e2e/stage4.cjs                    # Training: development plan, checklists, guidance, award links, import/export, 320px, blocked storage
+node e2e/audit.cjs                     # 264 checks: odd addresses, Back button, injection, CSP, 320px and 200% text,
                                        #   accessibility structure, privacy, print, performance under throttling
 python3 e2e/contrast.py                # colour contrast measured from real screenshot pixels
 ```

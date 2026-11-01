@@ -37,6 +37,13 @@ const routes = [
   ['/trip-planning/day', 'Day trip'],
   ['/trip-planning/multi-day', 'Multi-day expedition without camping'],
   ['/trip-planning/camping', 'Multi-day expedition with camping'],
+  ['/training/guidance', 'Training guidance'],
+  ['/training/plan', 'Skills development plan'],
+  ['/training/checklists', 'Personal checklists'],
+  ['/training/checklists/fsrt', 'Safety and rescue skills (FSRT)'],
+  ['/training/checklists/leader-rescue', 'Sea Kayak Leader: rescue skills'],
+  ['/training/checklists/leader-background', 'Sea Kayak Leader: paddling and background'],
+  ['/training/qualifications', 'Canoeing Ireland qualifications'],
 ];
 
 (async () => {
@@ -144,6 +151,7 @@ const routes = [
     await page.goto(BASE + '/', { waitUntil: 'networkidle' });
     await page.locator('#home-ask').fill('How do I prepare for a crossing?');
     await page.locator('.ask button[type=submit]').click();
+    await page.locator('#assistant-question').waitFor({ state: 'visible' });
     check(`[${label}] home question opens the assistant with the text`, (await page.locator('#assistant-question').inputValue()) === 'How do I prepare for a crossing?');
     await page.keyboard.press('Escape');
 
