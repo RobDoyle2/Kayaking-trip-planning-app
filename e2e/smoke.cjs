@@ -44,6 +44,12 @@ const routes = [
   ['/training/checklists/leader-rescue', 'Sea Kayak Leader: rescue skills'],
   ['/training/checklists/leader-background', 'Sea Kayak Leader: paddling and background'],
   ['/training/qualifications', 'Canoeing Ireland qualifications'],
+  ['/navigation/reference', 'Navigation reference'],
+  ['/navigation/tools', 'Tide worksheet and calculators'],
+  ['/navigation/oileain', 'Oileáin guidance'],
+  ['/navigation/tides', 'Tidal information'],
+  ['/navigation/weather', 'Weather information'],
+  ['/vhf/stations', 'VHF station list and channels'],
 ];
 
 (async () => {

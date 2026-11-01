@@ -11,7 +11,7 @@ import type { SectionId } from '../clubs/types';
 export type Status = 'ready' | 'preview' | 'planned' | 'blocked';
 
 /** The last build stage that has been completed. Raise this only when a stage's work is built and tested. */
-export const BUILD_STAGE = 4;
+export const BUILD_STAGE = 5;
 
 export type IconName =
   | 'leadership'
@@ -262,24 +262,27 @@ export const sections: Section[] = [
       {
         id: 'reference',
         title: 'Navigation reference',
-        summary: 'Chartwork, tides, weather and pilotage notes, the Beaufort scale and a guide to the sections of Chart 5011.',
-        status: 'planned',
-        stage: 5,
+        summary: 'Chartwork, buoyage, tides and pilotage notes from the supplied navigation course, paraphrased.',
+        status: 'preview',
+        href: '/navigation/reference',
+        note: 'Diagram-only slides and the Chart 5011 key are not included. Built from the supplied documents; the content has not yet been approved by the ECSKC committee.',
       },
       {
         id: 'tools',
         title: 'Tide worksheet and calculators',
         summary:
-          'Rule of thirds and twelfths, local port times, stream start times, beam-current offset and stream speed. Only rules found in the supplied sources.',
-        status: 'planned',
-        stage: 5,
+          'Time from high water, UT to BST, rules of thirds and twelfths, offset angle for a stream, stream speed, atlas rates and cables. Only rules found in the supplied sources.',
+        status: 'preview',
+        href: '/navigation/tools',
+        note: 'Arithmetic on values you type; nothing is fetched or saved. Each rule names its source. Built from the supplied documents; the content has not yet been approved by the ECSKC committee.',
       },
       {
         id: 'oileain',
         title: 'Oileáin guidance',
-        summary: 'A region index with the standard port used for each coast, and links to the Oileáin sources.',
-        status: 'planned',
-        stage: 5,
+        summary: 'A region index with the standard port used for each coast, how Oileáin gives times, and links to the Oileáin sources.',
+        status: 'preview',
+        href: '/navigation/oileain',
+        note: 'An index only: the guide’s text and tide tables are not reproduced. Built from the supplied documents; the content has not yet been approved by the ECSKC committee.',
       },
       {
         id: 'allowance',
@@ -287,21 +290,23 @@ export const sections: Section[] = [
         summary: 'The extra-time rule around high water that Oileáin describes.',
         status: 'blocked',
         blockedBy:
-          'The rule is not recorded in the project notes and the original Oileáin PDF is not in the project. Please point to the pages that state it.',
+          'The supplied 332-page PDF contains no such rule and no introduction chapter, so nothing is built for it. Please say where it is printed (perhaps the introduction of the printed edition).',
       },
       {
         id: 'tides',
         title: 'Tidal information',
-        summary: 'Predicted high and low water, labelled as predictions, with source, datum and update time.',
-        status: 'planned',
-        stage: 5,
+        summary: 'How to read tide information, and links to prediction sources with their datum and time-zone cautions.',
+        status: 'preview',
+        href: '/navigation/tides',
+        note: 'Not live: this app shows no tide times or heights. The page says why. Built from the supplied documents; the content has not yet been approved by the ECSKC committee.',
       },
       {
         id: 'weather',
         title: 'Weather information',
-        summary: 'Forecasts and buoy readings where a reliable source exists, and links where it does not.',
-        status: 'planned',
-        stage: 5,
+        summary: 'The Beaufort scale, what the course says about wind and weather systems, and links to forecast providers.',
+        status: 'preview',
+        href: '/navigation/weather',
+        note: 'Not live: this app shows no forecast or buoy readings. Built from the supplied documents; the content has not yet been approved by the ECSKC committee.',
       },
     ],
   },
@@ -318,25 +323,25 @@ export const sections: Section[] = [
         id: 'stations',
         title: 'Station list and channels',
         summary: 'Irish Coast Guard stations with their channels, rebuilt from Marine Notice 61 of 2020 (newer notices still to be checked).',
-        status: 'planned',
-        stage: 5,
-        note: 'The station sheet in the project shows older working channels for 11 of its 16 stations.',
+        status: 'preview',
+        href: '/vhf/stations',
+        note: 'A December 2020 snapshot read from the afloat.ie copy of the notice. Check the current notice. The project station sheet shows older working channels for 11 of its 16 stations.',
       },
       {
         id: 'areas',
         title: 'Control areas',
         summary: 'Which centre (Dublin MRCC, Malin MRSC or Valentia MRSC) covers which stretch of coast.',
-        status: 'planned',
-        stage: 5,
-        note: 'Two sources disagree on the southern end of the Dublin area; one boundary has to be confirmed with the Coast Guard.',
+        status: 'blocked',
+        blockedBy:
+          'The notice’s poster groups stations under the three centres, but its text does not show which station goes where, and two other sources give different southern ends for the Dublin area. One boundary has to be confirmed with the Irish Coast Guard.',
       },
       {
         id: 'map',
         title: 'Approximate station map',
-        summary: 'A schematic map by station name, marked approximate.',
-        status: 'planned',
-        stage: 5,
-        note: 'No verified coordinates have been found, so the map will not claim exact positions.',
+        summary: 'A map of the radio stations.',
+        status: 'blocked',
+        blockedBy:
+          'No verified coordinates were found, and the grouping of stations by control centre is unconfirmed, so any map here would show guessed positions. Marine Notice 61 of 2020 carries the Coast Guard’s own map of the radio sites (its Appendix 1).',
       },
       {
         id: 'procedures',
@@ -344,7 +349,7 @@ export const sections: Section[] = [
         summary: 'How to call, make a distress, urgency or safety call, and use DSC.',
         status: 'blocked',
         blockedBy:
-          'No document in the project covers radio procedures. Marine Notice 61 of 2020 reportedly includes, as Appendix 2, an Irish Coast Guard guide to sending VHF distress alerts and calls. That could be the source if the club approves it.',
+          'No document in the project covers radio procedures. Marine Notice 61 of 2020 includes, as Appendix 2, an Irish Coast Guard guide to sending VHF distress alerts and calls. That could be the source if the club approves it; it has not been used here.',
       },
     ],
   },

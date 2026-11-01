@@ -5,7 +5,7 @@ import { useDocumentTitle } from '../hooks/useDocumentTitle';
 /**
  * Emergency card. Every line below is taken from a published source named at the bottom of the page.
  * Nothing here is invented. It is a PREVIEW until the ECSKC committee approves the wording.
- * Offline use arrives with the offline cache in Stage 5.
+ * Offline use is not built yet (it needs a service worker, which is a separate decision).
  */
 export function EmergencyCard() {
   useDocumentTitle('Emergency card');
@@ -16,8 +16,8 @@ export function EmergencyCard() {
 
       <Notice tone="warning" title="Preview: not yet approved by the club">
         The wording comes from the published sources listed at the foot of this page. It has not been approved by the ECSKC
-        committee. Check it against the club's own procedures. This page needs a signal to load for now; offline use
-        arrives in Stage 5.
+        committee. Check it against the club's own procedures. This page needs a signal to load: offline use is not built
+        yet, so note the numbers down before you go.
       </Notice>
 
       <section className="emergency__call" aria-labelledby="call-title">

@@ -79,11 +79,19 @@ export const leadershipSources: Record<string, SourceRef> = {
     title: 'Oileáin guide to the Irish coast and islands (332-page PDF; edition not stated)',
     howRead: 'Supplied and read directly. Page numbers are PDF pages.',
   },
+  mn61: {
+    id: 'mn61',
+    short: 'Marine Notice 61 of 2020',
+    title: 'Department of Transport, Marine Notice No. 61 of 2020, Changes to Irish Coast Guard VHF working channels (dated 16 December 2020)',
+    url: 'https://www.gov.ie/en/department-of-transport/collections/marine-notices-2020',
+    howRead:
+      'Read through the copy published by afloat.ie, not the gov.ie original (which could not be fetched here), on 1 November 2026. Later notices have not been checked.',
+  },
   shearwater: {
     id: 'shearwater',
     short: 'Shearwater navigation decks',
-    title: 'Shearwater Sea Kayaking, Essential Coastal Navigation, Level 4 (Tides and Weather decks)',
-    howRead: 'Supplied and read directly.',
+    title: 'Shearwater Sea Kayaking, Essential Coastal Navigation, Level 4 (Chartwork, Tides, Weather and Pilotage decks)',
+    howRead: 'Supplied and read directly. Diagrams in the slides were not transcribed, and a few slide figures looked garbled, so they are left out.',
   },
 };
 

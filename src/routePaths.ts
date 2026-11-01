@@ -24,6 +24,12 @@ export const toolPaths: Record<string, SectionId> = {
   '/training/checklists/leader-rescue': 'training',
   '/training/checklists/leader-background': 'training',
   '/training/qualifications': 'training',
+  '/navigation/reference': 'navigation',
+  '/navigation/tools': 'navigation',
+  '/navigation/oileain': 'navigation',
+  '/navigation/tides': 'navigation',
+  '/navigation/weather': 'navigation',
+  '/vhf/stations': 'vhf',
 };
 
 /** Addresses handled outside the section tools (see App.tsx). */

@@ -7,6 +7,8 @@ import { toolPaths } from './routePaths';
 const LeadershipRoutes = lazy(() => import('./routes/leadership'));
 const TripRoutes = lazy(() => import('./routes/trip'));
 const TrainingRoutes = lazy(() => import('./routes/training'));
+const NavigationRoutes = lazy(() => import('./routes/navigation'));
+const VhfRoutes = lazy(() => import('./routes/vhf'));
 
 function Loading({ children }: { children: ReactNode }) {
   return (
@@ -51,6 +53,18 @@ export function matchToolRoute(path: string, enabled: SectionId[]): ReactNode | 
       return (
         <Loading>
           <TrainingRoutes path={path} />
+        </Loading>
+      );
+    case 'navigation':
+      return (
+        <Loading>
+          <NavigationRoutes path={path} />
+        </Loading>
+      );
+    case 'vhf':
+      return (
+        <Loading>
+          <VhfRoutes path={path} />
         </Loading>
       );
     default:

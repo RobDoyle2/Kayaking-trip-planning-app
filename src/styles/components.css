@@ -1287,6 +1287,108 @@ textarea.input {
   font-style: italic;
 }
 
+/* ---------- Navigation and VHF (Stage 5) ---------- */
+.calc__formula {
+  margin: 0 0 12px;
+  overflow-wrap: anywhere;
+}
+
+.calc__result {
+  margin: 8px 0 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  background: var(--tint-soft);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.calc__result--wait {
+  font-weight: 400;
+  color: var(--muted);
+  background: #fff;
+}
+
+.calc__result--problem {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.calc__more {
+  margin-top: 8px;
+}
+
+.calc__more > summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.calc__table {
+  width: 100%;
+  min-width: 0;
+  border-collapse: collapse;
+  margin: 8px 0 16px;
+}
+
+.calc__table th,
+.calc__table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line-strong);
+  overflow-wrap: anywhere;
+}
+
+.calc__table thead th {
+  border-bottom: 2px solid var(--ink);
+}
+
+.calc__table tbody th {
+  font-weight: 700;
+}
+
+.station-note {
+  display: block;
+  font-weight: 400;
+}
+
+@media (max-width: 640px) {
+  .calc__table--stack thead {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .calc__table--stack,
+  .calc__table--stack tbody,
+  .calc__table--stack tr,
+  .calc__table--stack th,
+  .calc__table--stack td {
+    display: block;
+    width: 100%;
+  }
+
+  .calc__table--stack tr {
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    margin-bottom: 12px;
+    padding: 4px 0;
+  }
+
+  .calc__table--stack th,
+  .calc__table--stack td {
+    border-bottom: 0;
+    padding: 4px 12px;
+  }
+
+  .calc__table--stack td::before {
+    content: attr(data-label) ': ';
+    font-weight: 700;
+  }
+}
+
 /* ---------- Printing ---------- */
 @media print {
   .site-header,

@@ -10,17 +10,17 @@ interface LiveSource {
   rules: string;
 }
 
-/** Planned live sources. Every one is "not connected" today; the page says so. */
+/** Live sources looked at. None is connected; the page says so and says why. */
 const liveSources: LiveSource[] = [
   {
     source: 'Marine Institute tide prediction',
     use: 'Predicted tide times and heights, measured above Lowest Astronomical Tide.',
-    rules: 'Creative Commons Attribution 4.0. Shown as a prediction, with its source and time.',
+    rules: 'Creative Commons Attribution 4.0. Shown as a prediction, with its source and time. Two related datasets name their height columns differently, so the datum has to be checked first.',
   },
   {
     source: 'Met Éireann forecasts',
     use: 'Text forecasts (sea area, coastal reports) and point forecasts.',
-    rules: 'Credit Met Éireann, and show its weather warnings alongside forecast data.',
+    rules: 'Credit Met Éireann, and show its weather warnings alongside forecast data. The service is described as best effort and has been scheduled for an upgrade.',
   },
   {
     source: 'Marine Institute weather buoys',
@@ -49,17 +49,19 @@ export function SourcesAndLimits() {
       <section aria-labelledby="live-title">
         <h2 id="live-title">What is live and what is only linked</h2>
         <p>
-          <strong>Nothing in the app is live yet.</strong> No weather, tide or radio data is being fetched. Stage 5 plans
-          the connections below. Each live value will show its source, place, units, update time and limitation. If a
+          <strong>Nothing in the app is live.</strong> No weather, tide or radio data is fetched. The Navigation and VHF pages link to the
+          providers instead, marked “Not live here”. The sources below were looked at for a live connection and are not connected,
+          because none could be downloaded and tested from where the app was built, and a tide or weather figure on a safety aid must
+          not be shown unchecked. Any connection added later will show its source, place, units, update time and limitation, and if a
           feed cannot be reached you will see a message and a link to the provider, never a made-up value.
         </p>
         <div className="table-wrap">
           <table>
-            <caption className="sr-only">Planned live data sources</caption>
+            <caption className="sr-only">Live data sources looked at</caption>
             <thead>
               <tr>
                 <th scope="col">Source</th>
-                <th scope="col">Planned use</th>
+                <th scope="col">What it could offer</th>
                 <th scope="col">Rules that apply</th>
                 <th scope="col">Status today</th>
               </tr>

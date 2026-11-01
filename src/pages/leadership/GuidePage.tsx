@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { SourceList } from '../../components/forms/SourceList';
 import { Notice, PageHeader } from '../../components/ui';
 import { sourceShort } from '../../content/leadership/sources';
@@ -16,9 +17,11 @@ interface GuideProps {
   /** Where the breadcrumb leads. Defaults to the Leadership section. */
   crumb?: { label: string; to: string };
   icon?: IconName;
+  /** Extra content shown after the sections and before the source list. */
+  children?: ReactNode;
 }
 
-export function GuidePage({ guide, crumb = { label: 'Leadership', to: '/leadership' }, icon = 'leadership' }: GuideProps) {
+export function GuidePage({ guide, crumb = { label: 'Leadership', to: '/leadership' }, icon = 'leadership', children }: GuideProps) {
   useDocumentTitle(guide.title);
   return (
     <div className="container page prose">
@@ -56,6 +59,7 @@ export function GuidePage({ guide, crumb = { label: 'Leadership', to: '/leadersh
           </section>
         );
       })}
+      {children}
       <SourceList ids={guide.sections.flatMap((s) => s.sources)} />
     </div>
   );

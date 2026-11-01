@@ -18,7 +18,7 @@ function rec(area, name, ok, detail = '') {
   console.log(`${ok ? 'PASS' : 'FAIL'}  [${area}] ${name}${detail ? '  -> ' + detail : ''}`);
 }
 
-const routes = ['/', '/leadership', '/trip-planning', '/training', '/navigation', '/vhf', '/knowledge', '/emergency', '/sources', '/my-plans', '/leadership/preparing', '/leadership/responsibilities', '/leadership/checklist', '/leadership/sheets', '/leadership/group', '/leadership/risk', '/leadership/equipment', '/leadership/review', '/trip-planning/day', '/trip-planning/multi-day', '/trip-planning/camping', '/training/guidance', '/training/plan', '/training/checklists', '/training/checklists/fsrt', '/training/checklists/leader-rescue', '/training/checklists/leader-background', '/training/qualifications'];
+const routes = ['/', '/leadership', '/trip-planning', '/training', '/navigation', '/vhf', '/knowledge', '/emergency', '/sources', '/my-plans', '/leadership/preparing', '/leadership/responsibilities', '/leadership/checklist', '/leadership/sheets', '/leadership/group', '/leadership/risk', '/leadership/equipment', '/leadership/review', '/trip-planning/day', '/trip-planning/multi-day', '/trip-planning/camping', '/training/guidance', '/training/plan', '/training/checklists', '/training/checklists/fsrt', '/training/checklists/leader-rescue', '/training/checklists/leader-background', '/training/qualifications', '/navigation/reference', '/navigation/tools', '/navigation/oileain', '/navigation/tides', '/navigation/weather', '/vhf/stations'];
 
 async function h1(page) {
   return (await page.locator('main h1').first().innerText().catch(() => '(none)')).trim();
@@ -338,7 +338,7 @@ async function h1(page) {
     rec('performance', 'home LCP under 2.5 s on throttled 4G with 4x slower CPU', m.lcp < 2500, `${m.lcp} ms`);
     rec('performance', 'home layout shift under 0.1', m.cls < 0.1, String(m.cls));
     rec('performance', 'main-thread blocking under 300 ms', m.tbt < 300, `${m.tbt} ms`);
-    rec('performance', 'JavaScript loaded by Home under 100 KB when compressed', sizes['app.js'].gzip < 100 * 1024, `${(sizes['app.js'].gzip / 1024).toFixed(1)} KB gzip, ${(sizes['app.js'].brotli / 1024).toFixed(1)} KB brotli; on demand for the trip planner: ${((sizes['chunks.js'] || { gzip: 0 }).gzip / 1024).toFixed(1)} KB gzip`);
+    rec('performance', 'JavaScript loaded by Home under 100 KB when compressed', sizes['app.js'].gzip < 100 * 1024, `${(sizes['app.js'].gzip / 1024).toFixed(1)} KB gzip, ${(sizes['app.js'].brotli / 1024).toFixed(1)} KB brotli; on demand for section pages: ${((sizes['chunks.js'] || { gzip: 0 }).gzip / 1024).toFixed(1)} KB gzip`);
     await ctx.close();
   }
 
@@ -405,6 +405,16 @@ async function h1(page) {
       await page.getByRole('button', { name: 'Add an action' }).click();
       await page.locator('input[id^="act-"][id$="-text"]').fill('Book a rescue session');
       await grab('plan-filled');
+      // Calculators with results showing (a table, a result box and an error box), so their colours are measured too.
+      await page.goto(BASE + '/navigation/tools', { waitUntil: 'networkidle' });
+      await page.locator('#thirds-max').fill('2.4');
+      await page.locator('#twelfths-low').fill('0.5');
+      await page.locator('#twelfths-high').fill('4.5');
+      await page.locator('#streamspeed-dist').fill('0.7');
+      await page.locator('#streamspeed-min').fill('10');
+      await page.locator('#streamspeed-boat').fill('3');
+      await page.locator('#atlas-rate').fill('x');
+      await grab('tools-filled');
       // The floating button, alone, at the top of a page.
       await page.goto(BASE + '/', { waitUntil: 'networkidle' });
       await page.evaluate(() => window.scrollTo(0, 0));
