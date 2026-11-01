@@ -1,3 +1,4 @@
+import { emergencyNotIncluded, knowBeforeLaunch, rescuePriorities } from '../content/emergency';
 import { club } from '../clubs';
 import { Badge, ButtonLink, Notice, PageHeader } from '../components/ui';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
@@ -43,32 +44,21 @@ export function EmergencyCard() {
       <section className="block-tight" aria-labelledby="think-title">
         <h2 id="think-title">While you act</h2>
         <ul className="plain-list">
-          <li>
-            <strong>Self, Team, Victim, Equipment.</strong> The order of priority in a rescue: yourself first, then your
-            team, then the casualty, then kit.
-          </li>
-          <li>
-            <strong>Shout, Reach, Throw, Row, Go.</strong> From lowest risk to highest. Use the lowest-risk option that
-            will work.
-          </li>
-          <li>
-            <strong>Assess, consider options, raise the alarm, stabilise, execute the plan.</strong> The emergency
-            sequence in the Sea Kayak Leader assessment guidance.
-          </li>
+          {rescuePriorities.map((r) => (
+            <li key={r.title}>
+              <strong>{r.title}</strong> {r.text}
+            </li>
+          ))}
         </ul>
       </section>
 
       <section className="block-tight" aria-labelledby="know-title">
         <h2 id="know-title">Know before you launch</h2>
-        <p>
-          Where is the nearest phone, help, vehicle, first-aid kit and repair kit, and what spares does the group have?
-        </p>
+        <p>{knowBeforeLaunch}</p>
       </section>
 
       <Notice title="Not included yet">
-        What to tell the Coast Guard when you call (position, number of people, condition of the casualty and so on) is
-        common practice but is not in any document supplied to this project, so it is left out until the club approves
-        wording for it.
+        {emergencyNotIncluded}
       </Notice>
 
       <section className="block-tight" aria-labelledby="src-title">

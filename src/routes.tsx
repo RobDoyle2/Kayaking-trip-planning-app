@@ -9,6 +9,7 @@ const TripRoutes = lazy(() => import('./routes/trip'));
 const TrainingRoutes = lazy(() => import('./routes/training'));
 const NavigationRoutes = lazy(() => import('./routes/navigation'));
 const VhfRoutes = lazy(() => import('./routes/vhf'));
+const KnowledgeRoutes = lazy(() => import('./routes/knowledge'));
 
 function Loading({ children }: { children: ReactNode }) {
   return (
@@ -65,6 +66,12 @@ export function matchToolRoute(path: string, enabled: SectionId[]): ReactNode | 
       return (
         <Loading>
           <VhfRoutes path={path} />
+        </Loading>
+      );
+    case 'knowledge':
+      return (
+        <Loading>
+          <KnowledgeRoutes path={path} />
         </Loading>
       );
     default:

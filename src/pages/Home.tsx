@@ -67,7 +67,7 @@ export function Home() {
                 </p>
               ) : (
                 <p id="home-ask-hint" className="ask__hint">
-                  The assistant window is built but not yet connected, so it cannot answer. That arrives in Stage 6.
+                  Answers come from the documents supplied to this project, with their sources shown. They are not approved by the club and not live conditions.
                 </p>
               )}
             </form>
@@ -101,8 +101,8 @@ export function Home() {
       </section>
 
       <section className="container block">
-        <Notice title="Build status: Stage 5 of 6">
-          The framework, the Leadership tools, Trip Planning, the Training tools and the Navigation and VHF tools are built. The other sections list what is planned and what is waiting on a
+        <Notice title="Build status: Stage 6 of 6">
+          All six stages are built. Everything is a preview until the ECSKC committee approves it, and the assistant needs a Claude API key to be set up before it can answer. The other sections list what is planned and what is waiting on a
           document, and every item carries a status label so unfinished features do not look finished. See{' '}
           <Link to="/sources">Sources and limits</Link> for what the app can and cannot do.
         </Notice>

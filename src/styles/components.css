@@ -1389,6 +1389,67 @@ textarea.input {
   }
 }
 
+/* ---------- Assistant answers and the Knowledge Centre (Stage 6) ---------- */
+.answer__text {
+  margin: 0 0 8px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.answer__sources {
+  margin: 8px 0;
+}
+
+.answer__sources > summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.source-card {
+  padding: 8px 0 10px;
+  border-top: 1px solid var(--line);
+}
+
+.source-card__title {
+  margin: 0 0 4px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.source-card__quote {
+  margin: 0 0 4px;
+  padding-left: 10px;
+  border-left: 4px solid var(--tint);
+  overflow-wrap: anywhere;
+}
+
+.source-card__meta {
+  margin: 0;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.safety-note {
+  margin: 8px 0;
+  padding: 10px 12px;
+  border: 2px solid var(--danger);
+  border-radius: var(--radius-sm);
+  background: var(--danger-soft);
+  overflow-wrap: anywhere;
+}
+
+.answer__notices {
+  margin: 4px 0;
+  font-size: 0.9rem;
+}
+
+.kb-count {
+  margin: 8px 0;
+}
+
 /* ---------- Printing ---------- */
 @media print {
   .site-header,

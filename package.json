@@ -9,7 +9,8 @@
     "dev": "node scripts/dev.mjs",
     "preview": "node scripts/serve.mjs dist",
     "test": "tsx --test \"src/**/*.test.ts\"",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "kb": "tsx scripts/build-kb.ts"
   },
   "dependencies": {
     "react": "^19.2.0",

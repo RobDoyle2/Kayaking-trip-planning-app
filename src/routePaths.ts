@@ -30,6 +30,8 @@ export const toolPaths: Record<string, SectionId> = {
   '/navigation/tides': 'navigation',
   '/navigation/weather': 'navigation',
   '/vhf/stations': 'vhf',
+  '/knowledge/search': 'knowledge',
+  '/knowledge/documents': 'knowledge',
 };
 
 /** Addresses handled outside the section tools (see App.tsx). */

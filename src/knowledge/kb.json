@@ -1,0 +1,2023 @@
+{
+ "version": 1,
+ "club": "ecskc",
+ "sectionPaths": [
+  "/leadership",
+  "/trip-planning",
+  "/training",
+  "/navigation",
+  "/vhf",
+  "/knowledge"
+ ],
+ "emergency": {
+  "numbers": "999 or 112",
+  "vhfChannel": "16",
+  "source": "ECSKC Basic Safety page (ecskc.eu): in an emergency dial 999 or 112; to contact the Coast Guard use VHF channel 16. Read on 1 November 2026."
+ },
+ "docs": {
+  "bcab": {
+   "title": "British Canoeing Awarding Body, Sea Kayak Leader Assessment Guidance (Tidal and Non-Tidal)",
+   "short": "BCAB Sea Kayak Leader guidance",
+   "url": "https://britishcanoeingawarding.org.uk/download/609/",
+   "howRead": "The October 2021 edition was supplied and read through the project notes. The March 2024 edition (V1-6) was read online and gives the same limits. Page numbers shown are for the March 2024 edition."
+  },
+  "bcab-checklist": {
+   "title": "British Canoeing Awarding Body, Sea Kayak Leader Skills Checklist, October 2021",
+   "short": "BCAB Skills Checklist",
+   "howRead": "Supplied; read through the project notes, not the original file."
+  },
+  "ci-awards": {
+   "title": "Canoeing Ireland, Sea Kayak Skills Awards (scheme page, level pages and the Sea Kayak Awards Overview)",
+   "short": "Canoeing Ireland award pages",
+   "url": "https://www.canoe.ie/paddle-skills-awards/",
+   "howRead": "The scheme page, the Level 2 and Level 5 pages and the overview PDF were read on 1 November 2026; the Level 1, 3 and 4 pages were seen as search excerpts only. Requirements change, so check each page."
+  },
+  "clap": {
+   "title": "Frontier Bushcraft, CLAP: an acronym for outdoor safety",
+   "short": "CLAP (Frontier Bushcraft)",
+   "url": "https://frontierbushcraft.com/2013/01/02/clap-outdoor-safety/",
+   "howRead": "Seen as a search excerpt on 1 November 2026. Another source expands the A as Awareness rather than Avoidance."
+  },
+  "ecskc-equipment": {
+   "title": "East Coast Sea Kayaking Club, Club Equipment Loan",
+   "short": "ECSKC Club Equipment page",
+   "url": "https://ecskc.eu/index.php/the-club/club-equipment",
+   "howRead": "Seen as a search excerpt only on 1 November 2026. Please check the full page."
+  },
+  "ecskc-safety": {
+   "title": "East Coast Sea Kayaking Club, Basic Safety for Sea Kayakers (originally published by Canoeing Ireland as Safety on the Water)",
+   "short": "ECSKC Basic Safety page",
+   "url": "https://ecskc.eu/index.php/resources/trip-planning/basic-safety",
+   "howRead": "Read in full on 1 November 2026."
+  },
+  "fsrt": {
+   "title": "British Canoeing, Foundation Safety and Rescue Training course notes, V2-5, February 2019",
+   "short": "FSRT course notes",
+   "howRead": "Supplied; read through the project notes, not the original file."
+  },
+  "hqol": {
+   "title": "English Outdoor Council, High Quality Outdoor Learning, 2015",
+   "short": "High Quality Outdoor Learning",
+   "howRead": "Supplied; read through the project notes, not the original file."
+  },
+  "mn61": {
+   "title": "Department of Transport, Marine Notice No. 61 of 2020, Changes to Irish Coast Guard VHF working channels (dated 16 December 2020)",
+   "short": "Marine Notice 61 of 2020",
+   "url": "https://www.gov.ie/en/department-of-transport/collections/marine-notices-2020",
+   "howRead": "Read through the copy published by afloat.ie, not the gov.ie original (which could not be fetched here), on 1 November 2026. Later notices have not been checked."
+  },
+  "oileain": {
+   "title": "Oileáin guide to the Irish coast and islands (332-page PDF; edition not stated)",
+   "short": "Oileáin (supplied PDF)",
+   "howRead": "Supplied and read directly. Page numbers are PDF pages."
+  },
+  "shearwater": {
+   "title": "Shearwater Sea Kayaking, Essential Coastal Navigation, Level 4 (Chartwork, Tides, Weather and Pilotage decks)",
+   "short": "Shearwater navigation decks",
+   "howRead": "Supplied and read directly. Diagrams in the slides were not transcribed, and a few slide figures looked garbled, so they are left out."
+  },
+  "sheets": {
+   "title": "SHEETS, saturnbull sea kayaking blog (2026 © saturnbull; no author, date or reuse licence stated)",
+   "short": "SHEETS (saturnbull)",
+   "url": "https://saturnbull.co.uk/sheets/",
+   "howRead": "Read on 1 November 2026. The prompts are paraphrased. The linked pages on STOP, CLAP and SAFER rescues were not read."
+  }
+ },
+ "passages": [
+  {
+   "id": "preparing.1-1-plan",
+   "docs": [
+    "ecskc-safety",
+    "bcab"
+   ],
+   "title": "Preparing to lead a trip: 1. Plan",
+   "href": "/leadership/preparing",
+   "blocks": [
+    "Read about the area first: how long and hard the trip is and what has changed recently.",
+    "Match it to your group’s experience, equipment and fitness.",
+    "A group should be at least three paddlers.",
+    "Check the forecast and water levels, and go only in favourable conditions.",
+    "Look at more than one source for weather, tide and swell, and think about how current, wind and fetch combine."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "preparing.2-2-check-the-kit",
+   "docs": [
+    "ecskc-safety",
+    "bcab"
+   ],
+   "title": "Preparing to lead a trip: 2. Check the kit",
+   "href": "/leadership/preparing",
+   "blocks": [
+    "Everyone needs a buoyancy aid, a helmet and suitable clothing and footwear, and the group needs rescue and communication kit.",
+    "The leader carries a VHF radio and at least two other ways of attracting attention."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "preparing.3-3-brief-the-group",
+   "docs": [
+    "sheets"
+   ],
+   "title": "Preparing to lead a trip: 3. Brief the group",
+   "href": "/leadership/preparing",
+   "blocks": [
+    "Use the SHEETS briefing to cover safety and signals, the people in the group, equipment, the environment and timings, and then ask the group to say the key points back."
+   ],
+   "kind": "reference",
+   "safety": false,
+   "approved": false
+  },
+  {
+   "id": "preparing.4-4-lead",
+   "docs": [
+    "bcab",
+    "fsrt"
+   ],
+   "title": "Preparing to lead a trip: 4. Lead",
+   "href": "/leadership/preparing",
+   "blocks": [
+    "Keep an overview of the whole group so nobody is forgotten, and position yourself where you can cover safety while still giving people freedom.",
+    "Know the emergency steps before you launch."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "preparing.5-5-review",
+   "docs": [
+    "bcab-checklist",
+    "hqol"
+   ],
+   "title": "Preparing to lead a trip: 5. Review",
+   "href": "/leadership/preparing",
+   "blocks": [
+    "Afterwards, look at what went well, what to change, and any incident or near miss, and rate yourself so you can plan what to develop next."
+   ],
+   "kind": "reference",
+   "safety": false,
+   "approved": false
+  },
+  {
+   "id": "preparing.6-limits-used-to-assess-sea-kayak-leaders-informat",
+   "docs": [
+    "bcab"
+   ],
+   "title": "Preparing to lead a trip: Limits used to assess Sea Kayak Leaders (information only)",
+   "href": "/leadership/preparing",
+   "blocks": [
+    "British Canoeing assesses Sea Kayak Leaders for moderate conditions.",
+    "These are the limits it uses.",
+    "They are not ECSKC rules, and the club has not said whether it applies them to its trips.",
+    "Straightforward landing points no more than 2 nautical miles apart, and crossings no longer than 2 nautical miles (page 3).",
+    "Tidal flow up to 2 knots, with no tide race or overfalls (page 3).",
+    "Wind not above Beaufort force 4 (page 3).",
+    "Surf up to 1 metre, trough to crest, for launching and landing (page 3).",
+    "An assessed group of 3 to 6 paddlers (pages 3 and 4)."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "responsibilities.1-the-eight-leadership-areas",
+   "docs": [
+    "bcab",
+    "bcab-checklist"
+   ],
+   "title": "Leadership responsibilities: The eight leadership areas",
+   "href": "/leadership/responsibilities",
+   "blocks": [
+    "Judgement and decision making: plan ahead in slow time, and decide well under pressure in real time.",
+    "Venue selection: choose places that suit the participants’ needs, from a repertoire that covers all the environments the award allows.",
+    "Safety: assess risk soundly throughout, stay aware of hazards, pitch the trip to the group’s aims and level of challenge, position yourself to cover safety while allowing freedom, and use an effective way of communicating.",
+    "Vision: be a positive role model with a passion for paddlesport.",
+    "Support and challenge: create a positive atmosphere and help people choose suitable challenges.",
+    "Leadership style: match it to the people, the task and the environment, empowering where you can and taking firmer control when safety needs it.",
+    "Equipment: choose personal, group and safety kit that suits the trip, including craft choice and outfitting.",
+    "Environmental impact: limit your impact on the environment, local communities and other water users."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "responsibilities.2-deployment-matters-a-leader-should-understand",
+   "docs": [
+    "bcab"
+   ],
+   "title": "Leadership responsibilities: Deployment matters a leader should understand",
+   "href": "/leadership/responsibilities",
+   "blocks": [
+    "First-aid training and keeping up to date with best practice.",
+    "Safeguarding training and disclosure.",
+    "Continuing professional development and equality.",
+    "Medical declarations and working with injuries.",
+    "Duty of care, a code of conduct and incident reporting.",
+    "Injury prevention and manual handling.",
+    "Insurance, and the organisation’s own risk assessment and operating procedures."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "responsibilities.3-who-carries-the-responsibility",
+   "docs": [
+    "hqol"
+   ],
+   "title": "Leadership responsibilities: Who carries the responsibility",
+   "href": "/leadership/responsibilities",
+   "blocks": [
+    "Responsibility for safety management rests mainly with the leader, instructor or coach in charge.",
+    "In good practice the group also takes part in risk management when planning, during the trip and in the debrief, because managing risk is itself a skill worth learning."
+   ],
+   "kind": "reference",
+   "safety": false,
+   "approved": false
+  },
+  {
+   "id": "group.1-group-size",
+   "docs": [
+    "ecskc-safety",
+    "bcab"
+   ],
+   "title": "Group management: Group size",
+   "href": "/leadership/group",
+   "blocks": [
+    "The club says not to paddle alone, and a group should have at least three paddlers (ECSKC Basic Safety).",
+    "British Canoeing assesses leaders with a group of 3 to 6 (guidance, pages 3 and 4)."
+   ],
+   "kind": "reference",
+   "safety": false,
+   "approved": false
+  },
+  {
+   "id": "group.2-clap-four-prompts",
+   "docs": [
+    "fsrt",
+    "clap"
+   ],
+   "title": "Group management: CLAP: four prompts",
+   "href": "/leadership/group",
+   "blocks": [
+    "The rescue course notes list four prompts for managing a group, and its sample programmes call them CLAP.",
+    "An outside article expands the letters the same way.",
+    "Communication: keep it simple.",
+    "Line of sight: stay where you can see the others.",
+    "Avoidance: steer clear of hazards, which beats dealing with them.",
+    "Position of maximum usefulness: be where you can help most."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "group.3-safety-and-signals-from-the-sheets-briefing",
+   "docs": [
+    "sheets"
+   ],
+   "title": "Group management: Safety and signals (from the SHEETS briefing)",
+   "href": "/leadership/group",
+   "blocks": [
+    "Decide how tightly to control the group for today’s conditions and name a number two.",
+    "Keep everyone in sight of each other.",
+    "Teach signals for stop, left, right, come to me and OK."
+   ],
+   "kind": "reference",
+   "safety": false,
+   "approved": false
+  },
+  {
+   "id": "group.4-position-and-control",
+   "docs": [
+    "bcab"
+   ],
+   "title": "Group management: Position and control",
+   "href": "/leadership/group",
+   "blocks": [
+    "Position yourself in the group so you cover safety while still allowing freedom.",
+    "Match your leadership style to the people, the task and the environment.",
+    "Keep an overview so nobody in the group is forgotten, including during a rescue.",
+    "Judge the conditions and the group’s standard, and change the route plan when they do not match.",
+    "Take extra care when moving a group through harder conditions."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "group.5-if-someone-swims",
+   "docs": [
+    "fsrt",
+    "bcab"
+   ],
+   "title": "Group management: If someone swims",
+   "href": "/leadership/group",
+   "blocks": [
+    "Use the rescue priority rules on the emergency card, and work from the lowest-risk option that will do the job."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "leader-preparation.plan",
+   "docs": [
+    "ecskc-safety",
+    "bcab"
+   ],
+   "title": "Leader preparation checklist: Plan the trip",
+   "href": "/leadership/checklist",
+   "blocks": [
+    "The group is at least three paddlers.",
+    "Every paddler has trained with an authorised provider and holds at least the Level 2 Sea Kayak Skills Award (Canoeing Ireland), as the club requires.",
+    "The trip suits the group’s experience, equipment and fitness.",
+    "You have read the guides and resources for the area: its length, duration, difficulty, hazards and recent changes.",
+    "Group aims and the level of challenge are agreed with the group.",
+    "You have checked the weather forecast and water levels, and conditions are favourable.",
+    "You have looked at more than one weather, tide and swell source, and considered how current, wind and fetch combine.",
+    "You have checked access and landing restrictions, such as military zones, private land and places where landing is forbidden.",
+    "You have worked out an escape route using a map and GPS."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Safety, participant-focused leadership; Knowledge: weather, planning, navigation; Knowledge: access and environment"
+  },
+  {
+   "id": "leader-preparation.kit",
+   "docs": [
+    "bcab",
+    "ecskc-safety"
+   ],
+   "title": "Leader preparation checklist: Kit and communications",
+   "href": "/leadership/checklist",
+   "blocks": [
+    "You carry a VHF radio and can use it.",
+    "You carry at least two other ways of attracting attention (for example a personal locator beacon, flares, LED flares or a mobile phone) and can say why you chose them.",
+    "You carry a map and compass and a GPS, and can use both.",
+    "Your tow system is ready for use at all times.",
+    "A first-aid kit and a repair kit are with the group, and you know what is in them.",
+    "You have done the equipment check."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "p. 12, Safety; Knowledge: weather, planning, navigation; Rescue skills: towing; Rescue skills: incident management"
+  },
+  {
+   "id": "leader-preparation.ashore",
+   "docs": [
+    "ecskc-safety",
+    "fsrt",
+    "ecskc-equipment"
+   ],
+   "title": "Leader preparation checklist: People ashore and the accident plan",
+   "href": "/leadership/checklist",
+   "blocks": [
+    "You have left your trip details with a responsible person on shore.",
+    "You know where the nearest phone, help and vehicle are, and where the first-aid kit, repair kit and spares are.",
+    "Each paddler has confirmed in writing that they will have a buoyancy aid, a helmet, and suitable clothing and footwear (the club asks for this for its trips)."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Safety theory: accident plan"
+  },
+  {
+   "id": "leader-preparation.brief",
+   "docs": [
+    "bcab",
+    "sheets",
+    "fsrt"
+   ],
+   "title": "Leader preparation checklist: Brief and decide",
+   "href": "/leadership/checklist",
+   "blocks": [
+    "You have done the risk assessment.",
+    "You have prepared the SHEETS briefing.",
+    "You know the emergency steps and the rescue priority rules."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Safety: sound risk assessment throughout"
+  },
+  {
+   "id": "equipment-safety.personal",
+   "docs": [
+    "ecskc-safety"
+   ],
+   "title": "Equipment and safety check: Each paddler",
+   "href": "/leadership/equipment",
+   "blocks": [
+    "Approved buoyancy aid, worn at all times.",
+    "Helmet. The Basic Safety page asks for one on moving water, coastal or inland, and the club asks for one on its trips.",
+    "Adequate clothing for the risk of hypothermia from cold-water immersion.",
+    "Food, drink and spare clothes.",
+    "A boat with enough buoyancy to stay afloat if it capsizes.",
+    "A split paddle.",
+    "A throw line and a tow line."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "equipment-safety.rescue-kit",
+   "docs": [
+    "fsrt"
+   ],
+   "title": "Equipment and safety check: Rescue kit the course notes recommend",
+   "href": "/leadership/equipment",
+   "blocks": [
+    "Webbing sling with a large karabiner, a whistle and a knife.",
+    "Clean-rope rule: if you carry a rope, carry a knife, and keep line ends free of loops and knots that could snag."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Course basics: recommended personal kit; Safety theory"
+  },
+  {
+   "id": "equipment-safety.group-kit",
+   "docs": [
+    "ecskc-safety",
+    "bcab"
+   ],
+   "title": "Equipment and safety check: The group",
+   "href": "/leadership/equipment",
+   "blocks": [
+    "First-aid kit.",
+    "Pin kit and repair kit.",
+    "Flares.",
+    "A means of shelter.",
+    "A way to call for help: a mobile phone or VHF radio in a waterproof case.",
+    "The leader carries a VHF radio and can use it, and the channel is agreed."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "p. 12, Safety"
+  },
+  {
+   "id": "equipment-safety.before-launch",
+   "docs": [
+    "sheets"
+   ],
+   "title": "Equipment and safety check: Before launching",
+   "href": "/leadership/equipment",
+   "blocks": [
+    "Everyone has checked each other over, including drysuit zips and helmets if required.",
+    "Everyone carries safety gear they know how to use, such as a towline."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Equipment"
+  },
+  {
+   "id": "risk.race",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Hazard to consider: Tide race or overfalls",
+   "href": "/leadership/risk",
+   "blocks": [
+    "A stream squeezed through a constriction speeds up into a race, and a race passing over an uneven bed makes steep, close, breaking waves.",
+    "The Sea Kayak Leader remit excludes them."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Tides deck: tide race and overfalls"
+  },
+  {
+   "id": "risk.headland",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Hazard to consider: Fast stream off a headland",
+   "href": "/leadership/risk",
+   "blocks": [
+    "A headland sticking out into a fast stream makes the water speed up off its end."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Tides deck: salient points"
+  },
+  {
+   "id": "risk.wind-tide",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Hazard to consider: Wind against tide",
+   "href": "/leadership/risk",
+   "blocks": [
+    "Wind against the tide steepens the sea; wind with the tide gives a smoother sea."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Weather deck: wind against tide"
+  },
+  {
+   "id": "risk.offshore",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Hazard to consider: Offshore wind and long fetch",
+   "href": "/leadership/risk",
+   "blocks": [
+    "The danger of an offshore wind is not obvious from the shore and gets worse the further out you go.",
+    "Fetch is the distance the wind has blown without interruption."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Weather deck: wind and fetch"
+  },
+  {
+   "id": "risk.surf",
+   "docs": [
+    "bcab"
+   ],
+   "title": "Hazard to consider: Surf or dumping waves at launch or landing",
+   "href": "/leadership/risk",
+   "blocks": [
+    "Dumping surf traps air under the breaking wave.",
+    "The leader remit allows launching and landing in surf up to 1 metre, trough to crest."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "p. 3"
+  },
+  {
+   "id": "risk.cold",
+   "docs": [
+    "ecskc-safety"
+   ],
+   "title": "Hazard to consider: Cold-water immersion and hypothermia",
+   "href": "/leadership/risk",
+   "blocks": [
+    "Clothing must be adequate for the risk of hypothermia from cold-water immersion."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "risk.fog",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Hazard to consider: Fog or poor visibility",
+   "href": "/leadership/risk",
+   "blocks": [
+    "Fog is part of the warm sector of a depression, and a forecast gives visibility.",
+    "Check it."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Weather deck: frontal system and forecasts"
+  },
+  {
+   "id": "risk.crossing",
+   "docs": [
+    "bcab"
+   ],
+   "title": "Hazard to consider: A long open crossing",
+   "href": "/leadership/risk",
+   "blocks": [
+    "The leader remit allows crossings no longer than 2 nautical miles.",
+    "Anything longer is outside it."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "p. 3"
+  },
+  {
+   "id": "risk.access",
+   "docs": [
+    "oileain"
+   ],
+   "title": "Hazard to consider: Landing restrictions, military or private land",
+   "href": "/leadership/risk",
+   "blocks": [
+    "Oileáin warns of a military zone and firing range beside Lough Foyle (p.",
+    "1) and says landing is forbidden on the Muglins off Dalkey Island (p.",
+    "44)."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "PDF pages 1 and 44"
+  },
+  {
+   "id": "risk.mismatch",
+   "docs": [
+    "ecskc-safety"
+   ],
+   "title": "Hazard to consider: A trip that does not match the group",
+   "href": "/leadership/risk",
+   "blocks": [
+    "The club says to match the trip to the group’s experience, equipment and fitness."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "sheets.safety-signals",
+   "docs": [
+    "sheets"
+   ],
+   "title": "SHEETS briefing: S, Safety and Signals",
+   "href": "/leadership/sheets",
+   "blocks": [
+    "Decide how tightly you will control the group in today’s conditions, and name a number two.",
+    "Ask everyone to keep everyone else in sight.",
+    "Say what to do if someone falls in, including the STOP call, and what happens if an incident occurs.",
+    "Teach the signals for stop, left, right, come to me and OK."
+   ],
+   "kind": "reference",
+   "safety": false,
+   "approved": false,
+   "where": "https://saturnbull.co.uk/sheets/, section Safety and Signals"
+  },
+  {
+   "id": "sheets.humans",
+   "docs": [
+    "sheets"
+   ],
+   "title": "SHEETS briefing: H, Humans",
+   "href": "/leadership/sheets",
+   "blocks": [
+    "Ask whether anyone needs the group to be aware of anything.",
+    "Check medicines, food, water and hot drinks.",
+    "Confirm who is the shore contact.",
+    "Talk through each person’s experience."
+   ],
+   "kind": "reference",
+   "safety": false,
+   "approved": false,
+   "where": "https://saturnbull.co.uk/sheets/, section Humans"
+  },
+  {
+   "id": "sheets.equipment",
+   "docs": [
+    "sheets"
+   ],
+   "title": "SHEETS briefing: E, Equipment",
+   "href": "/leadership/sheets",
+   "blocks": [
+    "Check everyone is dressed appropriately and carries safety gear they know how to use, such as a towline.",
+    "Have everyone check each other over, including drysuit zips and helmets if required.",
+    "Confirm the first aid kit, group shelter, VHF radio and channel, warm clothing, food and water."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "https://saturnbull.co.uk/sheets/, section Equipment"
+  },
+  {
+   "id": "sheets.environment",
+   "docs": [
+    "sheets"
+   ],
+   "title": "SHEETS briefing: E, Environment",
+   "href": "/leadership/sheets",
+   "blocks": [
+    "State the destination or objective and the distance.",
+    "Name the obstacles: tide, tidal flows, overfalls, swell, wind and weather.",
+    "Identify potential stops and get-outs."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "https://saturnbull.co.uk/sheets/, section Environment"
+  },
+  {
+   "id": "sheets.timings",
+   "docs": [
+    "sheets"
+   ],
+   "title": "SHEETS briefing: T, Timings",
+   "href": "/leadership/sheets",
+   "blocks": [
+    "State how long the trip will take, when you expect to be back, and the distance to be covered."
+   ],
+   "kind": "reference",
+   "safety": false,
+   "approved": false,
+   "where": "https://saturnbull.co.uk/sheets/, section Timings"
+  },
+  {
+   "id": "sheets.safety-signals-qa",
+   "docs": [
+    "sheets"
+   ],
+   "title": "SHEETS briefing: S, Safety and signals (Q&A)",
+   "href": "/leadership/sheets",
+   "blocks": [
+    "Go back over the first Safety and Signals section, but this time ask the group questions so that they say the key points back to you."
+   ],
+   "kind": "reference",
+   "safety": false,
+   "approved": false,
+   "where": "https://saturnbull.co.uk/sheets/, section Safety and signals (Q&A)"
+  },
+  {
+   "id": "emergency.numbers",
+   "docs": [
+    "ecskc-safety"
+   ],
+   "title": "Emergency card: who to call",
+   "href": "/emergency",
+   "blocks": [
+    "In an emergency dial 999 or 112 and ask for the Coast Guard.",
+    "To reach the Coast Guard by radio, use VHF channel 16."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "emergency.priorities",
+   "docs": [
+    "fsrt",
+    "bcab"
+   ],
+   "title": "Emergency card: while you act",
+   "href": "/emergency",
+   "blocks": [
+    "Self, Team, Victim, Equipment. The order of priority in a rescue: yourself first, then your team, then the casualty, then kit.",
+    "Shout, Reach, Throw, Row, Go. From lowest risk to highest. Use the lowest-risk option that will work.",
+    "Assess, consider options, raise the alarm, stabilise, execute the plan. The emergency sequence in the Sea Kayak Leader assessment guidance."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "emergency.know-before-launch",
+   "docs": [
+    "fsrt"
+   ],
+   "title": "Emergency card: know before you launch",
+   "href": "/emergency",
+   "blocks": [
+    "Where is the nearest phone, help, vehicle, first-aid kit and repair kit, and what spares does the group have?"
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "training-guidance.1-the-four-areas-of-the-leader-checklist",
+   "docs": [
+    "bcab-checklist",
+    "bcab"
+   ],
+   "title": "Training guidance: The four areas of the leader checklist",
+   "href": "/training/guidance",
+   "blocks": [
+    "The Sea Kayak Leader Skills Checklist groups what a leader needs into four areas: A, participant-focused leadership; B, personal paddling; C, rescue; and D, background knowledge, which covers equipment, safety, weather, planning and navigation, access and environment, experience, and deployment matters.",
+    "The assessment guidance describes the same four areas in more detail.",
+    "The development plan and the personal checklists in this section follow them."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "training-guidance.2-how-the-ratings-work",
+   "docs": [
+    "bcab-checklist",
+    "fsrt"
+   ],
+   "title": "Training guidance: How the ratings work",
+   "href": "/training/guidance",
+   "blocks": [
+    "The leader checklist is a self-assessment sheet for shaping a development plan.",
+    "You rate each line Strong, Competent or Develop.",
+    "The Foundation Safety and Rescue Training course ends with its own competency checklist, completed by the provider and the participant together.",
+    "It uses Strong, Competent and Needs developing.",
+    "In this app the ratings are private to your device and nobody assesses them.",
+    "Only a course provider or assessor can say you have met a standard."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "training-guidance.3-the-development-plan-page-and-reflective-practic",
+   "docs": [
+    "bcab-checklist",
+    "bcab",
+    "hqol"
+   ],
+   "title": "Training guidance: The development plan page and reflective practice",
+   "href": "/training/guidance",
+   "blocks": [
+    "The checklist’s development plan page has six boxes for notes and action points: participant-focused leadership; personal paddling; rescues and incident management; background knowledge and understanding; experience; and reflective practice.",
+    "The checklist has a reflective practice box, but the assessment guidance does not describe reflection as an assessed area.",
+    "So the app gives it a notes box and does not rate it.",
+    "A guide to quality in outdoor learning, written for young people’s settings, treats reviewing and reflecting on an activity as a sign of good practice.",
+    "The Post-trip review in the Leadership section is the place to do it after a trip."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "training-guidance.4-foundation-safety-and-rescue-training",
+   "docs": [
+    "fsrt"
+   ],
+   "title": "Training guidance: Foundation Safety and Rescue Training",
+   "href": "/training/guidance",
+   "blocks": [
+    "The British Canoeing course notes describe a course in the key safety and rescue skills for looking after yourself and others.",
+    "It is the base for safety and rescue in British Canoeing qualifications and is open to all craft types.",
+    "For boat-based participants the notes expect Paddle Explore, 2 Star or equivalent ability, and being able to swim in normal paddling clothing.",
+    "A first-aid certificate is recommended, not required.",
+    "The course runs at least 8 hours of teaching, with at most 6 participants to each provider.",
+    "It ends with a skills competency checklist; the personal checklist in this section follows its lines."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "training-guidance.5-canoeing-ireland-awards",
+   "docs": [
+    "ci-awards",
+    "ecskc-safety"
+   ],
+   "title": "Training guidance: Canoeing Ireland awards",
+   "href": "/training/guidance",
+   "blocks": [
+    "Canoeing Ireland runs the Sea Kayak Skills Awards at Levels 1 to 5.",
+    "ECSKC asks every paddler on its trips to hold at least Level 2.",
+    "The leader documents in this app are British Canoeing’s.",
+    "The sources supplied do not say how Canoeing Ireland’s levels compare with British Canoeing awards, so this app makes no comparison.",
+    "Ask the club or Canoeing Ireland."
+   ],
+   "kind": "reference",
+   "safety": false,
+   "approved": false
+  },
+  {
+   "id": "training-guidance.6-check-the-editions",
+   "docs": [
+    "bcab",
+    "bcab-checklist",
+    "fsrt"
+   ],
+   "title": "Training guidance: Check the editions",
+   "href": "/training/guidance",
+   "blocks": [
+    "The leader guidance and checklist supplied are the October 2021 edition (the March 2024 edition gives the same limits), and the safety and rescue course notes are from February 2019.",
+    "Check the current versions before relying on a requirement."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "dev-fsrt.essential",
+   "docs": [
+    "fsrt"
+   ],
+   "title": "Safety and rescue skills (FSRT): Essential",
+   "href": "/training/checklists/fsrt",
+   "blocks": [
+    "Paddle Explore or 2 Star level skills in your boat (or safeguarding strategies, if you are bank-based).",
+    "Rescue a swimmer.",
+    "Deep-water rescue in your chosen craft.",
+    "Rescue an unconscious or entrapped paddler.",
+    "Use purpose-made towlines.",
+    "Self-rescue in your chosen craft.",
+    "All-in rescue.",
+    "Problem-solving rescues."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Skills Competency Checklist"
+  },
+  {
+   "id": "dev-fsrt.bank",
+   "docs": [
+    "fsrt"
+   ],
+   "title": "Safety and rescue skills (FSRT): Essential if you are bank-based, desirable if you are boat-based",
+   "href": "/training/checklists/fsrt",
+   "blocks": [
+    "Coach a swimmer to shore.",
+    "Rescue a swimmer with a rigid aid, such as a paddle.",
+    "Rescue a swimmer with a throwline."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Skills Competency Checklist"
+  },
+  {
+   "id": "dev-fsrt.desirable",
+   "docs": [
+    "fsrt"
+   ],
+   "title": "Safety and rescue skills (FSRT): Desirable",
+   "href": "/training/checklists/fsrt",
+   "blocks": [
+    "First aid.",
+    "Theory and planning.",
+    "The rescue protocols: Self, Team, Victim, Equipment; and Shout, Reach, Throw, Row, Go.",
+    "Rescue another type of craft.",
+    "Improvised towlines.",
+    "Self-rescue in another type of craft.",
+    "Rescue scenarios."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Skills Competency Checklist"
+  },
+  {
+   "id": "dev-leader-rescue.rescues",
+   "docs": [
+    "bcab",
+    "bcab-checklist"
+   ],
+   "title": "Sea Kayak Leader: rescue skills: Rescues",
+   "href": "/training/checklists/leader-rescue",
+   "blocks": [
+    "Deep-water rescue that gets the casualty back in their kayak ready to continue.",
+    "Swamped sea kayak: understand the dangers and recover one.",
+    "Landing an injured paddler in a variety of moderate conditions.",
+    "Helping a paddler who cannot make progress, with a range of options.",
+    "Towing a casualty, with single and multiple tows, and a tow system ready at all times.",
+    "Dealing with a separated paddler and kayak.",
+    "Rescuing an unconscious paddler, keeping an open airway, and explaining what happens next.",
+    "Incident management: keeping an overview so nobody is forgotten, and controlling the group."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Rescue skills; C. Rescue"
+  },
+  {
+   "id": "dev-leader-rescue.principles",
+   "docs": [
+    "bcab"
+   ],
+   "title": "Sea Kayak Leader: rescue skills: Principles and procedure",
+   "href": "/training/checklists/leader-rescue",
+   "blocks": [
+    "Self, Team, Victim, Equipment, and Shout, Reach, Throw, Row, Go.",
+    "The emergency steps: assess, consider options, raise the alarm, stabilise, execute the plan.",
+    "Know who to call and what information they need, and give it accurately.",
+    "Keep all your own equipment through every rescue and plan what happens next."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Rescue skills"
+  },
+  {
+   "id": "dev-leader-background.paddling",
+   "docs": [
+    "bcab-checklist",
+    "bcab"
+   ],
+   "title": "Sea Kayak Leader: paddling and background: Personal paddling",
+   "href": "/training/checklists/leader-background",
+   "blocks": [
+    "Control the kayak in real conditions, efficiently and consistently.",
+    "Change tactics as conditions change, and use wind, tide and waves to your advantage.",
+    "Launch and land in varied situations, including rocky landings and surf.",
+    "Roll reliably in moderate conditions.",
+    "One further self-rescue that is not a roll.",
+    "Manage fatigue, hydration, nutrition and warmth, and keep a sensible attitude to risk."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "B. Personal paddling; Personal paddling skills"
+  },
+  {
+   "id": "dev-leader-background.background",
+   "docs": [
+    "bcab"
+   ],
+   "title": "Sea Kayak Leader: paddling and background: Background knowledge and understanding",
+   "href": "/training/checklists/leader-background",
+   "blocks": [
+    "A range of personal and group safety kit: how to evaluate, maintain, carry or wear it.",
+    "Carry and use a VHF radio, with at least two further ways of attracting attention, and explain why you chose them.",
+    "Use several weather, tide and swell sources and interpret them to predict real conditions.",
+    "Navigate with both map and compass and a GPS, and work out an escape route with them.",
+    "Understand seamanship and buoyage.",
+    "Know the access issues in your area, where to find the information, and how to protect the environment.",
+    "Keep evidence of your experience, such as a logbook.",
+    "Understand deployment matters: first aid, safeguarding, duty of care, incident reporting, insurance and the deployer’s procedures."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Underpinning knowledge"
+  },
+  {
+   "id": "training.awards",
+   "docs": [
+    "ci-awards"
+   ],
+   "title": "Canoeing Ireland Sea Kayak Skills Awards",
+   "href": "/training/qualifications",
+   "blocks": [
+    "Level 1, Discovery: The first level of the scheme.",
+    "Level 2, Peer: ECSKC asks every paddler on its trips to hold at least this level. The Paddler Profile for this level starts from the Level 1 skills standard.",
+    "Level 3, Explorer: The training course asks for the Level 2 certificate or approved prior learning.",
+    "Level 4, Adventure: Attending the assessment asks for Level 3, a Level 4 training course and Canoeing Ireland membership.",
+    "Level 5, Horizon: Has its own page with a training course and further requirements. Read them there."
+   ],
+   "kind": "reference",
+   "safety": false,
+   "approved": false
+  },
+  {
+   "id": "nav-reference.1-position-distance-and-bearings",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Navigation reference: Position, distance and bearings",
+   "href": "/navigation/reference",
+   "blocks": [
+    "A position is given as latitude and longitude.",
+    "One minute of latitude is one nautical mile (NM), and one nautical mile is ten cables.",
+    "Measure distance on the latitude scale at the side of the chart.",
+    "The course’s worked example: from the Martello Tower on Ireland’s Eye to the beacon at the entrance to Howth Harbour is 8.5 cables, which is 0.85 NM.",
+    "Variation is the angle between true north and magnetic north, and the chart’s compass rose shows it.",
+    "In the course’s worked example a true bearing of 174° becomes a magnetic bearing of 180° with 6° added, because the variation there is westerly."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "nav-reference.2-reading-heights-and-depths",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Navigation reference: Reading heights and depths",
+   "href": "/navigation/reference",
+   "blocks": [
+    "The charted height of a light or feature is measured above mean high water springs.",
+    "Charted depths are measured below chart datum, and a drying height is measured above chart datum.",
+    "The height of the tide is the sea surface above chart datum.",
+    "The abbreviations the course lists are HW, LW, MHWS, MHWN, MLWS, MLWN, LAT, HAT and CD.",
+    "As standard definitions: high water, low water, mean high and low water springs and neaps, lowest and highest astronomical tide, and chart datum."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "nav-reference.3-buoyage-and-lights",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Navigation reference: Buoyage and lights",
+   "href": "/navigation/reference",
+   "blocks": [
+    "IALA buoyage has five types: lateral, cardinal, safe water, isolated danger and special.",
+    "A light’s characteristics are written in short form.",
+    "For example F is a fixed white light that is always on, and Fl 4s is a white light that flashes once every 4 seconds.",
+    "The course lists fixed, flashing, occulting, isophase, quick flashing, group flashing and interrupted quick flashing."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "nav-reference.4-transits",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Navigation reference: Transits",
+   "href": "/navigation/reference",
+   "blocks": [
+    "A transit is two fixed objects in line.",
+    "Keeping them in line keeps you on a course from A to B, and the course shows three states: nearing the transit, on it and past it."
+   ],
+   "kind": "reference",
+   "safety": false,
+   "approved": false
+  },
+  {
+   "id": "nav-reference.5-tides-and-streams",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Navigation reference: Tides and streams",
+   "href": "/navigation/reference",
+   "blocks": [
+    "The course covers springs and neaps, high water, low water and slack water, flooding and ebbing, the difference between a tidal stream and a current, races, rips, overfalls and clapotis, and where to find tidal information.",
+    "Tidal diamonds on a chart are lettered magenta diamonds.",
+    "Each points to a table that gives the direction and rate of the stream, at springs and at neaps, by hour before or after high water.",
+    "Local guides give stream times in the same way.",
+    "The course’s example from the Oileáin guide is Lambay: local high water is the same as at Dublin, and the stream floods northwards from 4 hours 30 minutes after Dublin high water until 1 hour 30 minutes before the next."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "nav-reference.6-pilotage-and-dead-reckoning",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Navigation reference: Pilotage and dead reckoning",
+   "href": "/navigation/reference",
+   "blocks": [
+    "The course uses these short forms: CTP, course to paddle; CTS, course to steer; COG, course over ground; and EP, estimated position.",
+    "The sideways drift in a stream is the stream speed divided by your paddling speed, multiplied by the distance you travel across it.",
+    "As a quick allowance, the offset angle is the stream speed divided by paddling speed multiplied by 60° for a stream on the beam, and by 40° for one on the bow or quarter.",
+    "To estimate a position offshore, take back bearings on identifiable features.",
+    "To estimate the speed of a stream, divide the distance made good by the time to get speed over the ground, then subtract your own speed through the water."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "nav-reference.7-what-is-left-out",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Navigation reference: What is left out",
+   "href": "/navigation/reference",
+   "blocks": [
+    "The slide decks rely on diagrams that are not transcribed here: the frontal cross-section, tidal stream atlas pages, tidal diamond tables and the Skerries chart exercises.",
+    "A few slide figures looked garbled, such as the table linking offset angle to stream speed and the horizon-distance formula, so they are not repeated here.",
+    "The Chart 5011 symbols key is Crown copyright and is not reproduced."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "tides-guide.1-springs-and-neaps",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Tidal information: Springs and neaps",
+   "href": "/navigation/tides",
+   "blocks": [
+    "Springs come with the new and full moon: higher highs, lower lows and a large range.",
+    "They expose areas that are not usually visible, flood others, and make tide races and overfalls stronger.",
+    "Neaps come at the first and last quarter: lower highs, higher lows and less water moving.",
+    "The course calls them better for expeditions and for tackling complicated tidal areas, and the best time to plan a big crossing."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "tides-guide.2-reading-a-tide-table",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Tidal information: Reading a tide table",
+   "href": "/navigation/tides",
+   "blocks": [
+    "A table gives the times and heights of high and low water, and the range between them.",
+    "Check which time the table uses: many tables give universal time (UT), and in summer you add one hour for British Summer Time.",
+    "Heights are measured from a datum, and datums differ between sources.",
+    "Charted depths use chart datum, so check the datum before comparing a tide height with a charted depth."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "tides-guide.3-streams-slack-water-and-the-rules-of-thirds-and-",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Tidal information: Streams, slack water and the rules of thirds and twelfths",
+   "href": "/navigation/tides",
+   "blocks": [
+    "A tidal stream atlas shows the direction and rate of the stream for each hour before or after high water at a named port.",
+    "Short, thin arrows are weak streams and thick, long arrows are strong ones.",
+    "Slack water is the short time between flood and ebb when no stream runs, and the course says to plan to be at the crux of a trip at slack water.",
+    "The rule of thirds estimates how fast the stream runs in each hour, and the rule of twelfths estimates how far the tide has risen or fallen.",
+    "Both are in the calculators, each with its assumptions."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "tides-guide.4-races-overfalls-and-eddies",
+   "docs": [
+    "shearwater",
+    "bcab"
+   ],
+   "title": "Tidal information: Races, overfalls and eddies",
+   "href": "/navigation/tides",
+   "blocks": [
+    "A tide race forms where a stream is squeezed through a constriction and speeds up.",
+    "A headland jutting into a fast stream makes the water accelerate off its end, which can also make a race.",
+    "Where a race runs over an uneven bed, the sea turns steep, close and breaking: that is an overfall.",
+    "Eddies form in the lee of headlands.",
+    "The Sea Kayak Leader award’s limits include no tide race or overfalls, and a stream of up to 2 knots.",
+    "These are the award’s figures, not club rules."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "weather-guide.1-wind",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Weather information: Wind",
+   "href": "/navigation/weather",
+   "blocks": [
+    "Wind direction is the direction it comes from, and its strength is given as a Beaufort force.",
+    "How far the wind has blown without interruption is its fetch.",
+    "An offshore wind hides its danger from the shore, and it gets steadily worse as you paddle out.",
+    "With an onshore wind, what you see is what you get.",
+    "Headlands and cliffs change the strength of the wind locally.",
+    "Wind against the tide steepens the sea.",
+    "Wind with the tide gives a smoother sea."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "weather-guide.2-depressions-and-fronts",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Weather information: Depressions and fronts",
+   "href": "/navigation/weather",
+   "blocks": [
+    "A depression is born at the polar front, where cold polar air meets warm tropical air.",
+    "In its classic stage it has a warm front, a cold front and a warm sector between them.",
+    "The first signs ahead of the system are high cloud such as cirrus.",
+    "Rain comes at the warm front, the warm sector brings low, thin cloud and drizzle, and heavy showers come at the cold front.",
+    "After the cold front passes, the wind veers to the north-west.",
+    "The course lists old warnings as well: a backing wind with a falling barometer means beware of gales and squalls."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "weather-guide.3-anticyclones",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Weather information: Anticyclones",
+   "href": "/navigation/weather",
+   "blocks": [
+    "In an anticyclone the winds blow clockwise, the isobars are far apart and the winds are slack.",
+    "The course calls it the time to plan the major offshore trip."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "weather-guide.4-what-a-forecast-gives-you",
+   "docs": [
+    "shearwater",
+    "bcab"
+   ],
+   "title": "Weather information: What a forecast gives you",
+   "href": "/navigation/weather",
+   "blocks": [
+    "A sea area forecast gives the time, the area (so know your major headlands), wind direction and strength, visibility, barometric pressure, pressure tendency and a prognosis.",
+    "A full shipping forecast also has gale warnings, a general synopsis and coastal station reports.",
+    "The course lists twelve forecast sources: VHF radio, national and local radio, television, Marine Call, the internet, teletext, the Met Office, Navtex, weatherfax, the Coastguard, newspapers, and your own look at the sky and the barometer.",
+    "Speed of a system in a synopsis: slowly 0 to 15 knots; steadily 15 to 25; rather rapidly 25 to 35; rapidly 35 to 45; very rapidly 45 or more.",
+    "Timing words: imminent means within 6 hours of issue; soon means 6 to 12 hours; later means 12 to 24 hours.",
+    "Use more than one source for weather, tide and swell, and think about how current, wind and fetch combine."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "weather.beaufort",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "The Beaufort scale",
+   "href": "/navigation/weather",
+   "blocks": [
+    "Force 0: Calm, 0 to 1 knots.",
+    "Force 1: Light air, 1 to 3 knots.",
+    "Force 2: Light breeze, 4 to 6 knots.",
+    "Force 3: Gentle breeze, 7 to 10 knots.",
+    "Force 4: Moderate breeze, 11 to 16 knots.",
+    "Force 5: Fresh breeze, 17 to 21 knots.",
+    "Force 6: Strong breeze, 22 to 27 knots.",
+    "Force 7: Near gale, 28 to 33 knots.",
+    "Force 8: Gale, 34 to 40 knots.",
+    "Force 9: Severe gale, 41 to 47 knots.",
+    "Force 10: Storm, 48 to 55 knots.",
+    "Force 11: Violent storm, 56 to 63 knots.",
+    "Force 12: Hurricane, 64 to 71 knots."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "calc.thirds",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Calculator: Rule of thirds: stream rate by hour",
+   "href": "/navigation/tools",
+   "blocks": [
+    "Rule: Counting the hours of a stream from slack water, the rate in hours 1 to 6 is 1/3, 2/3, full, full, 2/3 and 1/3 of the full rate.",
+    "The slides give the fractions as \"of flow\". This calculator applies them to the full (maximum) rate that you enter, in knots.",
+    "It is a rule of thumb for a stream that runs for about six hours. Real streams vary with the place, so use an atlas or the local guide where you have one.",
+    "The hours are counted from slack water, as the slides lay them out."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "calc.twelfths",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Calculator: Rule of twelfths: height of the tide by hour",
+   "href": "/navigation/tools",
+   "blocks": [
+    "Rule: In hours 1 to 6 the tide moves 1, 2, 3, 3, 2 and 1 twelfths of its range.",
+    "The slides lay the rule out as high water, then one to five hours after, then low water: a six-hour rise or fall.",
+    "Heights come out in the datum you type them in. Use the same datum for both heights, and check it before comparing with a charted depth.",
+    "It is a rule of thumb, not a tide table. Real tides do not follow it exactly, so use the predicted heights where you have them."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "calc.fromhw",
+   "docs": [
+    "oileain",
+    "shearwater"
+   ],
+   "title": "Calculator: Time from high water: local port high water, or when a stream starts",
+   "href": "/navigation/tools",
+   "blocks": [
+    "Rule: Time = the high water time at the standard port, plus the offset if it is after, or minus it if it is before.",
+    "Oileáin and the Shearwater slides give a local high water, or the start of a stream, as hours and minutes before or after high water at a named standard port. This calculator does that sum.",
+    "The answer is in the same clock as the time you enter. If your table is in UT and the day is in summer time, add one hour with the BST calculator below.",
+    "It uses only the offsets you type. It does not look up any standard port or offset."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "calc.bst",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Calculator: Universal time to British Summer Time",
+   "href": "/navigation/tools",
+   "blocks": [
+    "Rule: Add one hour.",
+    "Use it only when the tide table is in universal time (UT or GMT) and the date falls in summer time. Check the time zone the table says it uses before you add an hour, so you do not add it twice or miss it.",
+    "The calculator does not know the dates of summer time."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "calc.offset",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Calculator: Offset angle for a stream",
+   "href": "/navigation/tools",
+   "blocks": [
+    "Rule: Angle = (stream speed ÷ paddling speed) × 60° for a stream on the beam, or × 40° for a stream on the bow or quarter.",
+    "Both speeds in knots, paddling speed through the water. The angle is how far to aim up-stream of your destination, in degrees.",
+    "The slides give the factors 60 and 40 and no limits. If the stream is as fast as you paddle, or faster, no angle will hold the course, so the calculator says so instead of giving a number.",
+    "A rule of thumb for planning, not a bearing to steer blindly: plot a course to steer on the chart and check it as you go."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "calc.streamspeed",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Calculator: Speed of a stream from distance and time",
+   "href": "/navigation/tools",
+   "blocks": [
+    "Rule: Speed over the ground = distance ÷ time. Stream speed = speed over the ground − your speed through the water.",
+    "Paddle straight along the stream at a steady speed, and measure the distance made good over the ground in nautical miles and the time in minutes.",
+    "A positive result means the stream is with you and a negative one means it is against you. The calculator says which.",
+    "Your speed through the water has to be known. The slides use 3 knots as an example, and that is a value you enter, not a default."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "calc.atlas",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Calculator: Reading a rate on a tidal stream atlas",
+   "href": "/navigation/tools",
+   "blocks": [
+    "Rule: A rate printed as two numbers with a comma, such as 12,23, means 1.2 knots at neaps and 2.3 knots at springs.",
+    "The comma stands for the decimal point: the first number is the neap rate and the second the spring rate, each in tenths of a knot.",
+    "Enter exactly two digits either side of the comma. Other formats are not decoded."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "calc.cables",
+   "docs": [
+    "shearwater"
+   ],
+   "title": "Calculator: Cables and nautical miles",
+   "href": "/navigation/tools",
+   "blocks": [
+    "Rule: 1 nautical mile = 10 cables. One minute of latitude is one nautical mile.",
+    "Measure distance on the latitude scale at the side of the chart, never on the longitude scale.",
+    "The slides’ worked example: 8.5 cables is 0.85 nautical miles."
+   ],
+   "kind": "reference",
+   "safety": false,
+   "approved": false
+  },
+  {
+   "id": "oileain.standard-ports",
+   "docs": [
+    "oileain"
+   ],
+   "title": "Oileáin: the standard port for each coast",
+   "href": "/navigation/oileain",
+   "blocks": [
+    "Oileáin gives high water and tidal stream times as hours before or after high water at a standard port, and the port changes round the coast.",
+    "North East, as far as Carlingford: Belfast.",
+    "East Coast: Dublin.",
+    "South Coast, West Cork and most of Kerry: Cobh.",
+    "Clare, Galway, Mayo and Donegal: Galway.",
+    "North Donegal: Galway and Belfast. Both appear in the PDF here, so check which the entry names."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "vhf.notice",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF stations: the notice and its limits",
+   "href": "/vhf/stations",
+   "blocks": [
+    "The station list comes from Marine Notice No. 61 of 2020, dated 16 December 2020, as published by afloat.ie. Later notices have not been checked.",
+    "Every station listens on channel 16, which the changes did not affect.",
+    "Channel 67 is available when required but may not be monitored at all times."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.bantry",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Bantry",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Bantry Coast Guard Radio: channels listed 16, 67, 05, working channel 05.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was changed by the December 2020 notice, from channel 23."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.belmullet",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Belmullet",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Belmullet Coast Guard Radio: channels listed 16, 67, 63, working channel 63.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was changed by the December 2020 notice, from channel 83."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.carlingford",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Carlingford",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Carlingford Coast Guard Radio: channels listed 16, 67, 04, working channel 04.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was not changed by the December 2020 notice."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.clew-bay",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Clew Bay",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Clew Bay Coast Guard Radio: channels listed 16, 67, 05, working channel 05.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was not changed by the December 2020 notice."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.clifden",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Clifden",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Clifden Coast Guard Radio: channels listed 16, 67, 03, working channel 03.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was changed by the December 2020 notice, from channel 26."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.cork",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Cork",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Cork Coast Guard Radio: channels listed 16, 67, 02, working channel 02.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was changed by the December 2020 notice, from channel 26."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.donegal-bay",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Donegal Bay",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Donegal Bay Coast Guard Radio: channels listed 16, 67, 02, working channel 02.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was not changed by the December 2020 notice."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.dublin",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Dublin",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Dublin Coast Guard Radio: channels listed 16, 67, 03, working channel 03.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was changed by the December 2020 notice, from channel 83.",
+    "Transmits from Howth."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.galley-head",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Galley Head",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Galley Head Coast Guard Radio: channels listed 16, no working channel listed.",
+    "DSC channel 70 is not listed for this station.",
+    "The working channel was not changed by the December 2020 notice.",
+    "Channel 16 only."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.galway",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Galway",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Galway Coast Guard Radio: channels listed 16, 67, 04, working channel 04.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was not changed by the December 2020 notice."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.glen-head",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Glen Head",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Glen Head Coast Guard Radio: channels listed 16, 67, 03, working channel 03.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was changed by the December 2020 notice, from channel 24."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.lough-derg",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Lough Derg",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Lough Derg Coast Guard Radio: channels listed 16, 61, working channel 61.",
+    "DSC channel 70 is not listed for this station.",
+    "The working channel was not changed by the December 2020 notice.",
+    "An inland lake."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.lough-ree",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Lough Ree",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Lough Ree Coast Guard Radio: channels listed 16, 62, working channel 62.",
+    "DSC channel 70 is not listed for this station.",
+    "The working channel was not changed by the December 2020 notice.",
+    "An inland lake."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.malin-head",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Malin Head",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Malin Head Coast Guard Radio: channels listed 16, 67, 05, working channel 05.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was changed by the December 2020 notice, from channel 23."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.malin-head-local-lough-swilly-and-lough-foyle",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Malin Head (local, Lough Swilly and Lough Foyle)",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Malin Head (local, Lough Swilly and Lough Foyle) Coast Guard Radio: channels listed 16, 01, working channel 01.",
+    "DSC channel 70 is not listed for this station.",
+    "The working channel was changed by the December 2020 notice, from channel 85.",
+    "The notice lists the Scalp Mountain site, old channel 85, new channel 01. It does not say outright that this is the local station."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.mine-head",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Mine Head",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Mine Head Coast Guard Radio: channels listed 16, 67, 03, working channel 03.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was changed by the December 2020 notice, from channel 83."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.mizen-head",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Mizen Head",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Mizen Head Coast Guard Radio: channels listed 16, 67, 04, working channel 04.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was not changed by the December 2020 notice."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.rosslare",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Rosslare",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Rosslare Coast Guard Radio: channels listed 16, 67, 05, working channel 05.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was changed by the December 2020 notice, from channel 23."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.shannon",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Shannon",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Shannon Coast Guard Radio: channels listed 16, 67, 64, working channel 64.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was changed by the December 2020 notice, from channel 28."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.valentia",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Valentia",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Valentia Coast Guard Radio: channels listed 16, 67, 62, working channel 62.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was changed by the December 2020 notice, from channel 24."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "vhf.wicklow-head",
+   "docs": [
+    "mn61"
+   ],
+   "title": "VHF station: Wicklow Head",
+   "href": "/vhf/stations",
+   "blocks": [
+    "Wicklow Head Coast Guard Radio: channels listed 16, 67, 02, working channel 02.",
+    "DSC channel 70 is listed for this station.",
+    "The working channel was not changed by the December 2020 notice."
+   ],
+   "kind": "reference",
+   "safety": true,
+   "approved": false,
+   "where": "Marine Notice No. 61 of 2020, 16 December 2020"
+  },
+  {
+   "id": "gap.training-library",
+   "docs": [],
+   "title": "Not covered: Skills library",
+   "href": "/training",
+   "blocks": [
+    "Skills library is not available in this app.",
+    "The sources hold checklists only.",
+    "Skill descriptions need an approved source, for example the club handling and tide-race articles."
+   ],
+   "kind": "gap",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "gap.navigation-allowance",
+   "docs": [],
+   "title": "Not covered: High-water time allowance (Oileáin)",
+   "href": "/navigation",
+   "blocks": [
+    "High-water time allowance (Oileáin) is not available in this app.",
+    "The supplied 332-page PDF contains no such rule and no introduction chapter, so nothing is built for it.",
+    "Please say where it is printed (perhaps the introduction of the printed edition)."
+   ],
+   "kind": "gap",
+   "safety": false,
+   "approved": false
+  },
+  {
+   "id": "gap.vhf-areas",
+   "docs": [],
+   "title": "Not covered: Control areas",
+   "href": "/vhf",
+   "blocks": [
+    "Control areas is not available in this app.",
+    "The notice’s poster groups stations under the three centres, but its text does not show which station goes where, and two other sources give different southern ends for the Dublin area.",
+    "One boundary has to be confirmed with the Irish Coast Guard."
+   ],
+   "kind": "gap",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "gap.vhf-map",
+   "docs": [],
+   "title": "Not covered: Approximate station map",
+   "href": "/vhf",
+   "blocks": [
+    "Approximate station map is not available in this app.",
+    "No verified coordinates were found, and the grouping of stations by control centre is unconfirmed, so any map here would show guessed positions.",
+    "Marine Notice 61 of 2020 carries the Coast Guard’s own map of the radio sites (its Appendix 1)."
+   ],
+   "kind": "gap",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "gap.vhf-procedures",
+   "docs": [],
+   "title": "Not covered: Radio procedures and operating guidance",
+   "href": "/vhf",
+   "blocks": [
+    "Radio procedures and operating guidance is not available in this app.",
+    "No document in the project covers radio procedures.",
+    "Marine Notice 61 of 2020 includes, as Appendix 2, an Irish Coast Guard guide to sending VHF distress alerts and calls.",
+    "That could be the source if the club approves it; it has not been used here."
+   ],
+   "kind": "gap",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "gap.live",
+   "docs": [],
+   "title": "Not covered: live conditions",
+   "href": "/sources",
+   "blocks": [
+    "This app and its assistant do not have live weather, tide or radio information.",
+    "Tide times, forecasts and stream rates in any document are predictions or background reading, not today’s conditions.",
+    "Check a current forecast, tide table and chart before every trip."
+   ],
+   "kind": "gap",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "gap.camping-kit",
+   "docs": [],
+   "title": "Not covered: a camping kit list",
+   "href": "/trip-planning/camping",
+   "blocks": [
+    "ECSKC has not supplied a camping kit list, so camping gear, food and water are free text in a camping trip plan and the app does not suggest what to take.",
+    "The equipment lists in the app are the club Basic Safety list and the leader and rescue-course kit lists, not a camping list."
+   ],
+   "kind": "gap",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "gap.coastguard-call",
+   "docs": [],
+   "title": "Not covered: what to tell the Coast Guard",
+   "href": "/emergency",
+   "blocks": [
+    "What to tell the Coast Guard when you call (position, number of people, condition of the casualty and so on) is common practice but is not in any document supplied to this project, so it is left out until the club approves wording for it."
+   ],
+   "kind": "gap",
+   "safety": true,
+   "approved": false
+  },
+  {
+   "id": "gap.approval",
+   "docs": [],
+   "title": "Approval status of the documents",
+   "href": "/knowledge/documents",
+   "blocks": [
+    "None of the material in this library has been approved by the ECSKC committee.",
+    "It is paraphrased from the documents and web pages supplied to this project, and each passage names its source.",
+    "It is background reading and does not replace training, a current forecast, chart work or the leader’s judgement."
+   ],
+   "kind": "gap",
+   "safety": false,
+   "approved": false
+  },
+  {
+   "id": "gap.risk-template",
+   "docs": [],
+   "title": "Not covered: the club risk assessment template",
+   "href": "/leadership/risk",
+   "blocks": [
+    "ECSKC has not supplied the risk assessment template it uses, so the app has a plain generic layout with no scoring."
+   ],
+   "kind": "gap",
+   "safety": false,
+   "approved": false
+  }
+ ]
+}

@@ -6,21 +6,21 @@ colours and content, so other clubs can use the same code later.
 
 ## Where the project is
 
-**Stages 1 to 5 of 6 are built:** the framework (home screen, ECSKC branding, menu, six section pages,
+**All six stages are built:** the framework (home screen, ECSKC branding, menu, six section pages,
 assistant entry point, Emergency card, Sources and limits), the **Leadership tools** (guides, checklists,
 SHEETS briefing form, risk assessment, equipment check, post-trip review, and My plans for saving them) **Trip Planning** (day trips, multi-day trips and camping trips: create, edit, save, reopen, print, PDF) and
-**Training and Skills** (training guidance, skills development plan, three personal checklists, Canoeing Ireland awards pathway), and **Navigation, Tides and VHF** (reference notes, eight calculators, Oileáin index, tide and weather information, VHF station list).
+**Training and Skills** (training guidance, skills development plan, three personal checklists, Canoeing Ireland awards pathway), **Navigation, Tides and VHF** (reference notes, eight calculators, Oileáin index, tide and weather information, VHF station list), and the **Knowledge Centre and Claude assistant** (a library of sourced passages, a search, and an assistant that answers from them with citations).
 
 | Area | State |
 |---|---|
 | Home, menu, six section pages, layouts for phone, tablet and computer | Working |
 | Emergency card | **Preview.** Wording comes from published sources and is not yet approved by the ECSKC committee |
 | Sources and limits | Working. Written content only |
-| Assistant button and window | Interface built. **Not connected:** it checks a question, then says it cannot answer and sends nothing anywhere. Stage 6 connects it |
+| Assistant | **Built, but switched off until you add a Claude API key** (see "The assistant" below). Answers come only from the library, each with the passages it rests on; with no key it says it is not switched on. **Never tested against the real Claude**: it was tested against a stand-in that follows Anthropic's documented citation format, so check it once after deployment |
 | Leadership tools | **Preview.** Built from the supplied documents; not approved by the ECSKC committee. The SHEETS headings come from saturnbull.co.uk/sheets, paraphrased; permission to reuse them is unconfirmed. The risk assessment is a generic layout, not the club's template, and has no scoring |
 | My plans | Working. Lists what is saved in this browser; download, import (whole file or nothing) and delete |
 | Trip Planning | **Preview.** Manual planning only. Fields follow the approved specification; the app fills nothing in, fetches no weather and calculates no tides. Optional award-limit check (information only, off by default). Download as PDF (made in the browser), print, text or a trip file. Not yet approved by the ECSKC committee. Camping gear, food and water are free text because no ECSKC camping list was supplied |
-| Knowledge Centre and assistant | Not built (Stage 6) |
+| Knowledge Centre | **Preview.** A keyword search of the library that runs on the device (no key, no server), and a page listing the sources and what is not covered. No document has been approved by the club |
 | Training and Skills | **Preview.** Guidance, a development plan (Strong / Competent / Develop self-ratings, notes, action list), three personal checklists and an award pathway with links to canoe.ie. All private to the device and none of it assesses anyone. **The skills library is still blocked**: the supplied sources hold checklists only, so no skill descriptions have been written |
 | Navigation and Tides | **Preview.** Reference notes from the navigation course, eight calculators (each shows its rule, assumptions and source), an Oileáin region index, and tide and weather pages. **Nothing is live**: the app fetches no weather, tides or radio data and links to the providers, marked Not live. The Oileáin high-water allowance is blocked (no such rule in the supplied PDF) |
 | VHF Radio | **Preview** for the station list and channels, from Marine Notice 61 of 2020 as published by afloat.ie (a December 2020 snapshot to check against the current notice). **Blocked:** control areas, a station map and radio procedures |
@@ -50,7 +50,7 @@ npm run preview    # serve dist/ at http://localhost:4173 with the same security
 - React 19 and TypeScript, bundled by [esbuild](https://esbuild.github.io/) (`scripts/build.mjs`).
   There is no separate framework: a tiny built-in router (`src/router/Router.tsx`) handles pages.
 - Plain CSS with design tokens (`src/styles/`). The club colours are read from `club.json` at start-up.
-- A static site. A server is added only in Stage 6, for the assistant's API key.
+- A static site, plus one small server function (`api/ask.js`) for the assistant, which holds the Claude API key.
 
 ## Folder guide
 
@@ -89,7 +89,7 @@ one web address.
    ```bash
    git init
    git add .
-   git commit -m "Sea Kayaking Hub, Stage 5"
+   git commit -m "Sea Kayaking Hub, Stage 6"
    git branch -M main
    git remote add origin https://github.com/<you>/sea-kayaking-hub.git
    git push -u origin main
@@ -104,8 +104,23 @@ Notes:
 - I could not test the Vercel steps from here, and I have not read Vercel's current plan terms. Check that its
   free tier suits a club project before you rely on it. Netlify and Cloudflare Pages work the same way; they use a
   `_headers` file in `public/` instead of `vercel.json` for the security headers.
-- Stage 1 needs **no secrets**. Stage 6 needs one: `ANTHROPIC_API_KEY`, added in the host's environment-variable
+- The app needs **no secrets** except for the assistant: `ANTHROPIC_API_KEY`, added in the host's environment-variable
   settings. It must never be written into the code or committed to GitHub (`.gitignore` already excludes `.env` files).
+
+## The assistant
+
+How it works: a question goes from the browser to `/api/ask` on this app's own server. The server checks it, searches the library
+(`src/knowledge/kb.json`, made from the app's own sourced content by `npm run kb`), and sends the best-matching passages and the question to Claude with citations switched on.
+Claude's reply is accepted only if it cites at least one of the passages that were sent; the source cards the visitor sees are built from the library's own text, never from words the model wrote.
+If the library has no good match, the server says so without calling Claude at all.
+
+To switch it on:
+1. Get an API key from the Anthropic Console and **set a monthly spend limit there**. That limit is the real cap: the limits in the app slow a flood but live in one function's memory and reset when it restarts.
+2. In Vercel, open the project, then Settings, then Environment Variables, and add `ANTHROPIC_API_KEY`. Redeploy.
+3. Optional settings: `ANTHROPIC_MODEL` (default `claude-sonnet-5-5`), `ASSISTANT_ALLOWED_ORIGINS` (extra addresses allowed to ask, such as a custom domain), `ASSISTANT_PER_MINUTE`, `ASSISTANT_PER_HOUR`, `ASSISTANT_PER_DAY` (per visitor) and `ASSISTANT_DAILY_LIMIT` (whole app).
+4. Ask it a question on the live site. This is the first time it talks to the real Claude, so check that answers appear with sources. If it shows "could not be reached", look at the function's logs in Vercel.
+
+After changing any page content, run `npm run kb` and commit `src/knowledge/kb.json`. A unit test fails if the file is out of date. A bot check (such as Cloudflare Turnstile) is not built: it needs an account and keys. Questions are not stored by the app. They go to Anthropic to be answered, which the app tells the visitor.
 
 ## Access and security
 
@@ -115,8 +130,8 @@ Notes:
 - Response headers (set in `vercel.json`) include a strict Content-Security-Policy, `X-Frame-Options: DENY`,
   `nosniff` and a limited `Referrer-Policy`.
 - External links open in a new tab with `rel="noopener noreferrer"` and say so to screen readers.
-- Typed questions are cleaned and length-checked (`src/components/assistant/validate.ts`). The same rules will be
-  applied again on the server in Stage 6.
+- Typed questions are cleaned and length-checked in the browser (`src/components/assistant/validate.ts`) and checked again on the server (`src/knowledge/ask.js`): size, JSON only, no unexpected fields, same-origin only,
+  per-visitor and whole-app limits, and no provider error text or key in any reply. There are no admin pages and no way to change the library from the browser.
 - One trade-off to know about: `robots.txt` blocks crawling, and a crawler that cannot fetch a page cannot read
   its `noindex` tag. For an address that nobody links to this makes no difference. If the link is ever posted
   publicly and you want search engines to read the `noindex`, delete the `Disallow: /` line in `public/robots.txt`.
@@ -132,7 +147,7 @@ and is deliberately left for a later phase. The app will not call anything "save
 ## Testing
 
 ```bash
-npm test                         # 116 unit tests: section rules, club config, question checks, addresses, saving, SHEETS, checklists, trip plans, PDF writer, training plan and checklists, calculators and VHF table
+npm test                         # 149 unit tests: section rules, club config, question checks, addresses, saving, SHEETS, checklists, trip plans, PDF writer, training plan and checklists, calculators, VHF table, assistant request and reply checks
 ```
 
 Browser tests (they drive a real Chromium; install once with `npm install --no-save playwright` then
@@ -141,13 +156,14 @@ Browser tests (they drive a real Chromium; install once with `npm install --no-s
 ```bash
 npm run build
 node scripts/serve.mjs dist 4173 &     # serve the built site with the host's security headers
-node e2e/smoke.cjs                     # 513 checks: every page, menu, assistant window, tap targets, console errors
+node e2e/smoke.cjs                     # 537 checks: every page, menu, assistant window, tap targets, console errors
 node e2e/stage2.cjs                    # Leadership: saving, reload, SHEETS, print, export/import, 320px, blocked storage
 node e2e/stage3.cjs                    # Trip Planning: create, edit, reopen, delete, PDF (checked with qpdf and pdftotext), import merge, limits, 320px, blocked storage
 #   (the Stage 3 test also needs qpdf and pdftotext from poppler-utils, to check the downloaded PDF)
 node e2e/stage4.cjs                    # Training: development plan, checklists, guidance, award links, import/export, 320px, blocked storage
 node e2e/stage5.cjs                    # Navigation and VHF: calculators checked against the course's worked examples, VHF table, Beaufort, links, no outside requests, 320px
-node e2e/audit.cjs                     # 312 checks: odd addresses, Back button, injection, CSP, 320px and 200% text,
+node e2e/stage6.cjs                    # Assistant and Knowledge Centre: starts its own copies of the app and a stand-in for the Claude API; key never reaches the browser, limits, bad replies, 320px
+node e2e/audit.cjs                     # 328 checks: odd addresses, Back button, injection, CSP, 320px and 200% text,
                                        #   accessibility structure, privacy, print, performance under throttling
 python3 e2e/contrast.py                # colour contrast measured from real screenshot pixels
 ```

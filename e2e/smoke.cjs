@@ -50,6 +50,8 @@ const routes = [
   ['/navigation/tides', 'Tidal information'],
   ['/navigation/weather', 'Weather information'],
   ['/vhf/stations', 'VHF station list and channels'],
+  ['/knowledge/search', 'Search the documents'],
+  ['/knowledge/documents', 'What the documents cover'],
 ];
 
 (async () => {
@@ -63,12 +65,24 @@ const routes = [
     const context = await browser.newContext({ viewport, deviceScaleFactor: 1 });
     const page = await context.newPage();
     const problems = [];
+    // This copy of the app has no Claude key, so asking the assistant gets a 503 "not switched on" on purpose. Nothing else is excused.
+    let expected503 = 0;
     page.on('console', (m) => {
-      if (['error', 'warning'].includes(m.type())) problems.push(`console ${m.type()}: ${m.text()}`);
+      if (['error', 'warning'].includes(m.type())) {
+        if (/status of 503/.test(m.text()) && expected503 > 0) {
+          expected503--;
+          return;
+        }
+        problems.push(`console ${m.type()}: ${m.text()}`);
+      }
     });
     page.on('pageerror', (e) => problems.push(`pageerror: ${e.message}`));
     page.on('requestfailed', (r) => problems.push(`request failed: ${r.url()}`));
     page.on('response', (r) => {
+      if (r.status() === 503 && r.url().endsWith('/api/ask')) {
+        expected503++;
+        return;
+      }
       if (r.status() >= 400) problems.push(`HTTP ${r.status()}: ${r.url()}`);
     });
 
@@ -142,13 +156,15 @@ const routes = [
     const sheet = page.getByRole('dialog', { name: 'Ask the Kayaking Assistant' });
     check(`[${label}] assistant button opens the assistant`, await sheet.isVisible());
     check(`[${label}] assistant knows the current section`, (await sheet.innerText()).includes('You are in Leadership'));
-    check(`[${label}] assistant says it is not connected`, (await sheet.innerText()).includes('Not connected yet'));
+    check(`[${label}] assistant explains how answers are made`, (await sheet.innerText()).includes('How answers are made'));
     await page.getByRole('button', { name: 'Send' }).click();
     check(`[${label}] empty question shows a helpful error`, (await page.locator('#assistant-error').innerText()).includes('Type a question'));
     await page.locator('#assistant-question').fill('What should I consider before leading a trip?');
     await page.getByRole('button', { name: 'Send' }).click();
+    await page.locator('.message--app .answer__text').first().waitFor();
     const text = await sheet.innerText();
-    check(`[${label}] question is acknowledged, not answered`, text.includes('not connected yet, so there is no answer') && text.includes('What should I consider'));
+    // This copy of the app has no Claude key, so the assistant must say it is not switched on and answer nothing.
+    check(`[${label}] question is acknowledged, and with no key the assistant says it is not switched on`, text.includes('not switched on yet') && text.includes('What should I consider') && !text.includes('Where this comes from'));
     if (label === 'mobile' || label === 'desktop') { await page.waitForTimeout(450); } if (label === 'mobile' || label === 'desktop') await page.screenshot({ path: `${OUT}/${label}-assistant.png` });
     await page.keyboard.press('Escape');
     check(`[${label}] Escape closes the assistant`, !(await sheet.isVisible().catch(() => false)));

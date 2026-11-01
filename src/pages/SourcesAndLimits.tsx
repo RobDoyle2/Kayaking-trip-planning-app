@@ -115,9 +115,10 @@ export function SourcesAndLimits() {
             search was not exhaustive.
           </li>
           <li>
-            <strong>The assistant (Stage 6)</strong> will answer only from approved documents, will say when it cannot find
-            something, and will keep its own suggestions separate and labelled. It can still misread a passage, so each
-            answer will link to the page it cites.
+            <strong>The assistant</strong> answers only from the app’s own sourced pages, which paraphrase the documents supplied to this project, and shows
+            the passages each answer rests on. It says when it cannot find something, and it never shows an answer it cannot tie to a passage. None of the
+            documents has been approved by the club. It can still misread a passage, so each answer links to the page it cites. It needs a Claude API key to be set up on the server; without
+            one it says it is not switched on.
           </li>
           <li>
             <strong>Third-party material.</strong> Much of the reference material belongs to others. Before their text
@@ -166,8 +167,8 @@ export function SourcesAndLimits() {
             who has the link can open it. Do not put anything in it that you would not want a stranger to read.
           </li>
           <li>
-            When the assistant is connected (Stage 6), the questions you type will be sent to Anthropic, which provides the
-            Claude service. Participant names in your plans stay on your device.
+            When you ask the assistant a question, the question is sent to this app’s server and then to Anthropic, which provides the Claude service, along with the passages the
+            search picked. Nothing else is sent: your plans, names and notes stay on your device. The app does not keep your questions. Please do not type names or personal details into the assistant.
           </li>
           <li>Visitors cannot change the reference library or the app's settings.</li>
         </ul>

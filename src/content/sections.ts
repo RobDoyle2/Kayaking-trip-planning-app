@@ -11,7 +11,7 @@ import type { SectionId } from '../clubs/types';
 export type Status = 'ready' | 'preview' | 'planned' | 'blocked';
 
 /** The last build stage that has been completed. Raise this only when a stage's work is built and tested. */
-export const BUILD_STAGE = 5;
+export const BUILD_STAGE = 6;
 
 export type IconName =
   | 'leadership'
@@ -366,17 +366,19 @@ export const sections: Section[] = [
         id: 'assistant',
         title: 'Ask the Kayaking Assistant',
         summary:
-          'Ordinary-language questions answered from approved documents, with document and page where available.',
-        status: 'planned',
-        stage: 6,
-        note: 'The button is already in the app, but it is not connected and sends your question nowhere.',
+          'Ordinary-language questions answered from the supplied documents, each answer with the passages it rests on, and a search that works without the assistant.',
+        status: 'preview',
+        href: '/knowledge/search',
+        note:
+          'The assistant needs a Claude API key set up on the server; until then it says it is not switched on. None of the documents has been approved by the ECSKC committee, and every answer says so.',
       },
       {
         id: 'documents',
-        title: 'Approved documents list',
-        summary: 'Which documents the assistant can search, who approved each and when.',
-        status: 'planned',
-        stage: 6,
+        title: 'What the documents cover',
+        summary: 'Which sources the assistant can search, how each was read, and what is not covered.',
+        status: 'preview',
+        href: '/knowledge/documents',
+        note: 'No document has been approved by the club yet, so none is marked approved.',
       },
       {
         id: 'limits',

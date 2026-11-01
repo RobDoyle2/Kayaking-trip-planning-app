@@ -5,6 +5,7 @@
 import http from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const root = path.resolve(process.argv[2] || 'dist');
 const port = Number(process.argv[3] || process.env.PORT || 4173);
@@ -71,6 +72,19 @@ const server = http.createServer(async (req, res) => {
   const urlPath = rawUrl.split('?')[0];
   const extra = headersFor(urlPath);
   try {
+    // The assistant's function, run here exactly as the host runs it, so it can be tested locally.
+    if (urlPath === '/api/ask') {
+      for (const [k, v] of Object.entries(extra)) res.setHeader(k, v);
+      const { default: handler } = await import(pathToFileURL(path.resolve('api/ask.js')).href);
+      await handler(req, res);
+      return;
+    }
+    // Like the host, anything else under /api/ is not the app: there are no other endpoints.
+    if (urlPath.startsWith('/api/')) {
+      res.writeHead(404, { 'content-type': 'application/json; charset=utf-8', ...extra });
+      res.end(JSON.stringify({ error: 'not_found' }));
+      return;
+    }
     const target = resolveSafe(rawUrl);
     if (target.bad) {
       res.writeHead(400, { 'content-type': 'text/plain; charset=utf-8', ...extra });
