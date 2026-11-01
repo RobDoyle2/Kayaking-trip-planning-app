@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en-IE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{DESCRIPTION}}" />
+    <!-- Not promoted or indexed. This asks search engines to stay away; it is NOT access control. -->
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="theme-color" content="{{THEME_COLOR}}" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/clubs/{{CLUB}}/favicon-48.png" />
+    <link rel="apple-touch-icon" href="/clubs/{{CLUB}}/apple-touch-icon.png" />
+    <link rel="stylesheet" href="{{CSS}}" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p style="font-family:system-ui,sans-serif;max-width:40rem;margin:2rem auto;padding:0 1rem">
+        Sea Kayaking Hub needs JavaScript to run. Please turn it on, or visit the club website
+        at <a href="{{CLUB_URL}}">{{CLUB_URL}}</a>.
+      </p>
+    </noscript>
+    <script type="module" src="{{JS}}"></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+/*
+ * Design tokens. The four club colours (--primary, --primary-dark, --tint, --ink, --danger) are
+ * overwritten at start-up from the club's club.json, so these values are only the ECSKC defaults.
+ */
+:root {
+  --primary: #027b9a;
+  --primary-dark: #02627b;
+  --tint: #acdee9;
+  --ink: #171717;
+  --danger: #d92727;
+
+  --tint-soft: #e8f6f9;
+  --danger-soft: #fdeeee;
+  --muted: #4b5560;
+  --line: #d3e0e5;
+  --line-strong: #9fb3bb;
+  --field-border: #5f7380;
+  --page: #ffffff;
+
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 1px 2px rgba(23, 23, 23, 0.06), 0 6px 18px rgba(23, 23, 23, 0.08);
+
+  --header-height: 64px;
+  --content-width: 1100px;
+}
+
+@supports (color: color-mix(in srgb, red 10%, white)) {
+  :root {
+    --tint-soft: color-mix(in srgb, var(--tint) 28%, white);
+    --danger-soft: color-mix(in srgb, var(--danger) 8%, white);
+  }
+}

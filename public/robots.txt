@@ -1,0 +1,4 @@
+# Sea Kayaking Hub is not promoted or indexed. robots.txt only asks crawlers to stay away.
+# It does not stop anyone who has the link from opening the site.
+User-agent: *
+Disallow: /

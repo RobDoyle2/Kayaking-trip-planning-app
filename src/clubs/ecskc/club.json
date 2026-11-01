@@ -1,0 +1,29 @@
+{
+  "slug": "ecskc",
+  "name": "East Coast Sea Kayaking Club",
+  "shortName": "ECSKC",
+  "appName": "Sea Kayaking Hub",
+  "pwaShortName": "Kayak Hub",
+  "tagline": "Planning, safety and navigation reference for club paddlers",
+  "website": { "url": "https://ecskc.eu/", "label": "ecskc.eu" },
+  "logo": {
+    "src": "/clubs/ecskc/logo.webp",
+    "alt": "East Coast Sea Kayaking Club logo: a paddler in a kayak above a wave",
+    "width": 600,
+    "height": 446
+  },
+  "theme": {
+    "primary": "#027B9A",
+    "primaryDark": "#02627B",
+    "tint": "#ACDEE9",
+    "ink": "#171717",
+    "danger": "#D92727"
+  },
+  "enabledSections": ["leadership", "trip-planning", "training", "navigation", "vhf", "knowledge"],
+  "assistantName": "Ask the Kayaking Assistant",
+  "emergency": {
+    "numbers": "999 or 112",
+    "vhfChannel": "16",
+    "source": "ECSKC Basic Safety page (ecskc.eu): in an emergency dial 999 or 112; to contact the Coast Guard use VHF channel 16. Read on 1 November 2026."
+  }
+}
