@@ -39,7 +39,7 @@ export function MyPlans() {
       setMessage(
         failed === 0
           ? `Imported ${written} saved ${written === 1 ? 'item' : 'items'}, replacing any saved here with the same name.`
-          : `Imported ${written}, but ${failed} could not be saved because the browser refused.`,
+          : `Imported ${written}, but ${failed} could not be saved: the browser refused, or it would take you over the limit of 40 trip plans.`,
       );
       setRefresh((n) => n + 1);
     }
@@ -56,9 +56,9 @@ export function MyPlans() {
       />
 
       <Notice title="Saved on this device only">
-        Your checklists, briefing, risk assessment and review are kept in this browser, on this device. They are not sent to a server, so they will not
+        Your checklists, briefing, risk assessment, review and trip plans are kept in this browser, on this device. They are not sent to a server, so they will not
         appear on another phone, computer or browser, and clearing your browser’s data erases them. To keep a copy or move to another device, download a
-        file below and import it there. Trip plans and skills plans arrive in Stages 3 and 4.
+        file below and import it there. Skills plans arrive in Stage 4.
       </Notice>
 
       {store === null && (
@@ -128,7 +128,7 @@ export function MyPlans() {
             Bring saved work back from a downloaded file
           </label>
           <p className="field__hint" id="import-file-hint">
-            Choose a file you downloaded here earlier. Items in the file replace saved items with the same name on this device. A file that is damaged or
+            Choose a file you downloaded here earlier. Items in the file replace saved items with the same name on this device, except trip plans: those are added to the ones you already have, and a plan with the same identity is replaced. A file that is damaged or
             from another club is refused and nothing changes.
           </p>
           <input

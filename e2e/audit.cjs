@@ -18,7 +18,7 @@ function rec(area, name, ok, detail = '') {
   console.log(`${ok ? 'PASS' : 'FAIL'}  [${area}] ${name}${detail ? '  -> ' + detail : ''}`);
 }
 
-const routes = ['/', '/leadership', '/trip-planning', '/training', '/navigation', '/vhf', '/knowledge', '/emergency', '/sources', '/my-plans', '/leadership/preparing', '/leadership/responsibilities', '/leadership/checklist', '/leadership/sheets', '/leadership/group', '/leadership/risk', '/leadership/equipment', '/leadership/review'];
+const routes = ['/', '/leadership', '/trip-planning', '/training', '/navigation', '/vhf', '/knowledge', '/emergency', '/sources', '/my-plans', '/leadership/preparing', '/leadership/responsibilities', '/leadership/checklist', '/leadership/sheets', '/leadership/group', '/leadership/risk', '/leadership/equipment', '/leadership/review', '/trip-planning/day', '/trip-planning/multi-day', '/trip-planning/camping'];
 
 async function h1(page) {
   return (await page.locator('main h1').first().innerText().catch(() => '(none)')).trim();
@@ -327,14 +327,18 @@ async function h1(page) {
     const sizes = {};
     for (const f of fs.readdirSync(path.join(DIST, 'assets'))) {
       const buf = fs.readFileSync(path.join(DIST, 'assets', f));
-      sizes[f.split('-')[0] + path.extname(f)] = { raw: buf.length, gzip: zlib.gzipSync(buf, { level: 9 }).length, brotli: zlib.brotliCompressSync(buf).length };
+      const entry = { raw: buf.length, gzip: zlib.gzipSync(buf, { level: 9 }).length, brotli: zlib.brotliCompressSync(buf).length };
+      // Code loaded on demand is reported together as "chunks.js", apart from the entry file that Home loads.
+      const key = f.startsWith('chunk-') ? 'chunks.js' : f.split('-')[0] + path.extname(f);
+      const prev = sizes[key];
+      sizes[key] = prev ? { raw: prev.raw + entry.raw, gzip: prev.gzip + entry.gzip, brotli: prev.brotli + entry.brotli } : entry;
     }
     fs.writeFileSync(`${OUT}/perf.json`, JSON.stringify({ throttled: m, sizes, wall: Date.now() - t0 }, null, 2));
     console.log('PERF', JSON.stringify(m), JSON.stringify(sizes));
     rec('performance', 'home LCP under 2.5 s on throttled 4G with 4x slower CPU', m.lcp < 2500, `${m.lcp} ms`);
     rec('performance', 'home layout shift under 0.1', m.cls < 0.1, String(m.cls));
     rec('performance', 'main-thread blocking under 300 ms', m.tbt < 300, `${m.tbt} ms`);
-    rec('performance', 'JavaScript under 100 KB when compressed', sizes['app.js'].gzip < 100 * 1024, `${(sizes['app.js'].gzip / 1024).toFixed(1)} KB gzip, ${(sizes['app.js'].brotli / 1024).toFixed(1)} KB brotli`);
+    rec('performance', 'JavaScript loaded by Home under 100 KB when compressed', sizes['app.js'].gzip < 100 * 1024, `${(sizes['app.js'].gzip / 1024).toFixed(1)} KB gzip, ${(sizes['app.js'].brotli / 1024).toFixed(1)} KB brotli; on demand for the trip planner: ${((sizes['chunks.js'] || { gzip: 0 }).gzip / 1024).toFixed(1)} KB gzip`);
     await ctx.close();
   }
 
@@ -383,6 +387,17 @@ async function h1(page) {
       await page.goto(BASE + '/leadership/review', { waitUntil: 'networkidle' });
       await page.evaluate(() => document.querySelectorAll('details').forEach((d) => { d.open = true; }));
       await grab('review-open');
+      // A trip plan open for editing, with the optional limit check on, so the editor's colours are measured too.
+      await page.goto(BASE + '/trip-planning/multi-day', { waitUntil: 'networkidle' });
+      await page.getByRole('button', { name: 'Start a new plan' }).click();
+      await page.waitForSelector('#trip-name');
+      await page.locator('#limits-on').check();
+      await page.locator('#trip-lim-crossing').fill('3');
+      await page.locator('#trip-lim-race').check();
+      await page.getByRole('button', { name: 'Add a stop' }).click();
+      await grab('trip-editor');
+      await page.goto(BASE + '/trip-planning/multi-day', { waitUntil: 'networkidle' });
+      await grab('trip-list-with-plan');
       // The floating button, alone, at the top of a page.
       await page.goto(BASE + '/', { waitUntil: 'networkidle' });
       await page.evaluate(() => window.scrollTo(0, 0));

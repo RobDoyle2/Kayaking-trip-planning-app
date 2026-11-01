@@ -10,7 +10,7 @@ import { NotFound } from './pages/NotFound';
 import { SectionPage } from './pages/SectionPage';
 import { SourcesAndLimits } from './pages/SourcesAndLimits';
 import { Router, usePath } from './router/Router';
-import { toolRoutes } from './routes';
+import { matchToolRoute } from './routes';
 
 function Routes(): ReactNode {
   const path = usePath();
@@ -18,8 +18,8 @@ function Routes(): ReactNode {
   if (path === '/emergency') return <EmergencyCard />;
   if (path === '/sources') return <SourcesAndLimits />;
   if (path === '/my-plans') return <MyPlans />;
-  const tool = toolRoutes[path];
-  if (tool && club.enabledSections.includes('leadership')) return tool();
+  const tool = matchToolRoute(path, club.enabledSections);
+  if (tool) return tool;
   const section = sectionsForClub(club.enabledSections).find((s) => s.path === path);
   if (section) return <SectionPage section={section} />;
   return <NotFound />;

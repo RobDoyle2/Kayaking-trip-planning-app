@@ -29,6 +29,7 @@ export function usePersisted<T>(id: string, initial: T) {
   const initialRef = useRef(initial);
   const [value, setValueState] = useState<T>(initial);
   const [state, setState] = useState<SaveState>({ kind: 'idle' });
+  const [ready, setReady] = useState(false);
   const latest = useRef<T>(initial);
   const dirty = useRef(false);
   const timer = useRef<number | undefined>(undefined);
@@ -45,6 +46,7 @@ export function usePersisted<T>(id: string, initial: T) {
     } else if (result.status === 'unavailable') {
       setState({ kind: 'error', message: writeFailureMessage('unavailable') });
     }
+    setReady(true);
   }, [key, def, getStore]);
 
   const flush = useCallback(() => {
@@ -86,5 +88,5 @@ export function usePersisted<T>(id: string, initial: T) {
     setState({ kind: 'idle' });
   }, [key, getStore]);
 
-  return { value, setValue, state, clear };
+  return { value, setValue, state, clear, ready, saveNow: flush };
 }

@@ -108,3 +108,20 @@ export function CheckField({ id, label, checked, onChange, describedById }: Chec
     </div>
   );
 }
+
+export function DateField({ id, label, hint, needed, value, onChange }: TextProps) {
+  return (
+    <div className="field">
+      <Label id={id} label={label} needed={needed} />
+      <Hint id={id} hint={hint} />
+      <input
+        id={id}
+        className="input input--short"
+        type="date"
+        value={value}
+        aria-describedby={describedBy(id, hint)}
+        onChange={(event) => onChange(event.target.value)}
+      />
+    </div>
+  );
+}

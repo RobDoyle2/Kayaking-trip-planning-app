@@ -11,7 +11,7 @@ import type { SectionId } from '../clubs/types';
 export type Status = 'ready' | 'preview' | 'planned' | 'blocked';
 
 /** The last build stage that has been completed. Raise this only when a stage's work is built and tested. */
-export const BUILD_STAGE = 2;
+export const BUILD_STAGE = 3;
 
 export type IconName =
   | 'leadership'
@@ -161,38 +161,41 @@ export const sections: Section[] = [
         id: 'day',
         title: 'Day trip',
         summary: 'Route, participants, tides, weather, kit, safety, communications and transport for a single day.',
-        status: 'planned',
-        stage: 3,
+        status: 'preview',
+        href: '/trip-planning/day',
+        note: 'Built to the approved field list; the content has not yet been approved by the ECSKC committee.',
       },
       {
         id: 'multi-day',
         title: 'Multi-day expedition without camping',
         summary: 'Daily stages, accommodation and transport on top of the day-trip fields.',
-        status: 'planned',
-        stage: 3,
+        status: 'preview',
+        href: '/trip-planning/multi-day',
+        note: 'Built to the approved field list; the content has not yet been approved by the ECSKC committee.',
       },
       {
         id: 'camping',
         title: 'Multi-day expedition with camping',
         summary: 'Daily stages plus camping gear, food, water and camp access.',
-        status: 'planned',
-        stage: 3,
+        status: 'preview',
+        href: '/trip-planning/camping',
+        note: 'ECSKC has not supplied a camping kit list, so camping gear, food and water are free text. Built to the approved field list; the content has not yet been approved by the ECSKC committee.',
       },
       {
         id: 'missing',
         title: 'Missing-information check',
-        summary: 'Shows which fields of a plan are still empty before you print or export it.',
-        status: 'planned',
-        stage: 3,
+        summary: 'Every plan lists the fields still empty, with a link to each, and the printout marks blanks “Not filled in”.',
+        status: 'preview',
+        href: '/trip-planning/day',
+        note: 'Open any plan to see it. It checks that fields are filled in, not that the plan is sound.',
       },
       {
         id: 'saved',
         title: 'Saved plans',
-        summary: 'Create, edit, save, reopen and print a plan, and export it as a file or PDF.',
-        status: 'planned',
-        stage: 3,
+        summary: 'Create, edit, save, reopen and print a plan, and export it as a PDF, a text file or a trip file.',
+        status: 'preview',
         href: '/my-plans',
-        note: 'Plans will be saved in this browser only unless you export them. See Sources and limits.',
+        note: 'Plans are saved in this browser only, so they do not appear on other devices unless you download the trip file and import it there.',
       },
     ],
   },

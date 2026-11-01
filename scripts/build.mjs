@@ -21,6 +21,9 @@ export async function bundle({ slug, minify, outdir = 'dist' }) {
     outdir: path.join(outdir, 'assets'),
     entryNames: '[name]-[hash]',
     format: 'esm',
+    // Code that only some pages need (the trip planner and the PDF writer) loads on demand, so Home stays small.
+    splitting: true,
+    chunkNames: 'chunk-[hash]',
     target: ['es2022'],
     jsx: 'automatic',
     minify,
@@ -34,7 +37,7 @@ export async function bundle({ slug, minify, outdir = 'dist' }) {
     logLevel: 'warning',
   });
   const outputs = Object.keys(result.metafile.outputs);
-  const js = outputs.find((f) => f.endsWith('.js'));
+  const js = outputs.find((f) => f.endsWith('.js') && result.metafile.outputs[f].entryPoint === 'src/main.tsx');
   const css = outputs.find((f) => f.endsWith('.css'));
   if (!js || !css) throw new Error('Build produced no JavaScript or CSS output.');
   return { club, js: '/' + path.relative(outdir, js).split(path.sep).join('/'), css: '/' + path.relative(outdir, css).split(path.sep).join('/') };

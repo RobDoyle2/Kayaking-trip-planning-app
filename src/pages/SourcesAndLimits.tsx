@@ -149,7 +149,7 @@ export function SourcesAndLimits() {
           </div>
         </div>
         <p>
-          The Leadership checklists, SHEETS briefing, risk assessment and review save in this browser as you change them, and
+          The Leadership checklists, SHEETS briefing, risk assessment, review and trip plans save in this browser as you change them, and
           each page says when it has saved. Visiting a page saves nothing. <Link to="/my-plans">My plans</Link> lists what is saved and lets
           you download, import or delete it. Nothing is saved on a server.
         </p>

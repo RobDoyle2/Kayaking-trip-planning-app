@@ -33,3 +33,17 @@ export async function copyText(text: string): Promise<boolean> {
     return false;
   }
 }
+
+/** Offers binary data (such as a PDF) for download. Works without any server. */
+export function downloadBytes(fileName: string, bytes: Uint8Array, mime: string): void {
+  const blob = new Blob([bytes as BlobPart], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = fileName;
+  link.rel = 'noopener';
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}

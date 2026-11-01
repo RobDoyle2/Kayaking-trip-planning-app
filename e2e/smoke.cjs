@@ -34,6 +34,9 @@ const routes = [
   ['/leadership/risk', 'Risk assessment'],
   ['/leadership/equipment', 'Equipment and safety check'],
   ['/leadership/review', 'Post-trip review'],
+  ['/trip-planning/day', 'Day trip'],
+  ['/trip-planning/multi-day', 'Multi-day expedition without camping'],
+  ['/trip-planning/camping', 'Multi-day expedition with camping'],
 ];
 
 (async () => {

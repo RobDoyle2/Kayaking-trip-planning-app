@@ -1033,6 +1033,7 @@ textarea.input {
 }
 
 .confirm__question {
+  overflow-wrap: anywhere;
   font-weight: 700;
 }
 
@@ -1075,6 +1076,10 @@ textarea.input {
 
 .briefing__meta dd {
   margin: 0;
+}
+
+.plan-view .briefing__section {
+  margin-top: 20px;
 }
 
 .briefing__lines {
@@ -1131,6 +1136,12 @@ textarea.input {
 .prompt-item__title {
   margin: 0;
   font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.saved-item p,
+.prompt-item p {
+  overflow-wrap: anywhere;
 }
 
 .saved-item p,
@@ -1151,6 +1162,129 @@ textarea.input {
   overflow-wrap: anywhere;
   font: inherit;
   margin: 0;
+}
+
+/* ---------- Trip planning (Stage 3) ---------- */
+.link-button {
+  background: none;
+  border: 0;
+  padding: 8px 0;
+  min-height: 44px;
+  font: inherit;
+  color: var(--primary-dark);
+  text-decoration: underline;
+  text-align: left;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.missing-box {
+  margin: 16px 0 24px;
+  padding: 12px 16px;
+  border: 2px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--tint-soft);
+}
+
+.missing-box h2 {
+  margin-top: 0;
+}
+
+.day-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 16px;
+}
+
+.day-tab {
+  font: inherit;
+  font-weight: 700;
+  min-height: 44px;
+  padding: 8px 14px;
+  background: #fff;
+  color: var(--ink);
+  border: 2px solid var(--field-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.day-tab[aria-current='true'] {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+  color: #fff;
+}
+
+.day-tab__gaps {
+  font-weight: 400;
+}
+
+.stop-row {
+  padding: 8px 0 12px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 12px;
+}
+
+.stop-row__title {
+  margin: 0 0 8px;
+  font-weight: 800;
+}
+
+.time-pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 24px;
+}
+
+.check-group-title {
+  font-size: 1rem;
+  margin: 12px 0 4px;
+}
+
+.limit-findings li {
+  padding: 4px 0;
+}
+
+.limit-findings .is-over {
+  border-left: 4px solid var(--danger);
+  padding-left: 10px;
+}
+
+.plan-view__subtitle {
+  margin: 0 0 12px;
+  font-weight: 700;
+}
+
+.plan-view__ok {
+  font-weight: 700;
+}
+
+.plan-view__rows {
+  margin: 0;
+}
+
+.plan-view__rows > div {
+  padding: 4px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.plan-view__rows dt {
+  font-weight: 700;
+}
+
+.plan-view__rows dd {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.plan-view__note {
+  margin: 6px 0 0;
+}
+
+.plan-view__rows .is-gap dd {
+  color: var(--muted);
+  font-style: italic;
 }
 
 /* ---------- Printing ---------- */
@@ -1186,7 +1320,13 @@ textarea.input {
   }
 
   .briefing__foot,
-  .briefing .is-gap {
+  .briefing .is-gap,
+  .plan-view__rows .is-gap dd {
     color: #000;
+  }
+
+  .plan-view__rows > div,
+  .briefing__section {
+    break-inside: avoid;
   }
 }

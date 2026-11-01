@@ -2,6 +2,7 @@ import { isBooleanRecord, isStringOrBooleanRecord } from './guards';
 import { readSaved, removeSaved, writeSaved, type KeyValueStore, type Saved } from './storage';
 import { isRiskAssessment } from '../content/leadership/risk';
 import { isReview } from '../content/leadership/review';
+import { isTripStore, mergeTripStores } from '../content/trip/trip';
 
 /**
  * Everything the app can save on the user's device, in one list. The My plans page, the export file and the import
@@ -13,6 +14,8 @@ export interface SavedItemDef {
   href: string;
   version: number;
   isValid: (data: unknown) => boolean;
+  /** When an import meets data already saved under this id: the data to write, or null to refuse. Missing means the import replaces it. */
+  merge?: (existing: unknown, incoming: unknown) => unknown;
 }
 
 export const savedItemDefs: SavedItemDef[] = [
@@ -21,6 +24,7 @@ export const savedItemDefs: SavedItemDef[] = [
   { id: 'sheets-briefing', label: 'SHEETS briefing', href: '/leadership/sheets', version: 1, isValid: isStringOrBooleanRecord },
   { id: 'risk-assessment', label: 'Risk assessment', href: '/leadership/risk', version: 1, isValid: isRiskAssessment },
   { id: 'post-trip-review', label: 'Post-trip review', href: '/leadership/review', version: 1, isValid: isReview },
+  { id: 'trips', label: 'Trip plans', href: '/trip-planning/day', version: 1, isValid: isTripStore, merge: mergeTripStores },
 ];
 
 export function defById(id: string): SavedItemDef | undefined {
@@ -127,9 +131,27 @@ export function applyImport(store: KeyValueStore | null, slug: string, items: { 
   let written = 0;
   let failed = 0;
   for (const { def, saved } of items) {
-    const result = writeSaved(store, storageKey(slug, def.id), def.version, saved.data, () => new Date(saved.savedAt));
+    let data: unknown = saved.data;
+    if (def.merge) {
+      const existing = readSaved(store, storageKey(slug, def.id), def.version, (d): d is unknown => def.isValid(d));
+      data = def.merge(existing.status === 'ok' ? existing.saved.data : undefined, saved.data);
+      if (data === null || data === undefined) {
+        failed++;
+        continue;
+      }
+    }
+    const result = writeSaved(store, storageKey(slug, def.id), def.version, data, () => new Date(saved.savedAt));
     if (result.ok) written++;
     else failed++;
   }
   return { written, failed };
+}
+
+/** One saved item as a file the user can keep, in the same format as the full export (so importing it merges it back). */
+export function exportOne(slug: string, defId: string, data: unknown, now: () => Date = () => new Date()): string {
+  const def = defById(defId);
+  if (!def) throw new Error(`"${defId}" is not in the saved items list.`);
+  const stamp = now().toISOString();
+  const file: ExportFile = { app: 'sea-kayaking-hub', club: slug, exportedAt: stamp, items: { [defId]: { v: def.version, savedAt: stamp, data } } };
+  return JSON.stringify(file, null, 2);
 }
