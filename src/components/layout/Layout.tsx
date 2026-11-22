@@ -6,7 +6,7 @@ import { Drawer } from './Drawer';
 import { Footer } from './Footer';
 import { Header } from './Header';
 
-/** The frame around every page: skip link, header, menu, content, footer and the assistant button. */
+/** The frame around every page: skip link, header, menu, content, footer and, only in a build with the assistant switched on, the assistant button. */
 export function Layout({ children }: { children: ReactNode }) {
   const path = usePath();
   // The menu is open only for the page it was opened on, so any change of page (link, Back, Forward) closes it
@@ -36,8 +36,8 @@ export function Layout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <Footer />
-      <AssistantFab />
-      <AssistantSheet />
+      {__ASSISTANT__ && <AssistantFab />}
+      {__ASSISTANT__ && <AssistantSheet />}
     </>
   );
 }

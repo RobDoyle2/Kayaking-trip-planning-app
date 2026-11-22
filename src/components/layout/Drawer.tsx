@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { club } from '../../clubs';
-import { sectionsForClub, type IconName } from '../../content/sections';
+import { sectionsForClub, type IconName, type Section } from '../../content/sections';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
 import { Link, usePath } from '../../router/Router';
 import { Icon } from '../Icon';
@@ -28,11 +28,13 @@ function DrawerLink({ to, icon, label, onNavigate, current }: DrawerLinkProps) {
   );
 }
 
-/** The hamburger menu: home, the six sections, then the shared pages. */
+/** The hamburger menu: home, the sections the club lists in menuSections, then the shared pages. */
 export function Drawer({ open, onClose }: DrawerProps) {
   const ref = useRef<HTMLDivElement>(null);
   const path = usePath();
   useFocusTrap(ref, open, onClose);
+  const available = sectionsForClub(club.enabledSections);
+  const menuSections = club.menuSections.map((id) => available.find((s) => s.id === id)).filter((s): s is Section => s !== undefined);
 
   if (!open) return null;
 
@@ -60,7 +62,7 @@ export function Drawer({ open, onClose }: DrawerProps) {
             <li>
               <DrawerLink to="/" icon="home" label="Home" onNavigate={onClose} current={path} />
             </li>
-            {sectionsForClub(club.enabledSections).map((section) => (
+            {menuSections.map((section) => (
               <li key={section.id}>
                 <DrawerLink to={section.path} icon={section.icon} label={section.title} onNavigate={onClose} current={path} />
               </li>
@@ -70,10 +72,10 @@ export function Drawer({ open, onClose }: DrawerProps) {
           <p className="drawer__heading">More</p>
           <ul className="drawer__list">
             <li>
-              <DrawerLink to="/my-plans" icon="plans" label="My plans" onNavigate={onClose} current={path} />
+              <DrawerLink to="/emergency" icon="alert" label="Emergency card" onNavigate={onClose} current={path} />
             </li>
             <li>
-              <DrawerLink to="/emergency" icon="alert" label="Emergency card" onNavigate={onClose} current={path} />
+              <DrawerLink to="/my-plans" icon="plans" label="My plans" onNavigate={onClose} current={path} />
             </li>
             <li>
               <DrawerLink to="/sources" icon="info" label="Sources and limits" onNavigate={onClose} current={path} />

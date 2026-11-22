@@ -1,86 +1,29 @@
-import { useState, type FormEvent } from 'react';
-import { useAssistant } from '../components/assistant/AssistantContext';
-import { checkQuestion } from '../components/assistant/validate';
 import { CoastalArt } from '../components/CoastalArt';
-import { Icon } from '../components/Icon';
 import { SectionCard } from '../components/SectionCard';
-import { Badge, Button, ButtonLink, Notice } from '../components/ui';
+import { Notice } from '../components/ui';
 import { club } from '../clubs';
-import { sectionsForClub } from '../content/sections';
+import { sectionsForClub, type Section } from '../content/sections';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { Link } from '../router/Router';
 
+/**
+ * The first screen: the club, then one big button for each section in club.homeSections, then a short caution at the bottom.
+ * Everything else (VHF, Navigation and Tides, the Knowledge Centre, the Emergency card) is reached from those buttons or the menu.
+ */
 export function Home() {
   useDocumentTitle();
-  const { openAssistant } = useAssistant();
-  const [question, setQuestion] = useState('');
-  const [error, setError] = useState('');
-
-  function ask(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    // An empty box just opens the assistant. Anything typed is checked first.
-    if (question.trim() === '') {
-      setError('');
-      openAssistant();
-      return;
-    }
-    const check = checkQuestion(question);
-    if (!check.ok) {
-      setError(check.message);
-      return;
-    }
-    setError('');
-    openAssistant(check.text);
-  }
+  const byId = sectionsForClub(club.enabledSections);
+  const big = club.homeSections.map((id) => byId.find((s) => s.id === id)).filter((s): s is Section => s !== undefined);
 
   return (
     <>
-      <section className="hero" aria-labelledby="home-title">
+      <section className="hero hero--home" aria-labelledby="home-title">
         <CoastalArt />
         <div className="container hero__grid">
           <div className="hero__copy">
             <p className="eyebrow">{club.name}</p>
             <h1 id="home-title">{club.appName}</h1>
             <p className="lead">{club.tagline}</p>
-
-            <form className="ask" onSubmit={ask} noValidate>
-              <label htmlFor="home-ask" className="ask__label">
-                <span>{club.assistantName}</span>
-                <Badge tone="notice">Not connected yet</Badge>
-              </label>
-              <div className="ask__row">
-                <input
-                  id="home-ask"
-                  type="text"
-                  autoComplete="off"
-                  value={question}
-                  onChange={(event) => setQuestion(event.target.value)}
-                  aria-invalid={error ? true : undefined}
-                  aria-describedby={error ? 'home-ask-error' : 'home-ask-hint'}
-                  placeholder="Type a question"
-                />
-                <Button type="submit">Ask</Button>
-              </div>
-              {error ? (
-                <p id="home-ask-error" className="field-error" role="alert">
-                  {error}
-                </p>
-              ) : (
-                <p id="home-ask-hint" className="ask__hint">
-                  Answers come from the documents supplied to this project, with their sources shown. They are not approved by the club and not live conditions.
-                </p>
-              )}
-            </form>
-
-            <div className="hero__actions">
-              <ButtonLink href={club.website.url} variant="secondary">
-                Visit the club website
-              </ButtonLink>
-              <ButtonLink to="/emergency" variant="secondary">
-                <Icon name="alert" size={18} />
-                Emergency card
-              </ButtonLink>
-            </div>
           </div>
 
           <div className="hero__logo">
@@ -89,23 +32,25 @@ export function Home() {
         </div>
       </section>
 
-      <section className="container block" aria-labelledby="sections-title">
-        <h2 id="sections-title">Six sections</h2>
-        <ul className="card-grid">
-          {sectionsForClub(club.enabledSections).map((section) => (
+      <section className="container block block--home" aria-labelledby="sections-title">
+        <h2 id="sections-title" className="sr-only">
+          Sections
+        </h2>
+        <ul className="card-grid card-grid--home">
+          {big.map((section) => (
             <li key={section.id}>
-              <SectionCard section={section} />
+              <SectionCard section={section} compact />
             </li>
           ))}
         </ul>
       </section>
 
-      <section className="container block">
-        <Notice title="Build status: Stage 6 of 6">
-          All six stages are built. Everything is a preview until the ECSKC committee approves it, and the assistant needs a Claude API key to be set up before it can answer. The other sections list what is planned and what is waiting on a
-          document, and every item carries a status label so unfinished features do not look finished. See{' '}
-          <Link to="/sources">Sources and limits</Link> for what the app can and cannot do.
-        </Notice>
+      <section className="container block block--tight-end">
+        <div className="notice-small">
+          <Notice title="Preview: not yet approved by the club">
+            Everything here is a preview until the ECSKC committee approves it. See <Link to="/sources">Sources and limits</Link>.
+          </Notice>
+        </div>
       </section>
     </>
   );

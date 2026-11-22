@@ -383,3 +383,42 @@ test('a section the app does not have is refused, and a real one is accepted', a
   assert.equal((await handleAsk(post({ question: slack, section: '/navigation' }), deps)).status, 200);
   assert.deepEqual(kb.sectionPaths, ['/leadership', '/trip-planning', '/training', '/navigation', '/vhf', '/knowledge']);
 });
+
+test('the server function is off unless ASSISTANT_ENABLED=1, even when a key is set', async () => {
+  const saved = { enabled: process.env.ASSISTANT_ENABLED, key: process.env.ANTHROPIC_API_KEY };
+  const realFetch = globalThis.fetch;
+  let fetched = 0;
+  globalThis.fetch = (async () => {
+    fetched++;
+    throw new Error('the assistant must not call out when it is switched off');
+  }) as typeof fetch;
+  try {
+    delete process.env.ASSISTANT_ENABLED;
+    process.env.ANTHROPIC_API_KEY = 'sk-test-not-real';
+    const { default: handler } = await import('../../api/ask.js');
+    const out: { status: number; body: string; headers: Record<string, string> } = { status: 0, body: '', headers: {} };
+    const res = {
+      set statusCode(v: number) {
+        out.status = v;
+      },
+      setHeader(k: string, v: string) {
+        out.headers[k.toLowerCase()] = v;
+      },
+      end(b: string) {
+        out.body = b;
+      },
+    };
+    const req = { method: 'POST', headers: { origin: 'https://example.org' }, socket: {}, on() {} };
+    await handler(req, res);
+    assert.equal(out.status, 503);
+    assert.equal(JSON.parse(out.body).error, 'not_configured');
+    assert.match(JSON.parse(out.body).message, /switched off/);
+    assert.equal(fetched, 0);
+  } finally {
+    globalThis.fetch = realFetch;
+    if (saved.enabled === undefined) delete process.env.ASSISTANT_ENABLED;
+    else process.env.ASSISTANT_ENABLED = saved.enabled;
+    if (saved.key === undefined) delete process.env.ANTHROPIC_API_KEY;
+    else process.env.ANTHROPIC_API_KEY = saved.key;
+  }
+});

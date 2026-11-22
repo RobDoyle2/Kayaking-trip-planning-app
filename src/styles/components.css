@@ -1493,3 +1493,80 @@ textarea.input {
     break-inside: avoid;
   }
 }
+
+/* ---------- Simplified home, sections inside sections, My links ---------- */
+.hero--home .hero__grid {
+  padding-bottom: 72px;
+}
+
+.hero--home .coastal-art {
+  height: 140px;
+}
+
+.block--home {
+  margin-top: -28px;
+  position: relative;
+}
+
+.block--tight-end {
+  padding-top: 0;
+}
+
+.card-grid--home .section-card {
+  padding: 22px 18px;
+}
+
+.card-grid--home .section-card__title {
+  font-size: 1.3rem;
+}
+
+.card-grid--home .section-card__icon {
+  width: 64px;
+  height: 64px;
+}
+
+.section-card--compact .section-card__tagline {
+  font-size: 0.97rem;
+}
+
+/* The home-screen caution is deliberately small, and sits at the bottom. */
+.notice-small .notice {
+  padding: 10px 12px;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.notice-small .notice__body {
+  font-size: 0.9rem;
+}
+
+.links-form {
+  margin: 20px 0 8px;
+  padding: 16px;
+  max-width: 40rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+}
+
+.links-form h2 {
+  margin-top: 0;
+}
+
+.links-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 0;
+}
+
+.links-group {
+  margin-top: 16px;
+}
+
+.links-group h3 {
+  margin-bottom: 8px;
+}
+
+.my-links .saved-item {
+  padding: 10px 14px;
+}

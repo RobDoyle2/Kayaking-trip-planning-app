@@ -19,6 +19,7 @@ const routes = [
   ['/', 'Sea Kayaking Hub'],
   ['/leadership', 'Leadership'],
   ['/trip-planning', 'Trip Planning'],
+  ['/trip-planning/links', 'My links'],
   ['/training', 'Training and Skills'],
   ['/navigation', 'Navigation and Tides'],
   ['/vhf', 'VHF Radio'],
@@ -104,7 +105,7 @@ const routes = [
 
     // Home content.
     await page.goto(BASE + '/', { waitUntil: 'networkidle' });
-    check(`[${label}] home has six section cards`, (await page.locator('.section-card').count()) === 6);
+    check(`[${label}] home has three big section buttons`, (await page.locator('.section-card').count()) === 3);
     const logoOk = await page.evaluate(() =>
       Array.from(document.querySelectorAll('img')).every((i) => i.complete && i.naturalWidth > 0),
     );
@@ -132,9 +133,10 @@ const routes = [
     for (let i = 0; i < 20; i++) await page.keyboard.press('Tab');
     check(`[${label}] Tab stays inside the menu`, await page.evaluate(() => !!document.activeElement.closest('#site-menu')));
     const itemTexts = await page.locator('#site-menu a').allInnerTexts();
-    for (const expected of ['Home', 'Leadership', 'Trip Planning', 'Training and Skills', 'Navigation and Tides', 'VHF Radio', 'Knowledge Centre', 'My plans', 'Emergency card', 'Sources and limits']) {
+    for (const expected of ['Home', 'Leadership', 'Trip Planning', 'Training and Skills', 'VHF Radio', 'Knowledge Centre', 'My plans', 'Emergency card', 'Sources and limits']) {
       check(`[${label}] menu lists "${expected}"`, itemTexts.some((t) => t.trim().startsWith(expected)));
     }
+    check(`[${label}] Navigation and Tides is reached from Trip Planning, not the menu`, !itemTexts.some((t) => t.trim().startsWith('Navigation and Tides')));
     if (label === 'mobile') { await page.waitForTimeout(450); await page.screenshot({ path: `${OUT}/${label}-menu-open.png` }); }
     await page.keyboard.press('Escape');
     check(`[${label}] Escape closes the menu`, !(await dialog.isVisible().catch(() => false)));
@@ -150,32 +152,11 @@ const routes = [
     await page.waitForURL(BASE + '/');
     check(`[${label}] browser Back returns to Home`, (await page.locator('main h1').innerText()) === 'Sea Kayaking Hub');
 
-    // Assistant: floating button on a section page.
+    // The assistant is not part of the normal build: no button, no sheet, no question box, no calls to /api/.
     await page.goto(BASE + '/leadership', { waitUntil: 'networkidle' });
-    await page.getByRole('button', { name: /Ask/ }).last().click();
-    const sheet = page.getByRole('dialog', { name: 'Ask the Kayaking Assistant' });
-    check(`[${label}] assistant button opens the assistant`, await sheet.isVisible());
-    check(`[${label}] assistant knows the current section`, (await sheet.innerText()).includes('You are in Leadership'));
-    check(`[${label}] assistant explains how answers are made`, (await sheet.innerText()).includes('How answers are made'));
-    await page.getByRole('button', { name: 'Send' }).click();
-    check(`[${label}] empty question shows a helpful error`, (await page.locator('#assistant-error').innerText()).includes('Type a question'));
-    await page.locator('#assistant-question').fill('What should I consider before leading a trip?');
-    await page.getByRole('button', { name: 'Send' }).click();
-    await page.locator('.message--app .answer__text').first().waitFor();
-    const text = await sheet.innerText();
-    // This copy of the app has no Claude key, so the assistant must say it is not switched on and answer nothing.
-    check(`[${label}] question is acknowledged, and with no key the assistant says it is not switched on`, text.includes('not switched on yet') && text.includes('What should I consider') && !text.includes('Where this comes from'));
-    if (label === 'mobile' || label === 'desktop') { await page.waitForTimeout(450); } if (label === 'mobile' || label === 'desktop') await page.screenshot({ path: `${OUT}/${label}-assistant.png` });
-    await page.keyboard.press('Escape');
-    check(`[${label}] Escape closes the assistant`, !(await sheet.isVisible().catch(() => false)));
-
-    // Home question box seeds the assistant.
+    check(`[${label}] no assistant button or sheet on a section page`, (await page.locator('.fab, #assistant-question').count()) === 0 && (await page.getByRole('dialog', { name: 'Ask the Kayaking Assistant' }).count()) === 0);
     await page.goto(BASE + '/', { waitUntil: 'networkidle' });
-    await page.locator('#home-ask').fill('How do I prepare for a crossing?');
-    await page.locator('.ask button[type=submit]').click();
-    await page.locator('#assistant-question').waitFor({ state: 'visible' });
-    check(`[${label}] home question opens the assistant with the text`, (await page.locator('#assistant-question').inputValue()) === 'How do I prepare for a crossing?');
-    await page.keyboard.press('Escape');
+    check(`[${label}] no question box on home`, (await page.locator('#home-ask, .ask').count()) === 0);
 
     // Unknown route.
     await page.goto(BASE + '/does-not-exist', { waitUntil: 'networkidle' });

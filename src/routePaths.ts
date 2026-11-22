@@ -17,6 +17,7 @@ export const toolPaths: Record<string, SectionId> = {
   '/trip-planning/day': 'trip-planning',
   '/trip-planning/multi-day': 'trip-planning',
   '/trip-planning/camping': 'trip-planning',
+  '/trip-planning/links': 'trip-planning',
   '/training/guidance': 'training',
   '/training/plan': 'training',
   '/training/checklists': 'training',

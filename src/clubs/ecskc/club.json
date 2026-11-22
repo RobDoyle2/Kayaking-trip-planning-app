@@ -20,6 +20,8 @@
     "danger": "#D92727"
   },
   "enabledSections": ["leadership", "trip-planning", "training", "navigation", "vhf", "knowledge"],
+  "homeSections": ["trip-planning", "leadership", "training"],
+  "menuSections": ["trip-planning", "leadership", "training", "vhf", "knowledge"],
   "assistantName": "Ask the Kayaking Assistant",
   "emergency": {
     "numbers": "999 or 112",

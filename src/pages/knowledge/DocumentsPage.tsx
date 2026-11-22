@@ -5,7 +5,7 @@ import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import type { KnowledgeBase } from '../../knowledge/collect';
 import { Link } from '../../router/Router';
 
-/** Which documents the assistant draws on, how each was read, and whether the club has approved it (none yet). */
+/** Which documents the Knowledge Centre search draws on, how each was read, and whether the club has approved it (none yet). */
 export function DocumentsPage() {
   useDocumentTitle('What the documents cover');
   const [kb, setKb] = useState<KnowledgeBase | null>(null);
@@ -23,12 +23,12 @@ export function DocumentsPage() {
       <PageHeader
         title="What the documents cover"
         icon="book"
-        intro="The sources the assistant draws on, how each was read, and what is not covered."
+        intro="The sources the search draws on, how each was read, and what is not covered."
         crumb={{ label: 'Knowledge Centre', to: '/knowledge' }}
       />
       <Notice tone="warning" title="No document has been approved by the club yet">
-        The assistant’s library is made from the app’s own sourced pages, which paraphrase the documents and web pages supplied to this project. Nothing in it has been approved by the ECSKC
-        committee, so every answer says so. Who approves documents, and when, is still to be decided by the club.
+        The library is made from the app’s own sourced pages, which paraphrase the documents and web pages supplied to this project. Nothing in it has been approved by the ECSKC
+        committee, so every result says so. Who approves documents, and when, is still to be decided by the club.
       </Notice>
 
       <section aria-labelledby="cited-title">
@@ -72,7 +72,7 @@ export function DocumentsPage() {
       <section aria-labelledby="gaps-title" className="block-tight">
         <h2 id="gaps-title">What the library does not cover</h2>
         <p>
-          The assistant says so when it meets one of these, using the library’s own “not covered” notes: skill descriptions, radio procedures, control areas and the station map, the Oileáin
+          The search shows a “Not covered” note when you look for one of these: skill descriptions, radio procedures, control areas and the station map, the Oileáin
           high-water allowance, a camping kit list, the club’s risk assessment template, what to tell the Coast Guard, and live weather, tides or radio information. See{' '}
           <Link to="/sources">Sources and limits</Link>.
         </p>

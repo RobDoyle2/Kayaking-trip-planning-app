@@ -19,6 +19,10 @@ export interface ClubConfig {
     danger: string;
   };
   enabledSections: SectionId[];
+  /** The big buttons on the home screen, in order. */
+  homeSections: SectionId[];
+  /** The sections listed in the hamburger menu, in order. Sections inside another one (see Section.parent) need not be here. */
+  menuSections: SectionId[];
   assistantName: string;
   emergency: {
     /** Numbers for an emergency call, exactly as the club words them. */

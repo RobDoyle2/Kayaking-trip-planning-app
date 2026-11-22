@@ -25,14 +25,14 @@ function Routes(): ReactNode {
   return <NotFound />;
 }
 
-export function App() {
+function Frame() {
   return (
-    <Router>
-      <AssistantProvider>
-        <Layout>
-          <Routes />
-        </Layout>
-      </AssistantProvider>
-    </Router>
+    <Layout>
+      <Routes />
+    </Layout>
   );
+}
+
+export function App() {
+  return <Router>{__ASSISTANT__ ? <AssistantProvider><Frame /></AssistantProvider> : <Frame />}</Router>;
 }

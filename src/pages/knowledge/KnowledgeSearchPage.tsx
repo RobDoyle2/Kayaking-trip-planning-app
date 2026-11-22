@@ -1,19 +1,18 @@
 import { useEffect, useMemo, useState } from 'react';
 import { TextField } from '../../components/forms/fields';
-import { Button, ExternalLink, Notice, PageHeader } from '../../components/ui';
-import { useAssistant } from '../../components/assistant/AssistantContext';
+import { ExternalLink, Notice, PageHeader } from '../../components/ui';
+import { AskAssistantButton } from '../../components/assistant/AskAssistantButton';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import { buildIndex, search } from '../../knowledge/search.js';
 import type { KnowledgeBase } from '../../knowledge/collect';
 import { Link } from '../../router/Router';
 
 /**
- * Search the assistant's library directly, with no AI and no server: the same keyword search the assistant uses to pick
- * passages, shown as passages with their sources. It works when the assistant is not switched on.
+ * Search the knowledge library directly, with no AI and no server: a keyword search shown as passages with their sources.
+ * It is the same search the assistant uses to pick passages, and it works whether or not the assistant is built in.
  */
 export function KnowledgeSearchPage() {
   useDocumentTitle('Search the documents');
-  const { openAssistant } = useAssistant();
   const [kb, setKb] = useState<KnowledgeBase | null>(null);
   const [failed, setFailed] = useState(false);
   const [query, setQuery] = useState('');
@@ -37,7 +36,7 @@ export function KnowledgeSearchPage() {
       <PageHeader
         title="Search the documents"
         icon="book"
-        intro="Look through the passages the assistant draws on. No question is sent anywhere: the search runs on your device."
+        intro="Look through passages written from the documents supplied to this project. No AI is used and nothing you type is sent anywhere: the search runs on your device."
         crumb={{ label: 'Knowledge Centre', to: '/knowledge' }}
       />
       <Notice title="Background reading, not approved, not live">
@@ -61,13 +60,7 @@ export function KnowledgeSearchPage() {
           <p role="status" className="muted kb-count">
             {!searched ? 'Type a word or a question to search.' : hits.length === 0 ? 'No passage matches strongly enough. Try different words.' : `${hits.length} ${hits.length === 1 ? 'passage' : 'passages'} found, best match first.`}
           </p>
-          {searched && (
-            <p>
-              <Button variant="secondary" onClick={() => openAssistant(query.trim())}>
-                Ask the Kayaking Assistant this question
-              </Button>
-            </p>
-          )}
+          {__ASSISTANT__ && searched && <AskAssistantButton question={query.trim()} />}
           <ul className="item-list">
             {hits.map((h) => (
               <li key={h.passage.id} className="item-card">

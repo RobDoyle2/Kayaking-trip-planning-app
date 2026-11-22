@@ -1,6 +1,6 @@
 // Stage 6 (Knowledge Centre and assistant) end-to-end test.
 // It starts its own copies of the app (scripts/serve.mjs runs api/ask.js exactly as the host does) and a stand-in for the
-// Claude API (e2e/mock-anthropic.cjs). Needs the built site in dist/. Nothing here talks to the real Claude.
+// Claude API (e2e/mock-anthropic.cjs). Needs a build WITH the assistant in dist/:  SKH_ASSISTANT=1 npm run build   (the normal build leaves it out). Nothing here talks to the real Claude.
 const { chromium, request } = require('playwright');
 const { spawn } = require('child_process');
 const fs = require('fs');
@@ -20,7 +20,7 @@ function check(name, ok, detail = '') {
 
 const children = [];
 async function startApp(port, env) {
-  const child = spawn('node', ['scripts/serve.mjs', 'dist', String(port)], { cwd: path.join(__dirname, '..'), env: { ...process.env, ANTHROPIC_API_KEY: '', ANTHROPIC_BASE_URL: '', ...env }, stdio: process.env.DEBUG_STAGE6 ? 'inherit' : 'ignore' });
+  const child = spawn('node', ['scripts/serve.mjs', 'dist', String(port)], { cwd: path.join(__dirname, '..'), env: { ...process.env, ANTHROPIC_API_KEY: '', ANTHROPIC_BASE_URL: '', ASSISTANT_ENABLED: '1', ...env }, stdio: process.env.DEBUG_STAGE6 ? 'inherit' : 'ignore' });
   children.push(child);
   for (let i = 0; i < 50; i++) {
     try {
@@ -66,6 +66,7 @@ const lastReply = (page) => page.locator('.message--app').last();
   const A = await startApp(4180, { ANTHROPIC_API_KEY: KEY, ANTHROPIC_BASE_URL: `http://127.0.0.1:${MOCK_PORT}`, ASSISTANT_PER_MINUTE: '40', ASSISTANT_PER_HOUR: '400', ASSISTANT_PER_DAY: '400' });
   const B = await startApp(4181, {});
   const C = await startApp(4182, { ANTHROPIC_API_KEY: KEY, ANTHROPIC_BASE_URL: `http://127.0.0.1:${MOCK_PORT}`, ASSISTANT_PER_MINUTE: '2' });
+  const E = await startApp(4184, { ANTHROPIC_API_KEY: KEY, ANTHROPIC_BASE_URL: `http://127.0.0.1:${MOCK_PORT}`, ASSISTANT_ENABLED: '' });
   const D = await startApp(4183, { ANTHROPIC_API_KEY: KEY, ANTHROPIC_BASE_URL: `http://127.0.0.1:${MOCK_PORT}`, ASSISTANT_DAILY_LIMIT: '1', ASSISTANT_PER_MINUTE: '40' });
   const browser = await chromium.launch();
 
@@ -202,6 +203,12 @@ const lastReply = (page) => page.locator('.message--app').last();
     const api = await request.newContext();
     const r = await api.post(B + '/api/ask', { headers: { Origin: B, 'Content-Type': 'application/json' }, data: JSON.stringify({ question: 'What is slack water?' }) });
     check('the endpoint answers 503 not_configured', r.status() === 503 && (await r.json()).error === 'not_configured');
+    // With a key set but ASSISTANT_ENABLED off (the setting for the simplified first version), nothing reaches Claude.
+    const callsBefore = mock.requests.length;
+    const off = await api.post(E + '/api/ask', { headers: { Origin: E, 'Content-Type': 'application/json' }, data: JSON.stringify({ question: 'What is slack water?' }) });
+    const offBody = await off.json();
+    check('with a key set but ASSISTANT_ENABLED off, the endpoint answers 503 and says it is switched off', off.status() === 503 && offBody.error === 'not_configured' && /switched off/.test(offBody.message), JSON.stringify(offBody));
+    check('and Claude (the stand-in) is not called at all', mock.requests.length === callsBefore, `${mock.requests.length - callsBefore} calls`);
     await api.dispose();
     check('no console problems', problems.filter((p) => !/503/.test(p)).length === 0, problems.join(' | '));
     await context.close();
@@ -251,6 +258,8 @@ const lastReply = (page) => page.locator('.message--app').last();
     await page.locator('#kb-query').fill('How do I tow a casualty?');
     await page.getByRole('button', { name: 'Ask the Kayaking Assistant this question' }).click();
     await page.locator('#assistant-question').waitFor();
+    // The sheet puts the question in its box just after it opens, so wait for it rather than reading at once.
+    await page.waitForFunction(() => document.querySelector('#assistant-question')?.value === 'How do I tow a casualty?', null, { timeout: 3000 }).catch(() => {});
     check('search: the ask button opens the assistant with the question', (await page.locator('#assistant-question').inputValue()) === 'How do I tow a casualty?');
     await page.keyboard.press('Escape');
     await page.screenshot({ path: `${OUT}/search-mobile.png`, fullPage: true });

@@ -33,6 +33,10 @@ export async function bundle({ slug, minify, outdir = 'dist' }) {
     define: {
       'process.env.NODE_ENV': JSON.stringify(minify ? 'production' : 'development'),
       __CLUB_SLUG__: JSON.stringify(slug),
+      // The assistant is left out of the site unless the build is made with SKH_ASSISTANT=1. Every place that uses the assistant
+      // tests __ASSISTANT__ directly in its own file, which lets esbuild see the value is false and drop the assistant's code.
+      // (A shared constant would not work: esbuild does not remove code across files for a constant.)
+      __ASSISTANT__: JSON.stringify(process.env.SKH_ASSISTANT === '1'),
     },
     logLevel: 'warning',
   });
@@ -59,6 +63,7 @@ export async function writeSite({ slug, club, js, css, outdir = 'dist' }) {
     THEME_COLOR: club.theme.primary,
     CLUB: slug,
     CLUB_URL: club.website.url,
+    LOGO: club.logo.src,
     CSS: css,
     JS: js,
   };

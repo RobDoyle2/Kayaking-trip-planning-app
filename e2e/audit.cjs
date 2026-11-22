@@ -8,6 +8,8 @@ const zlib = require('zlib');
 const path = require('path');
 
 const BASE = process.env.BASE || 'http://localhost:4173';
+// The assistant is left out of the normal build. Set ASSISTANT=1 (and serve a build made with SKH_ASSISTANT=1) to audit it too.
+const WITH_ASSISTANT = process.env.ASSISTANT === '1';
 const DIST = process.env.DIST || path.join(__dirname, '..', 'dist');
 const OUT = process.env.OUT || path.join(__dirname, 'out', 'audit');
 fs.mkdirSync(OUT, { recursive: true });
@@ -18,7 +20,7 @@ function rec(area, name, ok, detail = '') {
   console.log(`${ok ? 'PASS' : 'FAIL'}  [${area}] ${name}${detail ? '  -> ' + detail : ''}`);
 }
 
-const routes = ['/', '/leadership', '/trip-planning', '/training', '/navigation', '/vhf', '/knowledge', '/emergency', '/sources', '/my-plans', '/leadership/preparing', '/leadership/responsibilities', '/leadership/checklist', '/leadership/sheets', '/leadership/group', '/leadership/risk', '/leadership/equipment', '/leadership/review', '/trip-planning/day', '/trip-planning/multi-day', '/trip-planning/camping', '/training/guidance', '/training/plan', '/training/checklists', '/training/checklists/fsrt', '/training/checklists/leader-rescue', '/training/checklists/leader-background', '/training/qualifications', '/navigation/reference', '/navigation/tools', '/navigation/oileain', '/navigation/tides', '/navigation/weather', '/vhf/stations', '/knowledge/search', '/knowledge/documents'];
+const routes = ['/', '/leadership', '/trip-planning', '/training', '/navigation', '/vhf', '/knowledge', '/emergency', '/sources', '/my-plans', '/leadership/preparing', '/leadership/responsibilities', '/leadership/checklist', '/leadership/sheets', '/leadership/group', '/leadership/risk', '/leadership/equipment', '/leadership/review', '/trip-planning/day', '/trip-planning/multi-day', '/trip-planning/camping', '/trip-planning/links', '/training/guidance', '/training/plan', '/training/checklists', '/training/checklists/fsrt', '/training/checklists/leader-rescue', '/training/checklists/leader-background', '/training/qualifications', '/navigation/reference', '/navigation/tools', '/navigation/oileain', '/navigation/tides', '/navigation/weather', '/vhf/stations', '/knowledge/search', '/knowledge/documents'];
 
 async function h1(page) {
   return (await page.locator('main h1').first().innerText().catch(() => '(none)')).trim();
@@ -73,15 +75,19 @@ async function h1(page) {
     const bodyLocked = await page.evaluate(() => document.body.classList.contains('no-scroll'));
     rec('routes', 'page scroll is released after Back with menu open', !bodyLocked || menuStillOpen === 0, bodyLocked ? 'body still scroll-locked' : '');
 
-    // Back button with assistant open.
+    // Back button with assistant open (only in a build that has the assistant). The normal build must have none at all.
     await page.goto(BASE + '/', { waitUntil: 'networkidle' });
-    await page.locator('.section-card', { hasText: 'VHF' }).click();
-    await page.waitForURL('**/vhf');
-    await page.getByRole('button', { name: /Ask/ }).last().click();
-    await page.goBack();
-    await page.waitForURL(BASE + '/');
-    await page.waitForSelector('#assistant-title', { state: 'detached', timeout: 1500 }).catch(() => {});
-    rec('routes', 'Back button closes an open assistant', (await page.locator('#assistant-title').count()) === 0);
+    if (WITH_ASSISTANT) {
+      await page.locator('.section-card', { hasText: 'Trip Planning' }).click();
+      await page.waitForURL('**/trip-planning');
+      await page.getByRole('button', { name: /Ask/ }).last().click();
+      await page.goBack();
+      await page.waitForURL(BASE + '/');
+      await page.waitForSelector('#assistant-title', { state: 'detached', timeout: 1500 }).catch(() => {});
+      rec('routes', 'Back button closes an open assistant', (await page.locator('#assistant-title').count()) === 0);
+    } else {
+      rec('routes', 'the normal build has no assistant button or sheet', (await page.locator('.fab, #assistant-title, #home-ask').count()) === 0);
+    }
     await ctx.close();
   }
 
@@ -92,17 +98,20 @@ async function h1(page) {
     const consoleMsgs = [];
     page.on('console', (m) => consoleMsgs.push(`${m.type()}: ${m.text()}`));
     await page.goto(BASE + '/', { waitUntil: 'networkidle' });
-    const payload = '<img src=x onerror="window.__xss=1"><script>window.__xss=2</script>';
-    await page.locator('#home-ask').fill(payload);
-    await page.locator('.ask button[type=submit]').click();
-    await page.locator('#assistant-question').waitFor();
-    await page.getByRole('button', { name: 'Send' }).click();
-    const xss = await page.evaluate(() => window.__xss);
-    rec('security', 'HTML typed into the assistant is not executed', xss === undefined);
-    const shown = await page.locator('.message--you').innerText();
-    rec('security', 'typed HTML is shown as plain text', shown.includes('<img src=x'), shown.slice(0, 60));
-    const imgInjected = await page.locator('.message--you img').count();
-    rec('security', 'typed HTML creates no elements', imgInjected === 0);
+    if (WITH_ASSISTANT) {
+      const payload = '<img src=x onerror="window.__xss=1"><script>window.__xss=2</script>';
+      await page.getByRole('button', { name: /Ask/ }).last().click();
+      await page.locator('#assistant-question').waitFor();
+      await page.locator('#assistant-question').fill(payload);
+      await page.getByRole('button', { name: 'Send' }).click();
+      const xss = await page.evaluate(() => window.__xss);
+      rec('security', 'HTML typed into the assistant is not executed', xss === undefined);
+      const shown = await page.locator('.message--you').innerText();
+      rec('security', 'typed HTML is shown as plain text', shown.includes('<img src=x'), shown.slice(0, 60));
+      const imgInjected = await page.locator('.message--you img').count();
+      rec('security', 'typed HTML creates no elements', imgInjected === 0);
+
+    }
 
     // Inline script injection should be blocked by the Content-Security-Policy.
     await page.evaluate(() => {
@@ -147,24 +156,26 @@ async function h1(page) {
       const ov = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
       rec('reflow', `${r} at 320px with 200% text has no sideways page scroll`, ov <= 0, `overflow ${ov}px`);
     }
-    // Long unbroken word in the assistant.
-    await page.goto(BASE + '/', { waitUntil: 'networkidle' });
-    await page.getByRole('button', { name: /Ask/ }).last().click();
-    await page.locator('#assistant-question').fill('A'.repeat(450));
-    await page.getByRole('button', { name: 'Send' }).click();
-    const msgOverflow = await page.evaluate(() => {
-      const el = document.querySelector('.message--you');
-      const sheet = document.querySelector('.sheet__body');
-      return { msg: el.scrollWidth - el.clientWidth, body: sheet.scrollWidth - sheet.clientWidth };
-    });
-    rec('reflow', 'a 450-character unbroken word wraps inside the assistant', msgOverflow.msg <= 0 && msgOverflow.body <= 0, JSON.stringify(msgOverflow));
-    const replyVisible = await page.evaluate(() => {
-      const reply = document.querySelector('.message--app').getBoundingClientRect();
-      const body = document.querySelector('.sheet__body').getBoundingClientRect();
-      return { top: Math.round(reply.top - body.top), bottom: Math.round(body.bottom - reply.bottom) };
-    });
-    rec('usability', 'on a 320x640 phone the reply is visible right after sending (no scrolling needed)', replyVisible.top >= -1 && replyVisible.bottom >= -1, JSON.stringify(replyVisible));
+    // Long unbroken word in the assistant (only in a build that has it).
+    if (WITH_ASSISTANT) {
+      await page.goto(BASE + '/', { waitUntil: 'networkidle' });
+      await page.getByRole('button', { name: /Ask/ }).last().click();
+      await page.locator('#assistant-question').fill('A'.repeat(450));
+      await page.getByRole('button', { name: 'Send' }).click();
+      const msgOverflow = await page.evaluate(() => {
+        const el = document.querySelector('.message--you');
+        const sheet = document.querySelector('.sheet__body');
+        return { msg: el.scrollWidth - el.clientWidth, body: sheet.scrollWidth - sheet.clientWidth };
+      });
+      rec('reflow', 'a 450-character unbroken word wraps inside the assistant', msgOverflow.msg <= 0 && msgOverflow.body <= 0, JSON.stringify(msgOverflow));
+      const replyVisible = await page.evaluate(() => {
+        const reply = document.querySelector('.message--app').getBoundingClientRect();
+        const body = document.querySelector('.sheet__body').getBoundingClientRect();
+        return { top: Math.round(reply.top - body.top), bottom: Math.round(body.bottom - reply.bottom) };
+      });
+      rec('usability', 'on a 320x640 phone the reply is visible right after sending (no scrolling needed)', replyVisible.top >= -1 && replyVisible.bottom >= -1, JSON.stringify(replyVisible));
     await page.screenshot({ path: `${OUT}/long-word-320.png` });
+    }
     await ctx.close();
   }
 
@@ -415,27 +426,31 @@ async function h1(page) {
       await page.locator('#streamspeed-boat').fill('3');
       await page.locator('#atlas-rate').fill('x');
       await grab('tools-filled');
-      // The floating button, alone, at the top of a page.
-      await page.goto(BASE + '/', { waitUntil: 'networkidle' });
-      await page.evaluate(() => window.scrollTo(0, 0));
-      await grab('fab', { scope: '.fab', full: false, hideFixed: false });
+      // The floating button, alone, at the top of a page (only in a build that has the assistant).
+      if (WITH_ASSISTANT) {
+        await page.goto(BASE + '/', { waitUntil: 'networkidle' });
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await grab('fab', { scope: '.fab', full: false, hideFixed: false });
+      }
       // Menu open.
       await page.goto(BASE + '/leadership', { waitUntil: 'networkidle' });
       await page.getByRole('button', { name: 'Open the menu' }).click();
       await page.waitForTimeout(500);
       await grab('menu', { scope: '#site-menu', full: false, hideFixed: false });
       await page.goto(BASE + '/leadership', { waitUntil: 'networkidle' });
-      // Assistant: first with an error, then with a reply.
-      await page.getByRole('button', { name: /Ask/ }).last().click();
-      await page.getByRole('button', { name: 'Send' }).click();
-      await page.waitForTimeout(500);
-      await grab('assistant-error', { scope: '.sheet', full: false, hideFixed: false });
-      await page.goto(BASE + '/leadership', { waitUntil: 'networkidle' });
-      await page.getByRole('button', { name: /Ask/ }).last().click();
-      await page.locator('#assistant-question').fill('Test question');
-      await page.getByRole('button', { name: 'Send' }).click();
-      await page.waitForTimeout(500);
-      await grab('assistant-reply', { scope: '.sheet', full: false, hideFixed: false });
+      // Assistant: first with an error, then with a reply (only in a build that has it).
+      if (WITH_ASSISTANT) {
+        await page.getByRole('button', { name: /Ask/ }).last().click();
+        await page.getByRole('button', { name: 'Send' }).click();
+        await page.waitForTimeout(500);
+        await grab('assistant-error', { scope: '.sheet', full: false, hideFixed: false });
+        await page.goto(BASE + '/leadership', { waitUntil: 'networkidle' });
+        await page.getByRole('button', { name: /Ask/ }).last().click();
+        await page.locator('#assistant-question').fill('Test question');
+        await page.getByRole('button', { name: 'Send' }).click();
+        await page.waitForTimeout(500);
+        await grab('assistant-reply', { scope: '.sheet', full: false, hideFixed: false });
+      }
       await ctx.close();
     }
     fs.writeFileSync(`${OUT}/states.json`, JSON.stringify(states));

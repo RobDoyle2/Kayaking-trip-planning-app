@@ -55,6 +55,10 @@ export interface Section {
   stage: number;
   intro: string;
   items: SectionItem[];
+  /** A section shown inside another one (for example VHF Radio inside Trip Planning) rather than as a button on the home screen. */
+  parent?: SectionId;
+  /** Order among the sections that share a parent; lower comes first. */
+  parentOrder?: number;
 }
 
 export const sections: Section[] = [
@@ -197,6 +201,14 @@ export const sections: Section[] = [
         href: '/my-plans',
         note: 'Plans are saved in this browser only, so they do not appear on other devices unless you download the trip file and import it there.',
       },
+      {
+        id: 'links',
+        title: 'My links',
+        summary: 'Save web addresses with a note of your own and file each under Trip Planning, Leadership, Training and Skills, or Other. Each one then shows on its section page.',
+        status: 'ready',
+        href: '/trip-planning/links',
+        note: 'Kept in this browser only, like your plans. The app does not visit the addresses, so it cannot tell you whether a page still exists.',
+      },
     ],
   },
   {
@@ -257,6 +269,8 @@ export const sections: Section[] = [
     tagline: 'Charts, tides, streams and weather.',
     icon: 'compass',
     stage: 5,
+    parent: 'trip-planning',
+    parentOrder: 2,
     intro: 'Navigation reference notes, tide and stream tools, Oileáin guidance and weather information.',
     items: [
       {
@@ -317,6 +331,8 @@ export const sections: Section[] = [
     tagline: 'Channels, stations and control areas.',
     icon: 'radio',
     stage: 5,
+    parent: 'trip-planning',
+    parentOrder: 1,
     intro: 'Marine VHF information for Irish coastal paddling.',
     items: [
       {
@@ -357,25 +373,23 @@ export const sections: Section[] = [
     id: 'knowledge',
     path: '/knowledge',
     title: 'Knowledge Centre',
-    tagline: 'Ask a question and see the sources.',
+    tagline: 'Search the documents and see the sources.',
     icon: 'book',
     stage: 6,
-    intro: 'The Kayaking Assistant answers from approved club documents and shows where each answer comes from.',
+    intro: 'Search the passages written from the documents supplied to this project. Each result names its source. The search runs on your device and nothing is sent anywhere.',
     items: [
       {
-        id: 'assistant',
-        title: 'Ask the Kayaking Assistant',
-        summary:
-          'Ordinary-language questions answered from the supplied documents, each answer with the passages it rests on, and a search that works without the assistant.',
+        id: 'search',
+        title: 'Search the documents',
+        summary: 'Type a word or a question and see the matching passages, best match first, each with its source. No AI is involved.',
         status: 'preview',
         href: '/knowledge/search',
-        note:
-          'The assistant needs a Claude API key set up on the server; until then it says it is not switched on. None of the documents has been approved by the ECSKC committee, and every answer says so.',
+        note: 'None of the documents has been approved by the ECSKC committee, and every result says so.',
       },
       {
         id: 'documents',
         title: 'What the documents cover',
-        summary: 'Which sources the assistant can search, how each was read, and what is not covered.',
+        summary: 'Which sources the search covers, how each was read, and what is not covered.',
         status: 'preview',
         href: '/knowledge/documents',
         note: 'No document has been approved by the club yet, so none is marked approved.',

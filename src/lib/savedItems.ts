@@ -3,6 +3,7 @@ import { readSaved, removeSaved, writeSaved, type KeyValueStore, type Saved } fr
 import { isRiskAssessment } from '../content/leadership/risk';
 import { isReview } from '../content/leadership/review';
 import { isTripStore, mergeTripStores } from '../content/trip/trip';
+import { isLinkList, mergeLinkLists } from '../content/links';
 import { isDevelopmentPlan } from '../content/training/plan';
 
 /**
@@ -30,6 +31,7 @@ export const savedItemDefs: SavedItemDef[] = [
   { id: 'dev-leader-rescue', label: 'Checklist: Sea Kayak Leader rescue skills', href: '/training/checklists/leader-rescue', version: 1, isValid: isBooleanRecord },
   { id: 'dev-leader-background', label: 'Checklist: Sea Kayak Leader paddling and background', href: '/training/checklists/leader-background', version: 1, isValid: isBooleanRecord },
   { id: 'trips', label: 'Trip plans', href: '/trip-planning/day', version: 1, isValid: isTripStore, merge: mergeTripStores },
+  { id: 'links', label: 'My links', href: '/trip-planning/links', version: 1, isValid: isLinkList, merge: mergeLinkLists },
 ];
 
 export function defById(id: string): SavedItemDef | undefined {

@@ -11,6 +11,8 @@
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" type="image/png" sizes="48x48" href="/clubs/{{CLUB}}/favicon-48.png" />
     <link rel="apple-touch-icon" href="/clubs/{{CLUB}}/apple-touch-icon.png" />
+    <!-- The club logo is on every page, so the browser starts fetching it before the app has loaded. -->
+    <link rel="preload" as="image" type="image/webp" href="{{LOGO}}" />
     <link rel="stylesheet" href="{{CSS}}" />
   </head>
   <body>

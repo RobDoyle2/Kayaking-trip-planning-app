@@ -114,12 +114,19 @@ export function SourcesAndLimits() {
             older channel for 11 of its 16 stations, so it will not be used as it stands. I found no newer notice, but that
             search was not exhaustive.
           </li>
-          <li>
-            <strong>The assistant</strong> answers only from the app’s own sourced pages, which paraphrase the documents supplied to this project, and shows
-            the passages each answer rests on. It says when it cannot find something, and it never shows an answer it cannot tie to a passage. None of the
-            documents has been approved by the club. It can still misread a passage, so each answer links to the page it cites. It needs a Claude API key to be set up on the server; without
-            one it says it is not switched on.
-          </li>
+          {__ASSISTANT__ ? (
+            <li>
+              <strong>The assistant</strong> answers only from the app’s own sourced pages, which paraphrase the documents supplied to this project, and shows
+              the passages each answer rests on. It says when it cannot find something, and it never shows an answer it cannot tie to a passage. None of the
+              documents has been approved by the club. It can still misread a passage, so each answer links to the page it cites. It needs a Claude API key to be set up on the server; without
+              one it says it is not switched on.
+            </li>
+          ) : (
+            <li>
+              <strong>There is no AI in this version.</strong> The Knowledge Centre is a keyword search through passages the app’s own sourced pages paraphrase from the documents supplied to
+              this project. It runs on your device, shows the source of each result, and says when nothing matches. None of the documents has been approved by the club.
+            </li>
+          )}
           <li>
             <strong>Third-party material.</strong> Much of the reference material belongs to others. Before their text
             appears on a public page, the club needs permission or a decision to link and paraphrase instead.
@@ -166,10 +173,14 @@ export function SourcesAndLimits() {
             <strong>Not promoted or indexed is not private.</strong> The app asks search engines to stay away, but anyone
             who has the link can open it. Do not put anything in it that you would not want a stranger to read.
           </li>
-          <li>
-            When you ask the assistant a question, the question is sent to this app’s server and then to Anthropic, which provides the Claude service, along with the passages the
-            search picked. Nothing else is sent: your plans, names and notes stay on your device. The app does not keep your questions. Please do not type names or personal details into the assistant.
-          </li>
+          {__ASSISTANT__ ? (
+            <li>
+              When you ask the assistant a question, the question is sent to this app’s server and then to Anthropic, which provides the Claude service, along with the passages the
+              search picked. Nothing else is sent: your plans, names and notes stay on your device. The app does not keep your questions. Please do not type names or personal details into the assistant.
+            </li>
+          ) : (
+            <li>Nothing you type is sent anywhere. Your plans, links, notes and searches stay on your device, and the app has no connection to an AI service.</li>
+          )}
           <li>Visitors cannot change the reference library or the app's settings.</li>
         </ul>
       </section>
@@ -177,7 +188,7 @@ export function SourcesAndLimits() {
       <section aria-labelledby="docs-title">
         <h2 id="docs-title">Documents supplied to the project</h2>
         <p>
-          These are the documents the assistant will search once it is connected. None has been approved for that use yet,
+          These are the documents the Knowledge Centre search draws on. None has been approved for that use yet,
           and permission to show their text publicly has not been settled.
         </p>
         <div className="table-wrap">

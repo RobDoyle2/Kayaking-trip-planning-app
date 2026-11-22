@@ -1,7 +1,9 @@
 // Vercel serverless function: POST /api/ask
 // The assistant's front door. All the logic is in src/knowledge/ask.js; this file only reads the request and the settings.
 // Settings (set in the host's environment-variable page, never in the code):
-//   ANTHROPIC_API_KEY        required. Without it the assistant answers "not switched on" and calls nothing.
+//   ASSISTANT_ENABLED        must be 1 for this function to answer anything. The first simplified version of the app has no
+//                            assistant, so this stays OFF there: even with a key set, nothing is sent to Claude and nothing is billed.
+//   ANTHROPIC_API_KEY        required (as well). Without it the assistant answers "not switched on" and calls nothing.
 //   ANTHROPIC_MODEL          optional. Defaults to claude-sonnet-5-5.
 //   ASSISTANT_ALLOWED_ORIGINS optional. Comma-separated extra origins allowed to ask (for a custom domain).
 //   ANTHROPIC_BASE_URL       optional, for testing against a stand-in server (https, or http on localhost only).
@@ -34,6 +36,14 @@ function readBody(req) {
 }
 
 export default async function handler(req, res) {
+  // Off unless ASSISTANT_ENABLED=1. This check comes first, before the body is read, the limits are used or Claude is called.
+  if (process.env.ASSISTANT_ENABLED !== '1') {
+    res.statusCode = 503;
+    res.setHeader('content-type', 'application/json; charset=utf-8');
+    res.setHeader('cache-control', 'no-store');
+    res.end(JSON.stringify({ error: 'not_configured', message: 'The assistant is switched off in this version of the app.' }));
+    return;
+  }
   let bodyText = '';
   try {
     bodyText = req.method === 'POST' ? await readBody(req) : '';

@@ -6,6 +6,14 @@ colours and content, so other clubs can use the same code later.
 
 ## Where the project is
 
+**Simplified first version (current).** The home screen shows three big buttons: Trip Planning, Leadership, then Training and Skills,
+with a small "preview, not approved by the club" caution at the bottom. VHF Radio and Navigation and Tides sit inside Trip Planning
+(VHF first, near the top of that page) and VHF Radio is also in the menu. The menu holds Home, the three sections, VHF Radio, the
+Knowledge Centre, then the Emergency card, My plans and Sources and limits. There is **no AI in this version**: the assistant's code is
+not in the built site at all, and its server function is off. The Knowledge Centre is the keyword search, which runs on the device. A new
+**My links** page (inside Trip Planning) saves web addresses with a note and a section, in this browser only, and shows each on its
+section's page.
+
 **All six stages are built:** the framework (home screen, ECSKC branding, menu, six section pages,
 assistant entry point, Emergency card, Sources and limits), the **Leadership tools** (guides, checklists,
 SHEETS briefing form, risk assessment, equipment check, post-trip review, and My plans for saving them) **Trip Planning** (day trips, multi-day trips and camping trips: create, edit, save, reopen, print, PDF) and
@@ -13,10 +21,11 @@ SHEETS briefing form, risk assessment, equipment check, post-trip review, and My
 
 | Area | State |
 |---|---|
-| Home, menu, six section pages, layouts for phone, tablet and computer | Working |
+| Home (three big buttons), menu, six section pages (VHF Radio and Navigation and Tides shown inside Trip Planning), layouts for phone, tablet and computer | Working |
 | Emergency card | **Preview.** Wording comes from published sources and is not yet approved by the ECSKC committee |
 | Sources and limits | Working. Written content only |
-| Assistant | **Built, but switched off until you add a Claude API key** (see "The assistant" below). Answers come only from the library, each with the passages it rests on; with no key it says it is not switched on. **Never tested against the real Claude**: it was tested against a stand-in that follows Anthropic's documented citation format, so check it once after deployment |
+| My links | Working. Saved in this browser only (like trip plans), included in My plans export, import and delete. Addresses must be http or https; the app never visits them. Uses no outside service. |
+| Assistant | **Left out of this version** (not in the built site; its server function answers "switched off" unless `ASSISTANT_ENABLED=1`). The earlier Stage 6 build still exists behind a build switch (see "The assistant" below). In that build: built, but switched off until you add a Claude API key. Answers come only from the library, each with the passages it rests on; with no key it says it is not switched on. **Never tested against the real Claude**: it was tested against a stand-in that follows Anthropic's documented citation format, so check it once after deployment |
 | Leadership tools | **Preview.** Built from the supplied documents; not approved by the ECSKC committee. The SHEETS headings come from saturnbull.co.uk/sheets, paraphrased; permission to reuse them is unconfirmed. The risk assessment is a generic layout, not the club's template, and has no scoring |
 | My plans | Working. Lists what is saved in this browser; download, import (whole file or nothing) and delete |
 | Trip Planning | **Preview.** Manual planning only. Fields follow the approved specification; the app fills nothing in, fetches no weather and calculates no tides. Optional award-limit check (information only, off by default). Download as PDF (made in the browser), print, text or a trip file. Not yet approved by the ECSKC committee. Camping gear, food and water are free text because no ECSKC camping list was supplied |
@@ -109,12 +118,18 @@ Notes:
 
 ## The assistant
 
-How it works: a question goes from the browser to `/api/ask` on this app's own server. The server checks it, searches the library
+**Off in the simplified first version.** Two separate switches keep it off, so adding an API key on its own changes nothing:
+- *In the site:* the build leaves the assistant's code out unless it is made with `SKH_ASSISTANT=1` (`scripts/build.mjs`). In the normal build there is no assistant button, no question box and no assistant text.
+- *On the server:* `api/ask.js` answers "switched off" (503) and calls nothing unless the environment variable `ASSISTANT_ENABLED` is `1`.
+
+Do not add `ANTHROPIC_API_KEY` yet; nothing in this version uses it. When the club wants the assistant back, the plan is an "Advanced" link with an agree-first notice. That link is **not built yet**: building with `SKH_ASSISTANT=1` brings back the earlier always-on version (the floating button and the Ask box on the Knowledge search page). The Stage 6 test (`e2e/stage6.cjs`) runs against that build.
+
+How it works (in a build that has it): a question goes from the browser to `/api/ask` on this app's own server. The server checks it, searches the library
 (`src/knowledge/kb.json`, made from the app's own sourced content by `npm run kb`), and sends the best-matching passages and the question to Claude with citations switched on.
 Claude's reply is accepted only if it cites at least one of the passages that were sent; the source cards the visitor sees are built from the library's own text, never from words the model wrote.
 If the library has no good match, the server says so without calling Claude at all.
 
-To switch it on:
+To switch it on (all three needed: `SKH_ASSISTANT=1` when the site is built, `ASSISTANT_ENABLED=1` and `ANTHROPIC_API_KEY` for the server function; on Vercel add all three under Environment Variables and redeploy):
 1. Get an API key from the Anthropic Console and **set a monthly spend limit there**. That limit is the real cap: the limits in the app slow a flood but live in one function's memory and reset when it restarts.
 2. In Vercel, open the project, then Settings, then Environment Variables, and add `ANTHROPIC_API_KEY`. Redeploy.
 3. Optional settings: `ANTHROPIC_MODEL` (default `claude-sonnet-5-5`), `ASSISTANT_ALLOWED_ORIGINS` (extra addresses allowed to ask, such as a custom domain), `ASSISTANT_PER_MINUTE`, `ASSISTANT_PER_HOUR`, `ASSISTANT_PER_DAY` (per visitor) and `ASSISTANT_DAILY_LIMIT` (whole app).
@@ -141,13 +156,13 @@ After changing any page content, run `npm run kb` and commit `src/knowledge/kb.j
 The Leadership tools save **in the user's browser, on that device** (localStorage, keys `skh:<club>:<item>`), only
 after the user changes something. Nothing is sent to a server, nothing appears on another phone or browser, and it is
 lost if the browser's site data is cleared. Each page has print, copy and download-text buttons, and My plans can
-download everything as one file and import it again. Cookies are not used. Saving on a server, so a plan opens on any device, needs a database
+download everything as one file and import it again. My links (web addresses with a note and a section) are saved the same way. Cookies are not used. Saving on a server, so a plan opens on any device, needs a database
 and is deliberately left for a later phase. The app will not call anything "saved" unless it is.
 
 ## Testing
 
 ```bash
-npm test                         # 149 unit tests: section rules, club config, question checks, addresses, saving, SHEETS, checklists, trip plans, PDF writer, training plan and checklists, calculators, VHF table, assistant request and reply checks
+npm test                         # 165 unit tests: section rules, club config, question checks, addresses, saving, SHEETS, checklists, trip plans, PDF writer, training plan and checklists, calculators, VHF table, assistant request and reply checks, My links address rules, the server off switch
 ```
 
 Browser tests (they drive a real Chromium; install once with `npm install --no-save playwright` then
@@ -156,21 +171,23 @@ Browser tests (they drive a real Chromium; install once with `npm install --no-s
 ```bash
 npm run build
 node scripts/serve.mjs dist 4173 &     # serve the built site with the host's security headers
-node e2e/smoke.cjs                     # 537 checks: every page, menu, assistant window, tap targets, console errors
+node e2e/smoke.cjs                     # 534 checks: every page, home buttons, menu, no assistant in the normal build, tap targets, console errors
+node e2e/stage7.cjs                    # Simplified version and My links: home, menu, Trip Planning contents, adding, changing, deleting, sections, export/import, hostile input, 320px, keyboard
 node e2e/stage2.cjs                    # Leadership: saving, reload, SHEETS, print, export/import, 320px, blocked storage
 node e2e/stage3.cjs                    # Trip Planning: create, edit, reopen, delete, PDF (checked with qpdf and pdftotext), import merge, limits, 320px, blocked storage
 #   (the Stage 3 test also needs qpdf and pdftotext from poppler-utils, to check the downloaded PDF)
 node e2e/stage4.cjs                    # Training: development plan, checklists, guidance, award links, import/export, 320px, blocked storage
 node e2e/stage5.cjs                    # Navigation and VHF: calculators checked against the course's worked examples, VHF table, Beaufort, links, no outside requests, 320px
+SKH_ASSISTANT=1 npm run build          # Stage 6 needs the build WITH the assistant; rebuild normally afterwards
 node e2e/stage6.cjs                    # Assistant and Knowledge Centre: starts its own copies of the app and a stand-in for the Claude API; key never reaches the browser, limits, bad replies, 320px
-node e2e/audit.cjs                     # 328 checks: odd addresses, Back button, injection, CSP, 320px and 200% text,
+node e2e/audit.cjs                     # 331 checks (set ASSISTANT=1 to include the assistant parts, for an assistant build): odd addresses, Back button, injection, CSP, 320px and 200% text,
                                        #   accessibility structure, privacy, print, performance under throttling
 python3 e2e/contrast.py                # colour contrast measured from real screenshot pixels
 ```
 
 Results for the current build are in the testing report in the project. In short: all of the above pass; the
-home page paints in about 1.9 s on a throttled 4G connection with a CPU four times slower than normal (measured against a
-local server, so treat it as indicative); the JavaScript is 75 KB compressed.
+home page paints in about 2.4 s on the audit's simulated slow phone (throttled 4G, CPU four times slower; the limit is 2.5 s, so there is little room to spare; measured against a
+local server, so treat it as indicative); the JavaScript Home loads is about 66 KB compressed.
 
 **Not tested:** `npm install` and `npm run typecheck` against the real React type packages, and a real deployment. The
 package registry was blocked in the session that built and tested the app, so it was bundled and tested with locally
